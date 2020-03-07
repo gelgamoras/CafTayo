@@ -123,7 +123,7 @@
                 </div>
                 <div class="card-footer text-muted border-top py-3">
                     <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Breakfast">Mark All Out of Stock</button>
-                    <button type="button" class="mb-2 btn btn-sm btn-primary mr-1 float-right">+ Add Food</button> 
+                    <button type="button" class="mb-2 btn btn-sm btn-primary mr-1 float-right" data-toggle="modal" data-target="#add-breakfast">+ Add Food</button> 
                 </div>
             </div>  
         </div> 
@@ -138,22 +138,6 @@
                     </h4>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Ulam</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Saver's Meal - Cheesy Hotdog w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Saver's Meal - Hotdog w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
                         <li class="list-group-item d-flex px-3">
                             <span class="text-semibold text-fiord-blue">Saver's Meal - Spam w/ Egg</span>
                             <span class="ml-auto text-right">
@@ -277,14 +261,6 @@
                         </li>
                         <li class="list-group-item d-flex px-3">
                             <span class="text-semibold text-fiord-blue">Arroz Caldo w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Garlic Rice</span>
                             <span class="ml-auto text-right">
                                 <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
                                     <i class="fas fa-times"></i>
@@ -468,6 +444,107 @@
         </div> 
     </div>
     <!-- End Menu of the Day -->
+
+    <!-- Modal -->
+    <?php
+        //sorry tamad mag-isa isa 
+        function get_dummyfood_add(){
+            
+            $dummyFoodList_ulam = array(
+                array("name"=>"Food1", "id" => "food1"),
+                array("name"=>"Food2", "id" => "food2"),
+                array("name"=>"Food3", "id" => "food3"),
+                array("name"=>"Food4", "id" => "food4"),
+                array("name"=>"Food5", "id" => "food5"),
+                array("name"=>"Food6", "id" => "food6"),
+                array("name"=>"Food7", "id" => "food7")
+            );
+            $dummyFoodList_quickBites = array(
+                array("name"=>"Food8", "id" => "food8"),
+                array("name"=>"Food9", "id" => "food9"),
+                array("name"=>"Food10", "id" => "food10"),
+                array("name"=>"Food11", "id" => "food11")
+            );
+            $dummyFoodList_sweetDelights = array(
+                array("name"=>"Food12", "id" => "food12"),
+                array("name"=>"Food13", "id" => "food13"),
+                array("name"=>"Food14", "id" => "food14")
+            );
+
+            echo "
+                <ul class='list-group list-group-small list-group-flush list-food-category'>
+                <h6>Ulam</h6> 
+            "; 
+
+            foreach($dummyFoodList_ulam as $ulam){
+                echo "
+                    <li class='list-group-item d-flex px-3'>
+                        <div class='custom-control custom-checkbox'>
+                            <input type='checkbox' class='custom-control-input' id='". $ulam['id'] ."'>
+                            <label class='custom-control-label' for='". $ulam['id'] ."'>". $ulam['name'] ."</label>
+                        </div>
+                    </li> 
+                "; 
+            }
+
+            echo " 
+                </ul> 
+                <ul class='list-group list-group-small list-group-flush list-food-category'>
+                <h6>Quick Bites</h6> 
+            ";
+
+            foreach($dummyFoodList_quickBites as $qb){
+                echo "
+                    <li class='list-group-item d-flex px-3'>
+                        <div class='custom-control custom-checkbox'>
+                            <input type='checkbox' class='custom-control-input' id='". $qb['id'] ."'>
+                            <label class='custom-control-label' for='". $qb['id'] ."'>". $qb['name'] ."</label>
+                        </div>
+                    </li> 
+                "; 
+            }
+
+            echo " 
+                </ul> 
+                <ul class='list-group list-group-small list-group-flush list-food-category'>
+                <h6>Sweet Delights</h6> 
+            ";
+
+            foreach($dummyFoodList_sweetDelights as $sd){
+                echo "
+                    <li class='list-group-item d-flex px-3'>
+                        <div class='custom-control custom-checkbox'>
+                            <input type='checkbox' class='custom-control-input' id='". $sd['id'] ."'>
+                            <label class='custom-control-label' for='". $sd['id'] ."'>". $sd['name'] ."</label>
+                        </div>
+                    </li> 
+                "; 
+            }
+            echo " 
+                </ul> 
+            ";
+        }
+    ?>
+    <div class="modal fade" id="add-breakfast" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addBreakfastLabel">Add to Breakfast</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="#" methtod="post">
+                    <div class="modal-body">
+                        <?php get_dummyfood_add(); ?> 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Add to Menu</button>
+                    </div>
+                </form> 
+            </div>
+        </div>
+    </div>
 
     <script> 
         $('.mark-oos').click(function(){
