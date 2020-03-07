@@ -1,1 +1,3 @@
-@extends('layouts.main')
+@extends('concessionaire.index')
+
+{{-- @extends('admin.index') --}}
