@@ -4,4 +4,38 @@
     h6 {
         font-weight: bold; 
     }
+    .inv-button {
+        background-color: rgba(0, 0, 0, 0); 
+        border: none; 
+        padding: none; 
+    }
+  
+    .mark-oos {
+        transition: all 0.3s ease; 
+    }
+    
+    .mark-oos:hover {
+        -webkit-font-smoothing: subpixel-antialiased;
+        backface-visibility: hidden;
+        transform: scale(1.15);
+        cursor: pointer; 
+    }
+
+    .mark-oos:focus {
+        outline: none; 
+        box-shadow: none; 
+    }
+
+    .out-of-stock.list-group-item {
+        .text-semibold {
+            color: rgba(0,0,0,.5) !important; 
+            text-decoration: line-through
+        }
+        .text-right {
+            display: none; 
+        }
+    }
+
 }
+
+
