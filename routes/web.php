@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/plan-menu', function(){
+    return view('concessionaire/planmenu'); 
+}); 

@@ -24,13 +24,13 @@
           <div class="nav-wrapper">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="index.html">
+                <a class="nav-link active" href="/">
                 <i class="material-icons">menu_book</i>
                   <span>Menu of the Day</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="components-blog-posts.html">
+                <a class="nav-link " href="plan-menu">
                 <i class="material-icons">
                   calendar_today
                 </i>
