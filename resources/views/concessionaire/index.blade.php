@@ -4,6 +4,15 @@
     Menu of the Day
 @endsection
 
+@section('page_top_buttons')
+    <button type="button" class="btn mt-3 btn-sm btn-outline-success mr-1" data-toggle="modal" data-target="#add-to-menu">
+        + Add Food
+    </button> 
+    <button type="button" class="btn mt-3 btn-sm btn-primary mr-1">
+        Plan a Menu
+    </button> 
+@endsection
+
 @section('subheader')
 <?php
     $date = date('F d, Y'); 
@@ -123,7 +132,6 @@
                 </div>
                 <div class="card-footer text-muted border-top py-3">
                     <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Breakfast">Mark All Out of Stock</button>
-                    <button type="button" class="mb-2 btn btn-sm btn-primary mr-1 float-right" data-toggle="modal" data-target="#add-breakfast">+ Add Food</button> 
                 </div>
             </div>  
         </div> 
@@ -220,7 +228,6 @@
                 </div>
                 <div class="card-footer text-muted border-top py-3">
                     <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Lunch">Mark All Out of Stock</button>
-                    <button type="button" class="mb-2 btn btn-sm btn-primary mr-1 float-right">+ Add Food</button> 
                 </div>
             </div>  
         </div> 
@@ -325,7 +332,6 @@
                 </div>
                 <div class="card-footer text-muted border-top py-3">
                     <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Afternoon">Mark All Out of Stock</button>
-                    <button type="button" class="mb-2 btn btn-sm btn-primary mr-1 float-right">+ Add Food</button> 
                 </div>
             </div>  
         </div> 
@@ -438,7 +444,6 @@
                 </div>
                 <div class="card-footer text-muted border-top py-3">
                     <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Dinner">Mark All Out of Stock</button>
-                    <button type="button" class="mb-2 btn btn-sm btn-primary mr-1 float-right">+ Add Food</button> 
                 </div>
             </div>  
         </div> 
@@ -525,23 +530,30 @@
             ";
         }
     ?>
-    <div class="modal fade" id="add-breakfast" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="add-to-menu" tabindex="-1" role="dialog" aria-labelledby="add-to-menu" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addBreakfastLabel">Add to Breakfast</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <form action="#" methtod="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addBreakfastLabel">Add to Menu</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                     <div class="modal-body">
+                        Add to: 
+                        <select id="inputState" class="form-control" placeholder="Choose period...">
+                            <option>Breakfast</option>
+                            <option>Lunch</option>
+                            <option>Afternoon</option>
+                            <option>Dinner</option>
+                        </select>
                         <?php get_dummyfood_add(); ?> 
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Add to Menu</button>
                     </div>
-                </form> 
+                </form>
             </div>
         </div>
     </div>

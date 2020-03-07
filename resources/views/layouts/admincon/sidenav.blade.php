@@ -25,26 +25,28 @@
             <ul class="nav flex-column">
               <li class="nav-item">
                 <a class="nav-link active" href="index.html">
-                  <i class="material-icons">edit</i>
+                <i class="material-icons">menu_book</i>
                   <span>Menu of the Day</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link " href="components-blog-posts.html">
-                  <i class="material-icons">vertical_split</i>
-                  <span>Blog Posts</span>
+                <i class="material-icons">
+                  calendar_today
+                </i>
+                  <span>Plan a Menu</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link " href="add-new-post.html">
                   <i class="material-icons">note_add</i>
-                  <span>Add New Post</span>
+                  <span>Manage Menus</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link " href="form-components.html">
                   <i class="material-icons">view_module</i>
-                  <span>Forms &amp; Components</span>
+                  <span>Manage Food</span>
                 </a>
               </li>
               <li class="nav-item">
@@ -56,13 +58,13 @@
               <li class="nav-item">
                 <a class="nav-link " href="user-profile-lite.html">
                   <i class="material-icons">person</i>
-                  <span>User Profile</span>
+                  <span>Everyday Food</span>
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link " href="errors.html">
                   <i class="material-icons">error</i>
-                  <span>Errors</span>
+                  <span>Preferences</span>
                 </a>
               </li>
             </ul>
