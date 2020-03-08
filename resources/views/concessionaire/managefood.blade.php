@@ -80,7 +80,7 @@
                         <td>". $food['Subcategory'] ."</td>
                         <td>". $food['Price'] ."</td>
                         <td class='text-center'>
-                            <form action='' method='get' style='display: inline-block;'>
+                            <form action='view-food' method='get' style='display: inline-block;'>
                                 <input type='hidden' value='". $food['id'] ."' /> 
                                 <button type='submit' class='btn btn-info' 
                                     data-toggle='tooltip' data-placement='top' title='View'> 
