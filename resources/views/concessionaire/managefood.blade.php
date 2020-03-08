@@ -87,7 +87,7 @@
                                     <i class='fas fa-search'></i>
                                 </button> 
                             </form>
-                            <button type='button' class='btn btn-danger'> 
+                            <button type='button' class='btn btn-danger delete-btn' data-food-id='". $food['id'] ."' value='". $food['food'] ."'> 
                                 <i class='fas fa-trash'></i>
                             </button> 
                         </td>
@@ -146,6 +146,30 @@
         </div> 
     </div> 
 
+    
+    <!-- Delete Modal -->
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete food</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nope</button>
+            <form action="#" method="post">
+                <input type="hidden" value="" id="to-delete" /> 
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+
     <script>
         $(document).ready(function () {
             var table = $('#foodTable').DataTable();    
@@ -169,6 +193,15 @@
                 jQuery('#foodTable').dataTable().fnFilter(''); 
             });
         });
+    </script> 
+    <script> 
+        $('.delete-btn').click(function(){
+            var food = $(this).val(); 
+            var foodid = $(this).attr("data-food-id"); 
+            $('#delete-modal').find('.modal-body').text('Are you sure you want to delete ' + food + '?'); 
+            $('#to-delete').attr("value", foodid)
+            $('#delete-modal').modal('toggle'); 
+        }); 
     </script> 
 
 @endsection
