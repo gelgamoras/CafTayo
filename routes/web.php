@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Routes below are just getting the views, nothing more lol 
+
 Route::get('/plan-menu', function(){
     return view('concessionaire/planmenu'); 
+}); 
+
+Route::get('/manage-food', function(){
+    return view('concessionaire/managefood'); 
 }); 

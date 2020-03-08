@@ -17,31 +17,36 @@
         function get_dummyDataTables(){
             $food_items_table = array(
                 array(
-                    "id"            => "1", 
+                    "id"            => "1",
+                    "image"         => "adobo.jpg", 
                     "food"          => "Arroz Caldo w/ Egg", 
                     "Category"      => "Ulam", 
                     "Subcategory"   => "Local", 
                     "Price"         => "P45.00"),
                 array(
                     "id"            => "2", 
+                    "image"         => "sinigang.jpg",
                     "food"          => "Spicy Chicken Adobo", 
                     "Category"      => "Ulam", 
                     "Subcategory"   => "Local", 
                     "Price"         => "P70.00"),
                 array(
                     "id"            => "3", 
+                    "image"         => "sinangag.jpg",
                     "food"          => "Cordon Bleu", 
                     "Category"      => "Ulam", 
                     "Subcategory"   => "International", 
                     "Price"         => "P85.00"), 
                 array(
                     "id"            => "4", 
+                    "image"         => "palabok.jpg", 
                     "food"          => "Ham and Cheese Sandwich", 
                     "Category"      => "Quick Bites", 
                     "Subcategory"   => "Sammich", 
                     "Price"         => "P45.00"),           
                 array(
                     "id"            => "5", 
+                    "image"         => "adobo.jpg", 
                     "food"          => "Coffee Jelly", 
                     "Category"      => "Sweet Delights", 
                     "Subcategory"   => "Cold", 
@@ -52,6 +57,7 @@
                 echo "
                 <tr>
                     <td>". $food['id'] ."</td>
+                    <td class='text-center'><img src='assets/images/food/". $food['image'] ."' width=100px height=100px /></td>
                     <td>". $food['food'] ."</td>
                     <td>". $food['Category'] ."</td>
                     <td>". $food['Subcategory'] ."</td>
@@ -79,7 +85,7 @@
                             <div class='col-md-2'>
                                 <div class='custom-control custom-checkbox'>
                                     <input type='checkbox' name='dinner[]' class='custom-control-input' id='". $food['id'] ."-d'>
-                                    <label class='custom-control-label' for='". $food['id'] ."-a'>Dinner</label>
+                                    <label class='custom-control-label' for='". $food['id'] ."-d'>Dinner</label>
                                 </div>
                             </div> 
                         </div> 
@@ -108,7 +114,7 @@
                         <input type="text" class="form-control" id="menu-date" placeholder="Date" /> 
                         <span class="input-group-append">
                             <span class="input-group-text">
-                                <i class="fa fa-calendar"></i> 
+                                <i style="font-size: 20px" class="fa fa-calendar"></i> 
                             </span>
                         </span>
                     </div> 
@@ -122,6 +128,8 @@
                 <thead>
                     <tr>
                         <th class="th-sm">ID
+                        </th>
+                        <th class="th-sm">Image
                         </th>
                         <th class="th-sm">Food
                         </th>
@@ -142,6 +150,8 @@
                         <tr>
                         <th>ID
                         </th>
+                        <th>Image
+                        </th>
                         <th>Food
                         </th>
                         <th>Category
@@ -157,17 +167,21 @@
                 </table>
             </div> 
         </div>
-        <!-- End Menu of the Day -->
-        <div class="row" style="justify-content: flex-end;">
-            <button type="submit" class="btn btn-success">Submit</button> 
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-lg btn-success">Save</button>  
+                </div> 
+            </div> 
         </div> 
+        <!-- End Menu of the Day -->
     </form>
         <script>
              $('#menu-date').datepicker({
-                calendarWeeks: true,
                 todayHighlight: true,
                 multidate: true,
-                multidateSeparator: ", "
+                multidateSeparator: ", ",
+                daysOfWeekDisabled: '0'
             });
         </script> 
         <script>

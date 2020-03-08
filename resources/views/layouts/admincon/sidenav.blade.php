@@ -30,7 +30,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="plan-menu">
+                <a class="nav-link" href="plan-menu">
                 <i class="material-icons">
                   calendar_today
                 </i>
@@ -44,7 +44,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="form-components.html">
+                <a class="nav-link " href="manage-food">
                   <i class="material-icons">view_module</i>
                   <span>Manage Food</span>
                 </a>
