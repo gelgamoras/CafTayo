@@ -36,3 +36,7 @@ Route::get('/everyday', function(){
 Route::get('/manage-menu', function(){
     return view('concessionaire/managemenus'); 
 });
+
+Route::get('/view-menu', function(){
+    return view('concessionaire/viewmenu'); 
+});

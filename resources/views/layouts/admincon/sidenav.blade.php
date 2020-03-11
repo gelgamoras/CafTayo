@@ -38,7 +38,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="add-new-post.html">
+                <a class="nav-link " href="manage-menu">
                   <i class="material-icons">note_add</i>
                   <span>Manage Menus</span>
                 </a>
