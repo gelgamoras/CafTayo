@@ -15,16 +15,12 @@
 @endsection
 
 @section('content')
-    Search by category: 
+    Filter by date: 
     <div class="row">
-        <div class="col-lg-6 col-md-12 col-sm-12 mt-2">
-            <button type="button" class="btn btn-secondary" id="ulam-filter">Ulam</button> 
-            <button type="button" class="btn btn-secondary" id="qb-filter">Quick Bites</button> 
-            <button type="button" class="btn btn-secondary" id="mer-filter">Meryenda</button> 
-            <button type="button" class="btn btn-secondary" id="sd-filter">Sweet Delights</button> 
-            <button type="button" class="btn btn-secondary" id="drinks-filter">Drinks</button> 
-            <button type="button" class="btn btn-white" id="clear-filter">Clear</button> 
-        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 mt-2"> 
+            <input type="text" id="search-date" class="form-control w-50 d-inline-block" /> 
+            <button type="button" class="btn btn-secondary" id="filter-date">Filter</button> 
+        </div> 
     </div> 
     <div class="row">
         <?php
@@ -32,19 +28,19 @@
                 $menu_items_table = array(
                     array(
                         "id"            => "1",
-                        "title"         => "Menu 1", 
+                        "title"         => "The quick", 
                         "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020"), 
                     array(
                         "id"            => "2",
-                        "title"         => "Menu 2", 
-                        "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020"),
+                        "title"         => "Brown fox", 
+                        "date"          => "03/05/2020, 03/31/2020, 03/10/2020, 03/19/2020, 03/25/2020, 03/15/2020"),
                     array(
                         "id"            => "3",
-                        "title"         => "Menu 3", 
+                        "title"         => "Jumps over", 
                         "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020"),
                     array(
-                        "id"            => "3",
-                        "title"         => "Menu 4", 
+                        "id"            => "4",
+                        "title"         => "the lazy dog", 
                         "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020")            
                 );
 
@@ -53,8 +49,13 @@
                     <tr>
                         <td>". $menu['id'] ."</td>
                         <td>". $menu['title'] ."</td>
-                        <td>". $menu['date'] ."</td>
+                        <td style='display: none'>". $menu['date']."</td>
                         <td class='text-center'>
+                            <button type='button' class='btn btn-success' id='". $menu['id'] ."'>
+                                <i class='material-icons'>
+                                    calendar_today
+                                </i>
+                            </button> 
                             <form action='view-food' method='get' style='display: inline-block;'>
                                 <input type='hidden' value='". $menu['id'] ."' /> 
                                 <button type='submit' class='btn btn-info' 
@@ -62,7 +63,7 @@
                                     <i class='fas fa-search'></i>
                                 </button> 
                             </form>
-                            <button type='button' class='btn btn-danger delete-btn' data-food-id='". $menu['id'] ."' value='". $menu['title'] ."'> 
+                            <button type='button' class='btn btn-danger delete-btn' data-menu-id='". $menu['id'] ."' value='". $menu['title'] ."'> 
                                 <i class='fas fa-trash'></i>
                             </button> 
                         </td>
@@ -77,14 +78,13 @@
         <script src="{{ asset('assets/scripts/datatables.min.js') }}"></script>
 
         <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
-            <table id="foodTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <table id="menuTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th class="th-sm">ID
                         </th>
                         <th class="th-sm">Menu Title
-                        </th>
-                        <th class="th-sm">Dates
+                        <th style="display: none;"></th> 
                         </th>
                         <th class="th-sm">Action
                         </th>
@@ -98,8 +98,7 @@
                         <th>ID
                         </th>
                         <th>Menu Title
-                        </th>
-                        <th>Dates
+                        <th style="display: none;"></th> 
                         </th>
                         <th>Action
                         </th>
@@ -115,7 +114,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Delete food</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Delete Menu</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -133,38 +132,60 @@
     </div>
     </div>
 
+    <script> 
+        <?php 
+        $menu_items_table = array(
+            array(
+                "id"            => "1",
+                "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020"), 
+            array(
+                "id"            => "2",
+                "date"          => "03/05/2020, 03/31/2020, 03/10/2020, 03/19/2020, 03/25/2020, 03/15/2020"),
+            array(
+                "id"            => "3",
+                "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020"),
+            array(
+                "id"            => "4",
+                "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020")            
+        );
+            foreach ($menu_items_table as $menu){         
+                $datesString = $menu['date']; 
+                $datesArr = explode(', ',  $datesString);        
+                ?> 
+                var dates = <?php echo json_encode($datesArr); ?>; 
+                $('#<?php echo $menu['id']; ?>').datepicker({
+                    daysOfWeekDisabled: [0,1,2,3,4,5,6],
+                    orientation: "bottom right"
+                });
+                $('#<?php echo $menu['id']; ?>').datepicker('setDates', dates);
+                <?php
+            }
+        ?> 
+    </script> 
+
+    <script> 
+        $('.delete-btn').click(function(){
+            var menu = $(this).val(); 
+            var menuid = $(this).attr("data-food-id"); 
+            $('#delete-modal').find('.modal-body').text('Are you sure you want to delete ' + menu + ' menu?'); 
+            $('#to-delete').attr("value", menuid)
+            $('#delete-modal').modal('toggle'); 
+        }); 
+    </script> 
     <script>
         $(document).ready(function () {
-            var table = $('#foodTable').DataTable();    
-
-            $('#ulam-filter').click(function(){
-                jQuery('#foodTable').dataTable().fnFilter('ulam'); 
-            });
-            $('#qb-filter').click(function(){
-                jQuery('#foodTable').dataTable().fnFilter('quick bites'); 
-            });
-            $('#sd-filter').click(function(){
-                jQuery('#foodTable').dataTable().fnFilter('sweet delights'); 
-            });
-            $('#mer-filter').click(function(){
-                jQuery('#foodTable').dataTable().fnFilter('meryenda'); 
-            });
-            $('#drinks-filter').click(function(){
-                jQuery('#foodTable').dataTable().fnFilter('drinks'); 
-            });
-            $('#clear-filter').click(function(){
-                jQuery('#foodTable').dataTable().fnFilter(''); 
-            });
+            var table = $('#menuTable').DataTable();
+            $('#search-date').datepicker({
+                daysOfWeekDisabled: [0],
+                orientation: "bottom left"
+            }); 
+            $('#filter-date').click(function(){
+                var datesearch = $('#search-date').val(); 
+                table.search(datesearch).draw();
+            })
         });
     </script> 
     <script> 
-        $('.delete-btn').click(function(){
-            var food = $(this).val(); 
-            var foodid = $(this).attr("data-food-id"); 
-            $('#delete-modal').find('.modal-body').text('Are you sure you want to delete ' + food + '?'); 
-            $('#to-delete').attr("value", foodid)
-            $('#delete-modal').modal('toggle'); 
-        }); 
     </script> 
 
 @endsection
