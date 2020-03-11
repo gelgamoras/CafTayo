@@ -28,3 +28,11 @@ Route::get('/manage-food', function(){
 Route::get('/view-food', function(){
     return view('concessionaire/viewfood'); 
 }); 
+
+Route::get('/everyday', function(){
+    return view('concessionaire/everydaymenu'); 
+});
+
+Route::get('/manage-menu', function(){
+    return view('concessionaire/managemenus'); 
+});

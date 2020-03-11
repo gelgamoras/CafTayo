@@ -56,8 +56,8 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="user-profile-lite.html">
-                  <i class="material-icons">person</i>
+                <a class="nav-link " href="everyday">
+                <i class="material-icons">wb_sunny</i>
                   <span>Everyday Food</span>
                 </a>
               </li>
