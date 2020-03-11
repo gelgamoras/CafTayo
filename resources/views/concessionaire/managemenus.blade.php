@@ -56,7 +56,7 @@
                                     calendar_today
                                 </i>
                             </button> 
-                            <form action='view-food' method='get' style='display: inline-block;'>
+                            <form action='view-menu' method='get' style='display: inline-block;'>
                                 <input type='hidden' value='". $menu['id'] ."' /> 
                                 <button type='submit' class='btn btn-info' 
                                     data-toggle='tooltip' data-placement='top' title='View'> 
