@@ -557,10 +557,8 @@ Food enlisted here will appear everyday
     <script> 
         $('.mark-oos').click(function(){
             var food_item = $(this).attr('value'); 
-            if(confirm("Mark " + food_item + " out of stock?")){
-                $(this).closest('.list-group-item').addClass('out-of-stock'); 
-                
-                //This only works front end lol just wanted to see how itd look like
+            if(confirm("Remove " + food_item + " from the menu?")){
+
             } else {
 
             }
@@ -568,10 +566,8 @@ Food enlisted here will appear everyday
 
         $('.mark-all-oos').click(function(){
             var period = $(this).attr('value'); 
-            if(confirm("Mark everything in " + period + " menu out of stock?")){
-                $(this).closest('.card-footer').siblings('.card-body').find('.list-group-item').addClass('out-of-stock'); 
-                
-                //This only works front end lol just wanted to see how itd look like
+            if(confirm("Remove everything from " + period + "?")){
+
             } else {
 
             }
