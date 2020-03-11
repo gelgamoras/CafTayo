@@ -40,3 +40,7 @@ Route::get('/manage-menu', function(){
 Route::get('/view-menu', function(){
     return view('concessionaire/viewmenu'); 
 });
+
+Route::get('/preferences', function(){
+    return view('concessionaire/preferences'); 
+}); 

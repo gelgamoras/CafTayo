@@ -39,7 +39,7 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link " href="manage-menu">
-                  <i class="material-icons">note_add</i>
+                  <i class="material-icons">table_chart</i>
                   <span>Manage Menus</span>
                 </a>
               </li>
@@ -50,19 +50,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="tables.html">
-                  <i class="material-icons">table_chart</i>
-                  <span>Tables</span>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link " href="everyday">
                 <i class="material-icons">wb_sunny</i>
                   <span>Everyday Food</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="errors.html">
+                <a class="nav-link " href="preferences">
                   <i class="material-icons">error</i>
                   <span>Preferences</span>
                 </a>
