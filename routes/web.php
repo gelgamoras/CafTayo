@@ -44,3 +44,7 @@ Route::get('/view-menu', function(){
 Route::get('/preferences', function(){
     return view('concessionaire/preferences'); 
 }); 
+
+Route::get('/my-profile', function(){
+    return view('concessionaire/profile'); 
+}); 
