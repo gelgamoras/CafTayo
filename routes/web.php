@@ -11,11 +11,21 @@
 |
 */
 
-Route::get('/', 'MenuController@index'); 
+//Im not sure whether to use ::resource or ::get so uh 
 
+Route::get('/', 'MenuController@show_todaymenu'); 
 
-Route::resource("menu", "MenuController");
+Route::get('/plan-menu', 'MenuController@create'); 
 
+Route::get('/view-menu', 'MenuController@show'); 
+
+Route::get('/manage-food', 'FoodController@index'); 
+
+Route::get('/view-food', 'FoodController@show'); 
+
+Route::get('/manage-menu', 'MenuController@index'); 
+
+Route::get('/everyday', 'MenuController@show_everydaymenu'); 
 //Routes below are just getting the views :"^) 
 /*
 Route::get('/plan-menu', function(){
