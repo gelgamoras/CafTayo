@@ -26,7 +26,7 @@
                         <div class="form-row mb-2">
                             <div class="form-group col-lg-5">
                                 <div class='input-group with-addon-icon-left date datetimepicker'>
-                                    <input type='text' class="form-control" placeholder="Start" name="breakfast-start" value="8:00 AM"/>
+                                    <input type='text' class="form-control" placeholder="Start" name="breakfast-start" value="{{ $period['Breakfast']['Start'] }}"/>
                                     <span class="input-group-addon input-group-append">
                                         <span class="input-group-text">
                                             <i class="far fa-clock"></i>
@@ -37,7 +37,7 @@
                             <div class="form-group col-lg-2 text-center"> to </div> 
                             <div class="form-group col-lg-5">
                             <div class='input-group with-addon-icon-left date datetimepicker'>
-                                <input type='text' class="form-control" placeholder="End" name="breakfast-end" value="9:59 AM"/>
+                                <input type='text' class="form-control" placeholder="End" name="breakfast-end" value="{{ $period['Breakfast']['End'] }}"/>
                                    <span class="input-group-addon input-group-append">
                                        <span class="input-group-text">
                                             <i class="far fa-clock"></i>
@@ -50,7 +50,7 @@
                         <div class="form-row mb-2">
                             <div class="form-group col-lg-5">
                                 <div class='input-group with-addon-icon-left date datetimepicker'>
-                                    <input type='text' class="form-control" placeholder="Start" name="lunch-start" value="10:00 AM"/>
+                                    <input type='text' class="form-control" placeholder="Start" name="lunch-start" value="{{ $period['Lunch']['Start'] }}"/>
                                         <span class="input-group-addon input-group-append">
                                             <span class="input-group-text">
                                                 <i class="far fa-clock"></i>
@@ -61,7 +61,7 @@
                                 <div class="form-group col-lg-2 text-center"> to </div> 
                                 <div class="form-group col-lg-5">
                                 <div class='input-group with-addon-icon-left date datetimepicker'>
-                                    <input type='text' class="form-control" placeholder="End" name="lunch-end" value="1:59 PM"/>
+                                    <input type='text' class="form-control" placeholder="End" name="lunch-end" value="{{ $period['Lunch']['End'] }}"/>
                                     <span class="input-group-addon input-group-append">
                                         <span class="input-group-text">
                                             <i class="far fa-clock"></i>
@@ -74,7 +74,7 @@
                         <div class="form-row mb-2">
                             <div class="form-group col-lg-5">
                                 <div class='input-group with-addon-icon-left date datetimepicker'>
-                                        <input type='text' class="form-control" placeholder="Start" name="afternoon-start" value="2:00 PM"/>
+                                        <input type='text' class="form-control" placeholder="Start" name="afternoon-start" value="{{ $period['Afternoon']['Start'] }}"/>
                                         <span class="input-group-addon input-group-append">
                                             <span class="input-group-text">
                                                 <i class="far fa-clock"></i>
@@ -85,7 +85,7 @@
                                 <div class="form-group col-lg-2 text-center"> to </div> 
                                 <div class="form-group col-lg-5">
                                 <div class='input-group with-addon-icon-left date datetimepicker'>
-                                    <input type='text' class="form-control" placeholder="End" name="afternoon-end" value="5:59 PM"/>
+                                    <input type='text' class="form-control" placeholder="End" name="afternoon-end" value="{{ $period['Afternoon']['End'] }}"/>
                                     <span class="input-group-addon input-group-append">
                                         <span class="input-group-text">
                                             <i class="far fa-clock"></i>
@@ -98,7 +98,7 @@
                         <div class="form-row mb-2">
                             <div class="form-group col-lg-5">
                                 <div class='input-group with-addon-icon-left date datetimepicker'>
-                                        <input type='text' class="form-control" placeholder="Start" name="dinner-start" value="6:00 PM"/>
+                                        <input type='text' class="form-control" placeholder="Start" name="dinner-start" value="{{ $period['Dinner']['Start'] }}"/>
                                         <span class="input-group-addon input-group-append">
                                             <span class="input-group-text">
                                                 <i class="far fa-clock"></i>
@@ -109,7 +109,7 @@
                                 <div class="form-group col-lg-2 text-center"> to </div> 
                                 <div class="form-group col-lg-5">
                                 <div class='input-group with-addon-icon-left date datetimepicker'>
-                                    <input type='text' class="form-control" placeholder="End" name="dinner-end" value="8:00 PM"/>
+                                    <input type='text' class="form-control" placeholder="End" name="dinner-end" value="{{ $period['Dinner']['End'] }}"/>
                                     <span class="input-group-addon input-group-append">
                                         <span class="input-group-text">
                                             <i class="far fa-clock"></i>

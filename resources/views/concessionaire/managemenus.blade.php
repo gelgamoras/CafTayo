@@ -91,7 +91,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php get_dummyDataTables(); ?> 
+                    @foreach($menu as $menu_item)
+                        <tr>
+                            <td>{{ $menu_item['id'] }}</td>
+                            <td>{{ $menu_item['title'] }}</td>
+                            <td style='display: none'>{{ $menu_item['date'] }}</td>
+                            <td class='text-center'>
+                                <button type='button' class='btn btn-success' id="{{ $menu_item['id'] }}">
+                                    <i class='material-icons'>
+                                        calendar_today
+                                    </i>
+                                </button> 
+                                <form action='view-menu' method='get' style='display: inline-block;'>
+                                    <input type='hidden' value="{{ $menu_item['id'] }}" /> 
+                                    <button type='submit' class='btn btn-info' 
+                                        data-toggle='tooltip' data-placement='top' title='View'> 
+                                        <i class='fas fa-search'></i>
+                                    </button> 
+                                </form>
+                                <button type='button' class='btn btn-danger delete-btn' data-menu-id="{{ $menu_item['id'] }}" value="{{ $menu_item['title'] }}"> 
+                                    <i class='fas fa-trash'></i>
+                                </button> 
+                            </td>
+                        </tr>
+                    @endforeach 
                 </tbody>
                 <tfoot>
                     <tr>
@@ -134,30 +157,17 @@
 
     <script> 
         <?php 
-        $menu_items_table = array(
-            array(
-                "id"            => "1",
-                "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020"), 
-            array(
-                "id"            => "2",
-                "date"          => "03/05/2020, 03/31/2020, 03/10/2020, 03/19/2020, 03/25/2020, 03/15/2020"),
-            array(
-                "id"            => "3",
-                "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020"),
-            array(
-                "id"            => "4",
-                "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020")            
-        );
-            foreach ($menu_items_table as $menu){         
-                $datesString = $menu['date']; 
+        
+            foreach ($menu as $menu_item){         
+                $datesString = $menu_item['date']; 
                 $datesArr = explode(', ',  $datesString);        
                 ?> 
                 var dates = <?php echo json_encode($datesArr); ?>; 
-                $('#<?php echo $menu['id']; ?>').datepicker({
+                $('#<?php echo $menu_item['id']; ?>').datepicker({
                     daysOfWeekDisabled: [0,1,2,3,4,5,6],
                     orientation: "bottom right"
                 });
-                $('#<?php echo $menu['id']; ?>').datepicker('setDates', dates);
+                $('#<?php echo $menu_item['id']; ?>').datepicker('setDates', dates);
                 <?php
             }
         ?> 

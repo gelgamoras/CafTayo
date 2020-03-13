@@ -30,72 +30,6 @@
         </div>
     </div> 
     <div class="row">
-        <?php
-            function get_dummyDataTables(){
-                $food_items_table = array(
-                    array(
-                        "id"            => "1",
-                        "image"         => "adobo.jpg", 
-                        "food"          => "Arroz Caldo w/ Egg", 
-                        "Category"      => "Ulam", 
-                        "Subcategory"   => "Local", 
-                        "Price"         => "P45.00"),
-                    array(
-                        "id"            => "2", 
-                        "image"         => "sinigang.jpg",
-                        "food"          => "Spicy Chicken Adobo", 
-                        "Category"      => "Ulam", 
-                        "Subcategory"   => "Local", 
-                        "Price"         => "P70.00"),
-                    array(
-                        "id"            => "3", 
-                        "image"         => "sinangag.jpg",
-                        "food"          => "Cordon Bleu", 
-                        "Category"      => "Ulam", 
-                        "Subcategory"   => "International", 
-                        "Price"         => "P85.00"), 
-                    array(
-                        "id"            => "4", 
-                        "image"         => "palabok.jpg", 
-                        "food"          => "Ham and Cheese Sandwich", 
-                        "Category"      => "Quick Bites", 
-                        "Subcategory"   => "Sammich", 
-                        "Price"         => "P45.00"),           
-                    array(
-                        "id"            => "5", 
-                        "image"         => "adobo.jpg", 
-                        "food"          => "Coffee Jelly", 
-                        "Category"      => "Sweet Delights", 
-                        "Subcategory"   => "Cold", 
-                        "Price"         => "P45.00"),              
-                );
-
-                foreach ($food_items_table as $food){
-                    echo "
-                    <tr>
-                        <td>". $food['id'] ."</td>
-                        <td class='text-center'><img src='assets/images/food/". $food['image'] ."' width=100px height=100px /></td>
-                        <td>". $food['food'] ."</td>
-                        <td>". $food['Category'] ."</td>
-                        <td>". $food['Subcategory'] ."</td>
-                        <td>". $food['Price'] ."</td>
-                        <td class='text-center'>
-                            <form action='view-food' method='get' style='display: inline-block;'>
-                                <input type='hidden' value='". $food['id'] ."' /> 
-                                <button type='submit' class='btn btn-info' 
-                                    data-toggle='tooltip' data-placement='top' title='View'> 
-                                    <i class='fas fa-search'></i>
-                                </button> 
-                            </form>
-                            <button type='button' class='btn btn-danger delete-btn' data-food-id='". $food['id'] ."' value='". $food['food'] ."'> 
-                                <i class='fas fa-trash'></i>
-                            </button> 
-                        </td>
-                    </tr>
-                    "; 
-                }
-            }
-        ?> 
         <link href="{{ asset('assets/styles/mdb.min.css') }}" /> 
         <script src="{{ asset('assets/scripts/mdb.min.js') }}"></script> 
         <link href="{{ asset('assets/styles/datatables.min.css') }}" rel="stylesheet" type="text/css" /> 
@@ -122,7 +56,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php get_dummyDataTables(); ?> 
+                    @foreach($food_items as $food)
+                        <tr>
+                            <td>{{ $food['id'] }}</td>
+                            <td class='text-center'><img src="assets/images/food/{{ $food['image'] }}" width=100px height=100px /></td>
+                            <td>{{ $food['food'] }}</td>
+                            <td>{{ $food['Category'] }}</td>
+                            <td>{{ $food['Subcategory'] }}</td>
+                            <td>{{ $food['Price'] }}</td>
+                            <td class='text-center'>
+                                <form action="view-food" method='get' style="display: inline-block;">
+                                    <button type='submit' class='btn btn-info' 
+                                        data-toggle='tooltip' data-placement='top' title='View'> 
+                                        <i class='fas fa-search'></i>
+                                    </button> 
+                                </form>
+                                <button type='button' class='btn btn-danger delete-btn' data-food-id="{{ $food['id'] }}" value="{{ $food['food'] }}"> 
+                                    <i class='fas fa-trash'></i>
+                                </button> 
+                            </td>
+                        </tr>
+                    @endforeach 
                 </tbody>
                 <tfoot>
                     <tr>

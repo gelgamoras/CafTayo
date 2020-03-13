@@ -13,89 +13,6 @@
 @endsection
 
 @section('content')
-    <?php
-        function get_dummyDataTables(){
-            $food_items_table = array(
-                array(
-                    "id"            => "1",
-                    "image"         => "adobo.jpg", 
-                    "food"          => "Arroz Caldo w/ Egg", 
-                    "Category"      => "Ulam", 
-                    "Subcategory"   => "Local", 
-                    "Price"         => "P45.00"),
-                array(
-                    "id"            => "2", 
-                    "image"         => "sinigang.jpg",
-                    "food"          => "Spicy Chicken Adobo", 
-                    "Category"      => "Ulam", 
-                    "Subcategory"   => "Local", 
-                    "Price"         => "P70.00"),
-                array(
-                    "id"            => "3", 
-                    "image"         => "sinangag.jpg",
-                    "food"          => "Cordon Bleu", 
-                    "Category"      => "Ulam", 
-                    "Subcategory"   => "International", 
-                    "Price"         => "P85.00"), 
-                array(
-                    "id"            => "4", 
-                    "image"         => "palabok.jpg", 
-                    "food"          => "Ham and Cheese Sandwich", 
-                    "Category"      => "Quick Bites", 
-                    "Subcategory"   => "Sammich", 
-                    "Price"         => "P45.00"),           
-                array(
-                    "id"            => "5", 
-                    "image"         => "adobo.jpg", 
-                    "food"          => "Coffee Jelly", 
-                    "Category"      => "Sweet Delights", 
-                    "Subcategory"   => "Cold", 
-                    "Price"         => "P45.00"),              
-            );
-
-            foreach ($food_items_table as $food){
-                echo "
-                <tr>
-                    <td>". $food['id'] ."</td>
-                    <td class='text-center'><img src='assets/images/food/". $food['image'] ."' width=100px height=100px /></td>
-                    <td>". $food['food'] ."</td>
-                    <td>". $food['Category'] ."</td>
-                    <td>". $food['Subcategory'] ."</td>
-                    <td>". $food['Price'] ."</td>
-                    <td>
-                        <div class='choose-period'>
-                            <div class='col-md-2'>
-                                <div class='custom-control custom-checkbox'>
-                                    <input type='checkbox' name='breakfast[]' class='custom-control-input' id='". $food['id'] ."-bf'>
-                                    <label class='custom-control-label' for='". $food['id'] ."-bf'>Breakfast</label>
-                                </div>
-                            </div> 
-                            <div class='col-md-2'>
-                                <div class='custom-control custom-checkbox'>
-                                    <input type='checkbox' name='lunch[]' class='custom-control-input' id='". $food['id'] ."-l'>
-                                    <label class='custom-control-label' for='". $food['id'] ."-l'>Lunch</label>
-                                </div>
-                            </div> 
-                            <div class='col-md-2'>
-                                <div class='custom-control custom-checkbox'>
-                                    <input type='checkbox' name='afternoon[]' class='custom-control-input' id='". $food['id'] ."-a'>
-                                    <label class='custom-control-label' for='". $food['id'] ."-a'>Afternoon</label>
-                                </div>
-                            </div> 
-                            <div class='col-md-2'>
-                                <div class='custom-control custom-checkbox'>
-                                    <input type='checkbox' name='dinner[]' class='custom-control-input' id='". $food['id'] ."-d'>
-                                    <label class='custom-control-label' for='". $food['id'] ."-d'>Dinner</label>
-                                </div>
-                            </div> 
-                        </div> 
-                    </td>
-                </tr>
-                "; 
-            }
-
-        }
-    ?>
     <link href="{{ asset('assets/styles/mdb.min.css') }}" /> 
     <script src="{{ asset('assets/scripts/mdb.min.js') }}"></script> 
     <link href="{{ asset('assets/styles/datatables.min.css') }}" rel="stylesheet" type="text/css" /> 
@@ -144,7 +61,44 @@
                     </tr>
                 </thead>
                     <tbody>
-                        <?php get_dummyDataTables(); ?> 
+                        @foreach($food as $food_item)
+                            <tr>
+                                <td>{{ $food_item['id'] }}</td>
+                                <td class="text-center"><img src="assets/images/food/{{ $food_item['image'] }}" width=100px height=100px /></td>
+                                <td>{{ $food_item['food'] }}</td>
+                                <td>{{ $food_item['Category'] }}</td>
+                                <td>{{ $food_item['Subcategory'] }}</td>
+                                <td>{{ $food_item['Price'] }}</td>
+                                <td>
+                                    <div class='choose-period'>
+                                        <div class='col-md-2'>
+                                            <div class='custom-control custom-checkbox'>
+                                                <input type='checkbox' name='breakfast[]' class='custom-control-input' id="{{ $food_item['id'] }}-bf">
+                                                <label class='custom-control-label' for="{{ $food_item['id'] }}-bf">Breakfast</label>
+                                            </div>
+                                        </div> 
+                                        <div class='col-md-2'>
+                                            <div class='custom-control custom-checkbox'>
+                                                <input type='checkbox' name='lunch[]' class='custom-control-input' id="{{ $food_item['id'] }}-l">
+                                                <label class='custom-control-label' for="{{ $food_item['id'] }}-l">Lunch</label>
+                                            </div>
+                                        </div> 
+                                        <div class='col-md-2'>
+                                            <div class='custom-control custom-checkbox'>
+                                                <input type='checkbox' name='afternoon[]' class='custom-control-input' id="{{ $food_item['id'] }}-a">
+                                                <label class='custom-control-label' for="{{ $food_item['id'] }}-a">Afternoon</label>
+                                            </div>
+                                        </div> 
+                                        <div class='col-md-2'>
+                                            <div class='custom-control custom-checkbox'>
+                                                <input type='checkbox' name='dinner[]' class='custom-control-input' id="{{ $food_item['id'] }}-d">
+                                                <label class='custom-control-label' for="{{ $food_item['id'] }}-d">Dinner</label>
+                                            </div>
+                                        </div> 
+                                    </div> 
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                     <tfoot>
                         <tr>

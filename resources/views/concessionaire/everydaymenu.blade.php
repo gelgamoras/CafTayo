@@ -30,100 +30,42 @@ Food enlisted here will appear everyday
                     </h4>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Ulam</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Saver's Meal - Cheesy Hotdog w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Saver's Meal - Cheesy Hotdog w/ Egg">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3 out-of-stock">
-                            <span class="text-semibold text-fiord-blue">Saver's Meal - Hotdog w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Saver's Meal - Hotdog w/ Egg">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Saver's Meal - Spam w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Saver's Meal - Spam w/ Egg">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Arroz Caldo w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Arroz Caldo w/ Egg">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Garlic Rice</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
+                        @foreach($breakfast['Ulam'] as $ulam)
+                            <li class="list-group-item d-flex px-3">
+                                <span class="text-semibold text-fiord-blue">{{ $ulam['FoodName'] }}</span>
+                                <span class="ml-auto text-right">
+                                    <button type="button" class="inv-button text-danger mark-oos" value="{{ $ulam['FoodName'] }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        @endforeach 
                     </ul>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Quick Bites</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Ham & Cheese Sandwich</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Egg Salad Sandwich</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Hawaiian Pizza</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
+                        @foreach($breakfast['Quick Bites'] as $qb)
+                            <li class="list-group-item d-flex px-3">
+                                <span class="text-semibold text-fiord-blue">{{ $qb['FoodName'] }}</span>
+                                <span class="ml-auto text-right">
+                                    <button type="button" class="inv-button text-danger mark-oos" value="{{ $qb['FoodName'] }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        @endforeach 
                     </ul>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Sweet Delights</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Coffee Jelly</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Mango Jelly</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Mango Graham</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
+                        @foreach($breakfast['Sweet Delights'] as $sd)
+                            <li class="list-group-item d-flex px-3">
+                                <span class="text-semibold text-fiord-blue">{{ $sd['FoodName'] }}</span>
+                                <span class="ml-auto text-right">
+                                    <button type="button" class="inv-button text-danger mark-oos" value="{{ $sd['FoodName'] }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        @endforeach 
                     </ul>
                 </div>
                 <div class="card-footer text-muted border-top py-3">
@@ -142,84 +84,42 @@ Food enlisted here will appear everyday
                     </h4>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Ulam</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Saver's Meal - Spam w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Arroz Caldo w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Garlic Rice</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
+                        @foreach($lunch['Ulam'] as $ulam)
+                            <li class="list-group-item d-flex px-3">
+                                <span class="text-semibold text-fiord-blue">{{ $ulam['FoodName'] }}</span>
+                                <span class="ml-auto text-right">
+                                    <button type="button" class="inv-button text-danger mark-oos" value="{{ $ulam['FoodName'] }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        @endforeach 
                     </ul>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Quick Bites</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Ham & Cheese Sandwich</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Egg Salad Sandwich</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Hawaiian Pizza</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
+                        @foreach($lunch['Quick Bites'] as $qb)
+                            <li class="list-group-item d-flex px-3">
+                                <span class="text-semibold text-fiord-blue">{{ $qb['FoodName'] }}</span>
+                                <span class="ml-auto text-right">
+                                    <button type="button" class="inv-button text-danger mark-oos" value="{{ $qb['FoodName'] }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        @endforeach 
                     </ul>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Sweet Delights</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Coffee Jelly</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Mango Jelly</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Mango Graham</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
+                        @foreach($lunch['Sweet Delights'] as $sd)
+                            <li class="list-group-item d-flex px-3">
+                                <span class="text-semibold text-fiord-blue">{{ $sd['FoodName'] }}</span>
+                                <span class="ml-auto text-right">
+                                    <button type="button" class="inv-button text-danger mark-oos" value="{{ $sd['FoodName'] }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        @endforeach 
                     </ul>
                 </div>
                 <div class="card-footer text-muted border-top py-3">
@@ -238,92 +138,42 @@ Food enlisted here will appear everyday
                     </h4>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Ulam</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Saver's Meal - Cheesy Hotdog w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Saver's Meal - Hotdog w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Saver's Meal - Spam w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Arroz Caldo w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
+                        @foreach($afternoon['Ulam'] as $ulam)
+                            <li class="list-group-item d-flex px-3">
+                                <span class="text-semibold text-fiord-blue">{{ $ulam['FoodName'] }}</span>
+                                <span class="ml-auto text-right">
+                                    <button type="button" class="inv-button text-danger mark-oos" value="{{ $ulam['FoodName'] }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        @endforeach 
                     </ul>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Quick Bites</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Ham & Cheese Sandwich</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Egg Salad Sandwich</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Hawaiian Pizza</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
+                        @foreach($afternoon['Quick Bites'] as $qb)
+                            <li class="list-group-item d-flex px-3">
+                                <span class="text-semibold text-fiord-blue">{{ $qb['FoodName'] }}</span>
+                                <span class="ml-auto text-right">
+                                    <button type="button" class="inv-button text-danger mark-oos" value="{{ $qb['FoodName'] }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        @endforeach 
                     </ul>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Sweet Delights</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Coffee Jelly</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Mango Jelly</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Mango Graham</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
+                        @foreach($afternoon['Sweet Delights'] as $sd)
+                            <li class="list-group-item d-flex px-3">
+                                <span class="text-semibold text-fiord-blue">{{ $sd['FoodName'] }}</span>
+                                <span class="ml-auto text-right">
+                                    <button type="button" class="inv-button text-danger mark-oos" value="{{ $sd['FoodName'] }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        @endforeach 
                     </ul>
                 </div>
                 <div class="card-footer text-muted border-top py-3">
@@ -342,100 +192,42 @@ Food enlisted here will appear everyday
                     </h4>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Ulam</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Saver's Meal - Cheesy Hotdog w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Saver's Meal - Hotdog w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Saver's Meal - Spam w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Arroz Caldo w/ Egg</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Garlic Rice</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
+                        @foreach($dinner['Ulam'] as $ulam)
+                            <li class="list-group-item d-flex px-3">
+                                <span class="text-semibold text-fiord-blue">{{ $ulam['FoodName'] }}</span>
+                                <span class="ml-auto text-right">
+                                    <button type="button" class="inv-button text-danger mark-oos" value="{{ $ulam['FoodName'] }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        @endforeach 
                     </ul>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Quick Bites</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Ham & Cheese Sandwich</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Egg Salad Sandwich</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Hawaiian Pizza</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
+                        @foreach($dinner['Quick Bites'] as $qb)
+                            <li class="list-group-item d-flex px-3">
+                                <span class="text-semibold text-fiord-blue">{{ $qb['FoodName'] }}</span>
+                                <span class="ml-auto text-right">
+                                    <button type="button" class="inv-button text-danger mark-oos" value="{{ $qb['FoodName'] }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        @endforeach 
                     </ul>
                     <ul class="list-group list-group-small list-group-flush list-food-category">
                         <h6>Sweet Delights</h6> 
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Coffee Jelly</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Mango Jelly</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
-                        <li class="list-group-item d-flex px-3">
-                            <span class="text-semibold text-fiord-blue">Mango Graham</span>
-                            <span class="ml-auto text-right">
-                                <button type="button" class="inv-button text-danger mark-oos" value="Garlic Rice">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </span>
-                        </li>
+                        @foreach($dinner['Sweet Delights'] as $sd)
+                            <li class="list-group-item d-flex px-3">
+                                <span class="text-semibold text-fiord-blue">{{ $sd['FoodName'] }}</span>
+                                <span class="ml-auto text-right">
+                                    <button type="button" class="inv-button text-danger mark-oos" value="{{ $sd['FoodName'] }}">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </span>
+                            </li>
+                        @endforeach 
                     </ul>
                 </div>
                 <div class="card-footer text-muted border-top py-3">
@@ -447,85 +239,6 @@ Food enlisted here will appear everyday
     <!-- End Menu of the Day -->
 
     <!-- Modal -->
-    <?php
-        //sorry tamad mag-isa isa 
-        function get_dummyfood_add(){
-            
-            $dummyFoodList_ulam = array(
-                array("name"=>"Food1", "id" => "food1"),
-                array("name"=>"Food2", "id" => "food2"),
-                array("name"=>"Food3", "id" => "food3"),
-                array("name"=>"Food4", "id" => "food4"),
-                array("name"=>"Food5", "id" => "food5"),
-                array("name"=>"Food6", "id" => "food6"),
-                array("name"=>"Food7", "id" => "food7")
-            );
-            $dummyFoodList_quickBites = array(
-                array("name"=>"Food8", "id" => "food8"),
-                array("name"=>"Food9", "id" => "food9"),
-                array("name"=>"Food10", "id" => "food10"),
-                array("name"=>"Food11", "id" => "food11")
-            );
-            $dummyFoodList_sweetDelights = array(
-                array("name"=>"Food12", "id" => "food12"),
-                array("name"=>"Food13", "id" => "food13"),
-                array("name"=>"Food14", "id" => "food14")
-            );
-
-            echo "
-                <ul class='list-group list-group-small list-group-flush list-food-category'>
-                <h6>Ulam</h6> 
-            "; 
-
-            foreach($dummyFoodList_ulam as $ulam){
-                echo "
-                    <li class='list-group-item d-flex px-3'>
-                        <div class='custom-control custom-checkbox'>
-                            <input type='checkbox' class='custom-control-input' id='". $ulam['id'] ."'>
-                            <label class='custom-control-label' for='". $ulam['id'] ."'>". $ulam['name'] ."</label>
-                        </div>
-                    </li> 
-                "; 
-            }
-
-            echo " 
-                </ul> 
-                <ul class='list-group list-group-small list-group-flush list-food-category'>
-                <h6>Quick Bites</h6> 
-            ";
-
-            foreach($dummyFoodList_quickBites as $qb){
-                echo "
-                    <li class='list-group-item d-flex px-3'>
-                        <div class='custom-control custom-checkbox'>
-                            <input type='checkbox' class='custom-control-input' id='". $qb['id'] ."'>
-                            <label class='custom-control-label' for='". $qb['id'] ."'>". $qb['name'] ."</label>
-                        </div>
-                    </li> 
-                "; 
-            }
-
-            echo " 
-                </ul> 
-                <ul class='list-group list-group-small list-group-flush list-food-category'>
-                <h6>Sweet Delights</h6> 
-            ";
-
-            foreach($dummyFoodList_sweetDelights as $sd){
-                echo "
-                    <li class='list-group-item d-flex px-3'>
-                        <div class='custom-control custom-checkbox'>
-                            <input type='checkbox' class='custom-control-input' id='". $sd['id'] ."'>
-                            <label class='custom-control-label' for='". $sd['id'] ."'>". $sd['name'] ."</label>
-                        </div>
-                    </li> 
-                "; 
-            }
-            echo " 
-                </ul> 
-            ";
-        }
-    ?>
     <div class="modal fade" id="add-to-menu" tabindex="-1" role="dialog" aria-labelledby="add-to-menu" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -544,7 +257,39 @@ Food enlisted here will appear everyday
                             <option>Afternoon</option>
                             <option>Dinner</option>
                         </select>
-                        <?php get_dummyfood_add(); ?> 
+                        <ul class='list-group list-group-small list-group-flush list-food-category'>
+                            <h6>Ulam</h6> 
+                            @foreach($allfood['Ulam'] as $ulam)
+                                <li class='list-group-item d-flex px-3'>
+                                    <div class='custom-control custom-checkbox'>
+                                        <input type='checkbox' class='custom-control-input' id="{{ $ulam['FoodID'] }}">
+                                        <label class='custom-control-label' for="{{ $ulam['FoodID'] }}">{{ $ulam['FoodName'] }}</label>
+                                    </div>
+                                </li> 
+                            @endforeach
+                        </ul> 
+                        <ul class='list-group list-group-small list-group-flush list-food-category'>
+                            <h6>Quick Bites</h6> 
+                            @foreach($allfood['Quick Bites'] as $qb)
+                                <li class='list-group-item d-flex px-3'>
+                                    <div class='custom-control custom-checkbox'>
+                                        <input type='checkbox' class='custom-control-input' id="{{ $qb['FoodID'] }}">
+                                        <label class='custom-control-label' for="{{ $qb['FoodID'] }}">{{ $qb['FoodName'] }}</label>
+                                    </div>
+                                </li> 
+                            @endforeach
+                        </ul> 
+                        <ul class='list-group list-group-small list-group-flush list-food-category'>
+                            <h6>Sweet Delights</h6> 
+                                @foreach($allfood['Sweet Delights'] as $sd)
+                                    <li class='list-group-item d-flex px-3'>
+                                        <div class='custom-control custom-checkbox'>
+                                            <input type='checkbox' class='custom-control-input' id="{{ $sd['FoodID'] }}">
+                                            <label class='custom-control-label' for="{{ $sd['FoodID'] }}">{{ $sd['FoodName'] }}</label>
+                                        </div>
+                                    </li> 
+                                @endforeach
+                        </ul> 
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary">Add to Menu</button>
