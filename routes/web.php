@@ -11,12 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'MenuController@index'); 
+
+
+Route::resource("menu", "MenuController");
 
 //Routes below are just getting the views :"^) 
-
+/*
 Route::get('/plan-menu', function(){
     return view('concessionaire/planmenu'); 
 }); 
@@ -48,3 +49,5 @@ Route::get('/preferences', function(){
 Route::get('/my-profile', function(){
     return view('concessionaire/profile'); 
 }); 
+
+*/ 
