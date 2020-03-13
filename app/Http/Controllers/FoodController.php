@@ -16,6 +16,7 @@ class FoodController extends Controller
         //dummy food 
         $food_items = array(
             array(
+                "id"            => "1",
                 "image"         => "adobo.jpg", 
                 "food"          => "Arroz Caldo w/ Egg", 
                 "Category"      => "Ulam", 
