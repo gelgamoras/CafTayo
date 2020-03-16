@@ -8,7 +8,7 @@ class PeriodController extends Controller
 {
     //
 
-    public function preferences(){
+    public function get(){
         $period_times = array(
             "Breakfast" => array(
                 "Start" => "8:00 AM",
@@ -28,6 +28,6 @@ class PeriodController extends Controller
             )
         );
 
-        return view('concessionaire.preferences')->with("periods", $period_times); 
+        return view('concessionaire.settings')->with("period", $period_times); 
     }
 }
