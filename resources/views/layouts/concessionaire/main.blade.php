@@ -56,21 +56,21 @@
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->
-        @include('layouts.admincon.sidenav')
+        @include('layouts.concessionaire.sidenav')
         <!-- End Main Sidebar -->
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
           <div class="main-navbar sticky-top bg-white">
             <!-- Main Navbar -->
-            @include('layouts.admincon.topnav')
+            @include('layouts.concessionaire.topnav')
           </div>
           <!-- / .main-navbar -->
           <div class="main-content-container container-fluid px-4">
             <!-- Page Header -->
-            @include('layouts.admincon.pageheader')
+            @include('layouts.concessionaire.pageheader')
             <!-- End Page Header -->
             @yield('content')
           </div>
-          @include('layouts.admincon.footer')
+          @include('layouts.concessionaire.footer')
         </main>
       </div>
     </div>

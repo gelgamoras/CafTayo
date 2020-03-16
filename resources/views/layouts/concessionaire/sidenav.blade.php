@@ -56,9 +56,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="preferences">
+                <a class="nav-link " href="settings">
                   <i class="material-icons">error</i>
-                  <span>Preferences</span>
+                  <span>Settings</span>
                 </a>
               </li>
             </ul>
