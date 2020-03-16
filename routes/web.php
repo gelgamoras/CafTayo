@@ -26,6 +26,8 @@ Route::get('/view-food', 'FoodController@show');
 Route::get('/manage-menu', 'MenuController@index'); 
 
 Route::get('/everyday', 'MenuController@show_everydaymenu'); 
+
+Route::get('/settings', 'PeriodController@get'); 
 //Routes below are just getting the views :"^) 
 /*
 Route::get('/plan-menu', function(){

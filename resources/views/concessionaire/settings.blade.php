@@ -1,4 +1,4 @@
-@extends('layouts.admincon.main')
+@extends('layouts.concessionaire.main')
 
 @section('page_header')
     Preferences 
