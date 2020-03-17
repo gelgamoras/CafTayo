@@ -18,11 +18,11 @@ Route::get('/menu/create', 'MenuController@create')->name('menu_create');
 
 Route::get('/menu/view', 'MenuController@show')->name('menu_view'); 
 
-Route::get('/food', 'FoodController@index')->name('menu_list'); 
+Route::get('/food', 'FoodController@index')->name('food_list'); 
 
 Route::get('/food/view', 'FoodController@show')->name('food_view'); 
 
-Route::get('/menu', 'MenuController@index')->name('food_list'); 
+Route::get('/menu', 'MenuController@index')->name('menu_list'); 
 
 Route::get('/menu/everyday', 'MenuController@show_everydaymenu')->name('menu_everyday'); 
 
