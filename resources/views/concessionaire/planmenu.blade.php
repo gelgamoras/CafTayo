@@ -64,7 +64,7 @@
                         @foreach($food as $food_item)
                             <tr>
                                 <td>{{ $food_item['id'] }}</td>
-                                <td class="text-center"><img src="assets/images/food/{{ $food_item['image'] }}" width=100px height=100px /></td>
+                                <td class="text-center"><img src="{{url('assets/images/food')}}/{{ $food_item['image'] }}" width=100px height=100px /></td>
                                 <td>{{ $food_item['food'] }}</td>
                                 <td>{{ $food_item['Category'] }}</td>
                                 <td>{{ $food_item['Subcategory'] }}</td>

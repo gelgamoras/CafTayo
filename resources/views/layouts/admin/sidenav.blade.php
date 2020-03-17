@@ -24,7 +24,7 @@
           <div class="nav-wrapper">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="/">
+                <a class="nav-link " href="/">
                 <i class="material-icons">menu_book</i>
                   <span>Menu of the Day</span>
                 </a>

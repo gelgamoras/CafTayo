@@ -24,13 +24,13 @@
           <div class="nav-wrapper">
             <ul class="nav flex-column">
               <li class="nav-item">
-                <a class="nav-link active" href="/">
+                <a class="nav-link {{ Route::is('menu_today') ? 'active' : '' }}" href="{{url('/')}}">
                 <i class="material-icons">menu_book</i>
                   <span>Menu of the Day</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="plan-menu">
+                <a class="nav-link {{ Route::is('menu_create') ? 'active' : '' }}" href="{{route('menu_create')}}">
                 <i class="material-icons">
                   calendar_today
                 </i>
@@ -38,25 +38,25 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="manage-menu">
+                <a class="nav-link {{ Route::is('menu_list') ? 'active' : '' }}" href="{{route('menu_list')}}">
                   <i class="material-icons">table_chart</i>
                   <span>Manage Menus</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="manage-food">
+                <a class="nav-link {{ Route::is('food_list') ? 'active' : '' }}" href="{{route('food_list')}}">
                   <i class="material-icons">view_module</i>
                   <span>Manage Food</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="everyday">
+                <a class="nav-link {{ Route::is('menu_everyday') ? 'active' : '' }}" href="{{route('menu_everyday')}}">
                 <i class="material-icons">wb_sunny</i>
                   <span>Everyday Food</span>
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link " href="settings">
+                <a class="nav-link {{ Route::is('period_settings') ? 'active' : '' }}" href="{{route('period_settings')}}">
                   <i class="material-icons">error</i>
                   <span>Settings</span>
                 </a>
