@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="{{ asset('assets/styles/shards-dashboards.1.1.0.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/styles/extras.1.1.0.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/styles/scss/styles.css') }}" > 
+    <link rel="stylesheet" href="{{ asset('assets/styles/scss/custom.css') }}" > 
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="{{ asset('assets/scripts/shards.min.js') }}"></script>
@@ -21,26 +21,7 @@
   <body class="h-100">
     <div class="color-switcher animated">
       <h5>Accent Color</h5>
-      <ul class="accent-colors">
-        <li class="accent-primary active" data-color="primary">
-          <i class="material-icons">check</i>
-        </li>
-        <li class="accent-secondary" data-color="secondary">
-          <i class="material-icons">check</i>
-        </li>
-        <li class="accent-success" data-color="success">
-          <i class="material-icons">check</i>
-        </li>
-        <li class="accent-info" data-color="info">
-          <i class="material-icons">check</i>
-        </li>
-        <li class="accent-warning" data-color="warning">
-          <i class="material-icons">check</i>
-        </li>
-        <li class="accent-danger" data-color="danger">
-          <i class="material-icons">check</i>
-        </li>
-      </ul>
+      
       <div class="social-wrapper">
         <div class="loading-overlay">
           <div class="spinner"></div>
