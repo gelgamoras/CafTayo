@@ -11,55 +11,21 @@
 |
 */
 
-//Im not sure whether to use ::resource or ::get so uh 
 
-Route::get('/', 'MenuController@show_todaymenu'); 
+Route::get('/', 'MenuController@show_todaymenu')->name('menu_today'); 
 
-Route::get('/plan-menu', 'MenuController@create'); 
+Route::get('/plan-menu', 'MenuController@create')->name('menu_create'); 
 
-Route::get('/view-menu', 'MenuController@show'); 
+Route::get('/view-menu', 'MenuController@show')->name('menu_view'); 
 
-Route::get('/manage-food', 'FoodController@index'); 
+Route::get('/manage-food', 'FoodController@index')->name('menu_list'); 
 
-Route::get('/view-food', 'FoodController@show'); 
+Route::get('/view-food', 'FoodController@show')->name('food_view'); 
 
-Route::get('/manage-menu', 'MenuController@index'); 
+Route::get('/manage-menu', 'MenuController@index')->name('food_list'); 
 
-Route::get('/everyday', 'MenuController@show_everydaymenu'); 
+Route::get('/everyday', 'MenuController@show_everydaymenu')->name('menu_everyday'); 
 
-Route::get('/settings', 'PeriodController@get'); 
-//Routes below are just getting the views :"^) 
-/*
-Route::get('/plan-menu', function(){
-    return view('concessionaire/planmenu'); 
-}); 
+Route::get('/settings', 'PeriodController@get')->name('period_settings'); 
 
-Route::get('/manage-food', function(){
-    return view('concessionaire/managefood'); 
-}); 
-
-Route::get('/view-food', function(){
-    return view('concessionaire/viewfood'); 
-}); 
-
-Route::get('/everyday', function(){
-    return view('concessionaire/everydaymenu'); 
-});
-
-Route::get('/manage-menu', function(){
-    return view('concessionaire/managemenus'); 
-});
-
-Route::get('/view-menu', function(){
-    return view('concessionaire/viewmenu'); 
-});
-
-Route::get('/preferences', function(){
-    return view('concessionaire/preferences'); 
-}); 
-
-Route::get('/my-profile', function(){
-    return view('concessionaire/profile'); 
-}); 
-
-*/ 
+Route::get('/new-food', 'FoodController@create')->name('food_create'); 
