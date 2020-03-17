@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_top_buttons')
-    <button type="button" class="btn mt-1 btn-sm btn-primary mr-1" onclick="window.location.href='/plan-menu'">
+    <button type="button" class="btn mt-1 btn-sm btn-primary mr-1" onclick="window.location.href='{{route('menu_create')}}'">
         Plan a Menu
     </button> 
 @endsection
@@ -23,55 +23,6 @@
         </div> 
     </div> 
     <div class="row">
-        <?php
-            function get_dummyDataTables(){
-                $menu_items_table = array(
-                    array(
-                        "id"            => "1",
-                        "title"         => "The quick", 
-                        "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020"), 
-                    array(
-                        "id"            => "2",
-                        "title"         => "Brown fox", 
-                        "date"          => "03/05/2020, 03/31/2020, 03/10/2020, 03/19/2020, 03/25/2020, 03/15/2020"),
-                    array(
-                        "id"            => "3",
-                        "title"         => "Jumps over", 
-                        "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020"),
-                    array(
-                        "id"            => "4",
-                        "title"         => "the lazy dog", 
-                        "date"          => "03/12/2020, 03/18/2020, 03/25/2020, 03/28/2020, 03/21/2020, 03/20/2020")            
-                );
-
-                foreach ($menu_items_table as $menu){
-                    echo "
-                    <tr>
-                        <td>". $menu['id'] ."</td>
-                        <td>". $menu['title'] ."</td>
-                        <td style='display: none'>". $menu['date']."</td>
-                        <td class='text-center'>
-                            <button type='button' class='btn btn-success' id='". $menu['id'] ."'>
-                                <i class='material-icons'>
-                                    calendar_today
-                                </i>
-                            </button> 
-                            <form action='view-menu' method='get' style='display: inline-block;'>
-                                <input type='hidden' value='". $menu['id'] ."' /> 
-                                <button type='submit' class='btn btn-info' 
-                                    data-toggle='tooltip' data-placement='top' title='View'> 
-                                    <i class='fas fa-search'></i>
-                                </button> 
-                            </form>
-                            <button type='button' class='btn btn-danger delete-btn' data-menu-id='". $menu['id'] ."' value='". $menu['title'] ."'> 
-                                <i class='fas fa-trash'></i>
-                            </button> 
-                        </td>
-                    </tr>
-                    "; 
-                }
-            }
-        ?> 
         <link href="{{ asset('assets/styles/mdb.min.css') }}" /> 
         <script src="{{ asset('assets/scripts/mdb.min.js') }}"></script> 
         <link href="{{ asset('assets/styles/datatables.min.css') }}" rel="stylesheet" type="text/css" /> 
@@ -102,7 +53,7 @@
                                         calendar_today
                                     </i>
                                 </button> 
-                                <form action='view-menu' method='get' style='display: inline-block;'>
+                                <form action="{{route('menu_view')}}" method='get' style='display: inline-block;'>
                                     <input type='hidden' value="{{ $menu_item['id'] }}" /> 
                                     <button type='submit' class='btn btn-info' 
                                         data-toggle='tooltip' data-placement='top' title='View'> 
