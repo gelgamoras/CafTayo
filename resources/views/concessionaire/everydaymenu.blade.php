@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_top_buttons')
-    <button type="button" class="btn mt-3 btn-sm btn-outline-success mr-1" data-toggle="modal" data-target="#add-to-menu">
+    <button type="button" class="btn mt-3 btn-sm btn-success mr-1" data-toggle="modal" data-target="#add-to-menu">
         + Add Food
     </button> 
     <button type="button" class="btn mt-3 btn-sm btn-primary mr-1" onclick="window.location.href='{{route('menu_create')}}'">
