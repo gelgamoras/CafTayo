@@ -63,6 +63,7 @@ class FoodController extends Controller
     public function create()
     {
         //
+        return view('concessionaire/newfood'); 
     }
 
     /**
