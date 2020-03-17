@@ -124,7 +124,7 @@
         <div class="row">
             <div class="col-md-12 text-right">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-lg btn-success">Save</button>  
+                    <button type="submit" class="btn btn-primary">Save</button>  
                 </div> 
             </div> 
         </div> 
