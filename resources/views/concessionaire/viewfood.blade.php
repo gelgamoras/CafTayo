@@ -9,7 +9,9 @@
 @endsection
 
 @section('page_top_buttons')
-
+    <button type="button" class="btn mt-1 btn-sm btn-outline-success mr-1" data-toggle="modal" data-target="#add-to-menu" onclick="window.location.href='{{route('food_create')}}'">
+        + New Food
+    </button> 
 @endsection
 
 @section('content')
@@ -18,7 +20,7 @@
             <div class="card card-small mb-4 pt-3">
                 <div class="card-header border-bottom text-center">
                     <div class="mb-3 mx-auto">
-                        <img src="assets/images/food/{{ $food['image'] }}" width="80%" height="100%" /> 
+                        <img src="{{ asset('assets/images/food')}}/{{ $food['image'] }}" width="80%" height="100%" /> 
                     </div> 
                     <h4 class="mb-0">{{ $food['name'] }}</h4> 
                     <span class="text-muted d-block mb-2">{{ $food['category'] }}</span> 

@@ -8,7 +8,7 @@
     <button type="button" class="btn mt-3 btn-sm btn-outline-success mr-1" data-toggle="modal" data-target="#add-to-menu">
         + Add Food
     </button> 
-    <button type="button" class="btn mt-3 btn-sm btn-primary mr-1">
+    <button type="button" class="btn mt-3 btn-sm btn-primary mr-1" onclick="window.location.href='{{route('menu_create')}}'">
         Plan a Menu
     </button> 
 @endsection
@@ -23,7 +23,7 @@ Food enlisted here will appear everyday
         <!-- Breakfast --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <div class="card card-small card-post h-100">
-                <div class="card-post__image" style="background-image: url('assets/images/food/sinangag.jpg');"></div>
+                <div class="card-post__image" style="background-image: url('{{ asset('assets/images/food/sinangag.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a class="text-fiord-blue" href="#">Breakfast</a>
@@ -77,7 +77,7 @@ Food enlisted here will appear everyday
         <!-- Lunch --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <div class="card card-small card-post h-100">
-                <div class="card-post__image" style="background-image: url('assets/images/food/adobo.jpg');"></div>
+                <div class="card-post__image" style="background-image: url('{{ asset('assets/images/food/adobo.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a class="text-fiord-blue" href="#">Lunch</a>
@@ -131,7 +131,7 @@ Food enlisted here will appear everyday
         <!-- Afternoon --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <div class="card card-small card-post h-100">
-                <div class="card-post__image" style="background-image: url('assets/images/food/palabok.jpg');"></div>
+                <div class="card-post__image" style="background-image: url('{{ asset('assets/images/food/palabok.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a class="text-fiord-blue" href="#">Afternoon</a>
@@ -185,7 +185,7 @@ Food enlisted here will appear everyday
         <!-- Dinner --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <div class="card card-small card-post h-100">
-                <div class="card-post__image" style="background-image: url('assets/images/food/sinigang.jpg');"></div>
+                <div class="card-post__image" style="background-image: url('{{ asset('assets/images/food/sinangag.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a class="text-fiord-blue" href="#">Dinner</a>

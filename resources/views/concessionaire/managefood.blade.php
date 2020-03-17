@@ -5,10 +5,10 @@
 @endsection
 
 @section('page_top_buttons')
-    <button type="button" class="btn mt-1 btn-sm btn-outline-success mr-1" data-toggle="modal" data-target="#add-to-menu">
+    <button type="button" class="btn mt-1 btn-sm btn-outline-success mr-1" data-toggle="modal" data-target="#add-to-menu" onclick="window.location.href='{{route('food_create')}}'">
         + New Food
     </button> 
-    <button type="button" class="btn mt-1 btn-sm btn-primary mr-1" onclick="window.location.href='/plan-menu'">
+    <button type="button" class="btn mt-1 btn-sm btn-primary mr-1" onclick="window.location.href='{{route('menu_create')}}'">
         Plan a Menu
     </button> 
 @endsection
@@ -59,13 +59,13 @@
                     @foreach($food_items as $food)
                         <tr>
                             <td>{{ $food['id'] }}</td>
-                            <td class='text-center'><img src="assets/images/food/{{ $food['image'] }}" width=100px height=100px /></td>
+                            <td class='text-center'><img src="{{ asset('assets/images/food')}}/{{ $food['image'] }}" width=100px height=100px /></td>
                             <td>{{ $food['food'] }}</td>
                             <td>{{ $food['Category'] }}</td>
                             <td>{{ $food['Subcategory'] }}</td>
                             <td>{{ $food['Price'] }}</td>
                             <td class='text-center'>
-                                <form action="view-food" method='get' style="display: inline-block;">
+                                <form action="{{ route('food_view') }}" method='get' style="display: inline-block;">
                                     <button type='submit' class='btn btn-info' 
                                         data-toggle='tooltip' data-placement='top' title='View'> 
                                         <i class='fas fa-search'></i>
