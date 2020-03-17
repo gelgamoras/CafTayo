@@ -36,7 +36,7 @@
         <script src="{{ asset('assets/scripts/datatables.min.js') }}"></script>
 
         <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
-            <table id="foodTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <table id="foodTable" class="table table-striped table-bordered" cellspacing="0" max-width="100%">
                 <thead>
                     <tr>
                         <th class="th-sm">ID
