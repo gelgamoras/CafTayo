@@ -38,6 +38,7 @@
                                             <label for="shortdesc">Short Description</label> 
                                             <input type="text" name="shortdesc" class="form-control" id="shortdesc"
                                                 placeholder="Say a few words about this dish" value="" /> 
+                                            <div class="input-note">Max. 150 characters</div>
                                         </div> 
                                         <div class="form-group col-md-3">
                                             <label for="category">Category</label> 
@@ -105,6 +106,7 @@
                                             <label for="description">Description</label>
                                             <textarea class="form-control" name="description" id="description" rows="5" placeholder="Tell us more about this dish">
                                             </textarea> 
+                                            <div class="input-note">Max. 250 characters</div>
                                         </div> 
                                     </div> 
                                     <button type="submit" class="btn btn-primary">Save</button> 
