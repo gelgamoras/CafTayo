@@ -1,3 +1,7 @@
+<!-- 
+I'mma keep layouts for admin and concessionaire separate muna habang wala pang log in/users, 
+saka ko na ipagsama if meron na. Sorry still learning ✌️
+-->
 <!doctype html>
 <html class="no-js h-100" lang="en">
   <head>
