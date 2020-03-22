@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    <link href="{{ asset('assets/styles/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" />     
+    <link href="{{ asset('css/bootstrap-datetimepicker.min.css') }}" rel="stylesheet" />     
     <div class="row">
         <div class="col-lg-4">
             <div class="card card-small mb-4 pt-3">
@@ -128,8 +128,8 @@
             </div> 
         </div> 
     </div> 
-    <script src="{{ asset('assets/scripts/moment.js') }}"></script> 
-    <script src="{{ asset('assets/scripts/bootstrap-datetimepicker.min.js') }}"></script> 
+    <script src="{{ asset('js/moment.js') }}"></script> 
+    <script src="{{ asset('js/bootstrap-datetimepicker.min.js') }}"></script> 
     <script type="text/javascript">
             $(function () {
                 $('.datetimepicker').datetimepicker({

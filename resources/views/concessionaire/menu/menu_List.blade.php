@@ -23,10 +23,10 @@
         </div> 
     </div> 
     <div class="row">
-        <link href="{{ asset('assets/styles/mdb.min.css') }}" /> 
-        <script src="{{ asset('assets/scripts/mdb.min.js') }}"></script> 
-        <link href="{{ asset('assets/styles/datatables.min.css') }}" rel="stylesheet" type="text/css" /> 
-        <script src="{{ asset('assets/scripts/datatables.min.js') }}"></script>
+        <link href="{{ asset('css/mdb.min.css') }}" /> 
+        <script src="{{ asset('js/mdb.min.js') }}"></script> 
+        <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet" type="text/css" /> 
+        <script src="{{ asset('js/datatables.min.js') }}"></script>
 
         <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
             <table id="menuTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -53,14 +53,14 @@
                                         calendar_today
                                     </i>
                                 </button> 
-                                <form action="{{route('menu_view')}}" method='get' style='display: inline-block;'>
+                                <form action="{{ route('menu_detail') }}" method='get' style='display: inline-block;'>
                                     <input type='hidden' value="{{ $menu_item['id'] }}" /> 
                                     <button type='submit' class='btn btn-info' 
                                         data-toggle='tooltip' data-placement='top' title='View'> 
                                         <i class='fas fa-search'></i>
                                     </button> 
                                 </form>
-                                <button type='button' class='btn btn-danger delete-btn' data-menu-id="{{ $menu_item['id'] }}" value="{{ $menu_item['title'] }}"> 
+                                <button type='button' class='btn btn-danger' value="{{ $menu_item['title'] }}" onclick="return confirm('Are you sure you want to delete ' + this.value + ' menu?')">  
                                     <i class='fas fa-trash'></i>
                                 </button> 
                             </td>
@@ -82,33 +82,8 @@
         </div> 
     </div> 
 
-    
-    <!-- Delete Modal -->
-    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Delete Menu</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nope</button>
-            <form action="#" method="post">
-                <input type="hidden" value="" id="to-delete" /> 
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </div>
-        </div>
-    </div>
-    </div>
-
     <script> 
         <?php 
-        
             foreach ($menu as $menu_item){         
                 $datesString = $menu_item['date']; 
                 $datesArr = explode(', ',  $datesString);        
@@ -124,15 +99,6 @@
         ?> 
     </script> 
 
-    <script> 
-        $('.delete-btn').click(function(){
-            var menu = $(this).val(); 
-            var menuid = $(this).attr("data-food-id"); 
-            $('#delete-modal').find('.modal-body').text('Are you sure you want to delete ' + menu + ' menu?'); 
-            $('#to-delete').attr("value", menuid)
-            $('#delete-modal').modal('toggle'); 
-        }); 
-    </script> 
     <script>
         $(document).ready(function () {
             var table = $('#menuTable').DataTable();

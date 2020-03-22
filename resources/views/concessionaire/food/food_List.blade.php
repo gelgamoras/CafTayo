@@ -30,10 +30,10 @@
         </div>
     </div> 
     <div class="row">
-        <link href="{{ asset('assets/styles/mdb.min.css') }}" /> 
-        <script src="{{ asset('assets/scripts/mdb.min.js') }}"></script> 
-        <link href="{{ asset('assets/styles/datatables.min.css') }}" rel="stylesheet" type="text/css" /> 
-        <script src="{{ asset('assets/scripts/datatables.min.js') }}"></script>
+        <link href="{{ asset('css/mdb.min.css') }}" /> 
+        <script src="{{ asset('js/mdb.min.js') }}"></script> 
+        <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet" type="text/css" /> 
+        <script src="{{ asset('js/datatables.min.js') }}"></script>
 
         <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
             <table id="foodTable" class="table table-striped table-bordered" cellspacing="0" max-width="100%">
@@ -59,13 +59,13 @@
                     @foreach($food_items as $food)
                         <tr>
                             <td>{{ $food['id'] }}</td>
-                            <td class='text-center'><img src="{{ asset('assets/images/food')}}/{{ $food['image'] }}" width=100px height=100px /></td>
+                            <td class='text-center'><img src="{{ asset('images/food')}}/{{ $food['image'] }}" width=100px height=100px /></td>
                             <td>{{ $food['food'] }}</td>
                             <td>{{ $food['Category'] }}</td>
                             <td>{{ $food['Subcategory'] }}</td>
                             <td>{{ $food['Price'] }}</td>
                             <td class='text-center'>
-                                <form action="{{ route('food_view') }}" method='get' style="display: inline-block;">
+                                <form action="{{ route('food_detail') }}" method='get' style="display: inline-block;">
                                     <button type='submit' class='btn btn-info' 
                                         data-toggle='tooltip' data-placement='top' title='View'> 
                                         <i class='fas fa-search'></i>

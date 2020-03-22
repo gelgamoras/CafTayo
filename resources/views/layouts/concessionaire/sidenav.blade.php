@@ -7,7 +7,7 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
     <nav class="navbar align-items-stretch navbar-light bg-white flex-md-nowrap border-bottom p-0">
       <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
         <div class="d-table m-auto">
-          <img id="main-logo" class="d-inline-block align-top mr-1" style="max-height: 25px;" src="{{ asset('assets/images/icon-logo-leaf.png') }}" alt="Shards Dashboard">
+          <img id="main-logo" class="d-inline-block align-top mr-1" style="max-height: 25px;" src="{{ asset('images/icon-logo-leaf.png') }}" alt="Shards Dashboard">
           <span class="d-none d-md-inline ml-1">CafTayo Dashboard</span>
         </div>
       </a>
@@ -28,13 +28,13 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
   <div class="nav-wrapper">
     <ul class="nav flex-column">
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('menu_today') ? 'active' : '' }}" href="{{url('/')}}">
+        <a class="nav-link {{ Route::is('con_homepage') ? 'active' : '' }}" href="{{ route('con_homepage') }}">
         <i class="material-icons">menu_book</i>
           <span>Menu of the Day</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('menu_create') ? 'active' : '' }}" href="{{route('menu_create')}}">
+        <a class="nav-link {{ Route::is('menu_create') ? 'active' : '' }}" href="{{ route('menu_create') }}">
         <i class="material-icons">
           calendar_today
         </i>
@@ -42,25 +42,25 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('menu_list') ? 'active' : '' }}" href="{{route('menu_list')}}">
+        <a class="nav-link {{ Route::is('menu_list') ? 'active' : '' }}" href="{{ route('menu_list') }}">
           <i class="material-icons">table_chart</i>
           <span>Manage Menus</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('food_list') ? 'active' : '' }}" href="{{route('food_list')}}">
+        <a class="nav-link {{ Route::is('food_list') ? 'active' : '' }}" href="{{ route('food_list') }}">
           <i class="material-icons">view_module</i>
           <span>Manage Food</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('menu_everyday') ? 'active' : '' }}" href="{{route('menu_everyday')}}">
+        <a class="nav-link {{ Route::is('menu_everyday') ? 'active' : '' }}" href="{{ route('menu_everyday') }}">
         <i class="material-icons">wb_sunny</i>
           <span>Everyday Food</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('period_settings') ? 'active' : '' }}" href="{{route('period_settings')}}">
+        <a class="nav-link {{ Route::is('con_settings') ? 'active' : '' }}" href="{{ route('con_settings') }}">
           <i class="material-icons">error</i>
           <span>Settings</span>
         </a>

@@ -1,12 +1,7 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
-
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
 
-@import 'shards-dashboards'; 
+@import 'shards-dashboards.1.1.0.min.css'; 
 @import 'custom'; 
 @import 'extras.1.1.0.min.css'; 

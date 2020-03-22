@@ -13,10 +13,10 @@
 @endsection
 
 @section('content')
-    <link href="{{ asset('assets/styles/mdb.min.css') }}" /> 
-    <script src="{{ asset('assets/scripts/mdb.min.js') }}"></script> 
-    <link href="{{ asset('assets/styles/datatables.min.css') }}" rel="stylesheet" type="text/css" /> 
-    <script src="{{ asset('assets/scripts/datatables.min.js') }}"></script>
+    <link href="{{ asset('css/mdb.min.css') }}" /> 
+    <script src="{{ asset('js/mdb.min.js') }}"></script> 
+    <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet" type="text/css" /> 
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
  
     <form action="#" method="post">
         <div class="row">
@@ -38,6 +38,17 @@
                 </div> 
             </div> 
         </div> 
+        Search by category: 
+    <div class="row">
+        <div class="col-lg-6 col-md-12 col-sm-12 mt-2">
+            <button type="button" class="btn btn-secondary" id="ulam-filter">Ulam</button> 
+            <button type="button" class="btn btn-secondary" id="qb-filter">Quick Bites</button> 
+            <button type="button" class="btn btn-secondary" id="mer-filter">Meryenda</button> 
+            <button type="button" class="btn btn-secondary" id="sd-filter">Sweet Delights</button> 
+            <button type="button" class="btn btn-secondary" id="drinks-filter">Drinks</button> 
+            <button type="button" class="btn btn-white" id="clear-filter">Clear</button> 
+        </div>
+    </div> 
         <!-- Menu of the Day -->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
@@ -64,7 +75,7 @@
                         @foreach($food as $food_item)
                             <tr>
                                 <td>{{ $food_item['id'] }}</td>
-                                <td class="text-center"><img src="{{url('assets/images/food')}}/{{ $food_item['image'] }}" width=100px height=100px /></td>
+                                <td class="text-center"><img src="{{url('images/food')}}/{{ $food_item['image'] }}" width=100px height=100px /></td>
                                 <td>{{ $food_item['food'] }}</td>
                                 <td>{{ $food_item['Category'] }}</td>
                                 <td>{{ $food_item['Subcategory'] }}</td>
@@ -130,6 +141,30 @@
         </div> 
         <!-- End Menu of the Day -->
     </form>
+    <script>
+        $(document).ready(function () {
+            var table = $('#foodTable').DataTable();    
+
+            $('#ulam-filter').click(function(){
+                jQuery('#selectFoodTable').dataTable().fnFilter('ulam'); 
+            });
+            $('#qb-filter').click(function(){
+                jQuery('#selectFoodTable').dataTable().fnFilter('quick bites'); 
+            });
+            $('#sd-filter').click(function(){
+                jQuery('#selectFoodTable').dataTable().fnFilter('sweet delights'); 
+            });
+            $('#mer-filter').click(function(){
+                jQuery('#selectFoodTable').dataTable().fnFilter('meryenda'); 
+            });
+            $('#drinks-filter').click(function(){
+                jQuery('#selectFoodTable').dataTable().fnFilter('drinks'); 
+            });
+            $('#clear-filter').click(function(){
+                jQuery('#selectFoodTable').dataTable().fnFilter(''); 
+            });
+        });
+    </script> 
         <script>
              $('#menu-date').datepicker({
                 todayHighlight: true,

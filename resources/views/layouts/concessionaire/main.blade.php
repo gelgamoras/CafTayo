@@ -22,6 +22,7 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="{{ asset('css/app.css') }}">
     
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    
     <!--JQuery js--> 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!--Shards js--> 
@@ -30,6 +31,7 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <!--Bootstrap js--> 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  
   </head>
   <body class="h-100">
     <div class="color-switcher animated">

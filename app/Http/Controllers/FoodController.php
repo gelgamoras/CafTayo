@@ -14,12 +14,8 @@ class FoodController extends Controller
      */
     public function index()
     {
-        /*
-            ----------------DUMMY FOOD-----------------
-            Save query results to $food_records
-        */ 
-
-        $food_records = array(
+        //dummy food 
+        $records = array(
             array(
                 "id"            => "1",
                 "image"         => "adobo.jpg", 
@@ -57,6 +53,8 @@ class FoodController extends Controller
                 "Price"         => "P45.00"),              
         );
 
+        return view('concessionaire.food.food_List')->with('food_items', $records); 
+
     }
 
     /**
@@ -66,7 +64,7 @@ class FoodController extends Controller
      */
     public function create()
     {
-        //
+        return view('concessionaire.food.food_Create'); 
     }
 
     /**
@@ -86,9 +84,24 @@ class FoodController extends Controller
      * @param  \App\Food  $food
      * @return \Illuminate\Http\Response
      */
-    public function show(Food $food)
+    public function show(/*Food $food*/)
     {
-        //
+        $food = array(
+            "name"      => "Sinigang",
+            "category"  => "Ulam",
+            "shortdesc" => "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+            "desc"      => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio eaque, quidem, commodi soluta qui quae minima obcaecati quod dolorum sint alias, possimus illum assumenda eligendi cumque.",
+            "ingredients" => "Pork, Tamarind, Taro, Tomato, Water Spinach, Radish, Okra, Eggplant, Green Bean, Onion, Chili Pepper",
+            "subcategory" => "Local",
+            "calories"    => "150",
+            "price"       => "150",
+            "halal"       => "1",
+            "image"       => "sinigang.jpg"
+        ); 
+
+        $ingredients = explode(', ', $food['ingredients']); 
+
+        return view('concessionaire.food.food_Detail')->with("food", $food)->with("ingredients", $ingredients); 
     }
 
     /**
@@ -124,4 +137,5 @@ class FoodController extends Controller
     {
         //
     }
+
 }

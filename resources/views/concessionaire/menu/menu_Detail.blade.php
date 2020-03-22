@@ -1,53 +1,33 @@
 @extends('layouts.concessionaire.main')
 
 @section('page_header')
-    View Menu 
+    Menu of the Day
 @endsection
 
 @section('page_top_buttons')
-<button type="button" class="btn mt-3 btn-sm btn-outline-success mr-1" data-toggle="modal" data-target="#add-to-menu">
+    <button type="button" class="btn mt-3 btn-sm btn-outline-success mr-1" data-toggle="modal" data-target="#add-to-menu" >
         + Add Food
     </button> 
-    <button type="button" class="btn mt-3 btn-sm btn-primary mr-1" onclick="window.location.href='{{route('menu_create')}}'">
+    <button type="button" class="btn mt-3 btn-sm btn-primary mr-1"  onclick="window.location.href='{{route('menu_create')}}'">
         Plan a Menu
     </button> 
 @endsection
 
 @section('subheader')
+<?php
+    $date = date('F d, Y'); 
 
+    echo $date; 
+?> 
 @endsection
 
 @section('content')
     <!-- Menu of the Day -->
-    <form action="#" method="post">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <input type="text" class="form-control" id="menu-title" placeholder="Menu Title" value="{{ $details['MenuName'] }}" /> 
-            </div> 
-        </div> 
-        <div class="col-md-4">
-            <div class="form-group">
-                <div class="input-group with-addon-icon-left">
-                    <input type="text" class="form-control" id="menu-date" placeholder="Date" /> 
-                    <span class="input-group-append">
-                        <span class="input-group-text">
-                            <i style="font-size: 20px" class="fa fa-calendar"></i> 
-                        </span>
-                    </span>
-                </div> 
-            </div> 
-        </div> 
-        <div class="col-md-2">
-            <button type="submit" class="btn btn-secondary mt-3">Save</button> 
-        </div> 
-    </div> 
-    </form>
     <div class="row">
         <!-- Breakfast --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <div class="card card-small card-post h-100">
-                <div class="card-post__image" style="background-image: url('{{ asset('assets/images/food/sinangag.jpg') }}');"></div>
+                <div class="card-post__image" style="background-image: url('{{ asset('images/food/sinangag.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a class="text-fiord-blue" href="#">Breakfast</a>
@@ -93,7 +73,7 @@
                     </ul>
                 </div>
                 <div class="card-footer text-muted border-top py-3">
-                    <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Breakfast">Remove All</button>
+                    <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Breakfast">Mark All Out of Stock</button>
                 </div>
             </div>  
         </div> 
@@ -101,7 +81,7 @@
         <!-- Lunch --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <div class="card card-small card-post h-100">
-                <div class="card-post__image" style="background-image: url('{{ asset('assets/images/food/adobo.jpg') }}');"></div>
+                <div class="card-post__image" style="background-image: url('{{ asset('images/food/adobo.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a class="text-fiord-blue" href="#">Lunch</a>
@@ -147,7 +127,7 @@
                     </ul>
                 </div>
                 <div class="card-footer text-muted border-top py-3">
-                    <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Lunch">Remove All</button>
+                    <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Lunch">Mark All Out of Stock</button>
                 </div>
             </div>  
         </div> 
@@ -155,7 +135,7 @@
         <!-- Afternoon --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <div class="card card-small card-post h-100">
-                <div class="card-post__image" style="background-image: url('{{ asset('assets/images/food/palabok.jpg') }}');"></div>
+                <div class="card-post__image" style="background-image: url('{{ asset('images/food/palabok.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a class="text-fiord-blue" href="#">Afternoon</a>
@@ -201,7 +181,7 @@
                     </ul>
                 </div>
                 <div class="card-footer text-muted border-top py-3">
-                    <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Afternoon">Remove All</button>
+                    <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Afternoon">Mark All Out of Stock</button>
                 </div>
             </div>  
         </div> 
@@ -209,7 +189,7 @@
         <!-- Dinner --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
             <div class="card card-small card-post h-100">
-                <div class="card-post__image" style="background-image: url('{{ asset('assets/images/food/sinigang.jpg') }}');"></div>
+                <div class="card-post__image" style="background-image: url('{{ asset('images/food/sinigang.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
                         <a class="text-fiord-blue" href="#">Dinner</a>
@@ -255,7 +235,7 @@
                     </ul>
                 </div>
                 <div class="card-footer text-muted border-top py-3">
-                    <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Dinner">Remove All</button>
+                    <button type="button" class="mb-2 btn btn-sm btn-secondary mr-1 float-right mark-all-oos" value="Dinner">Mark All Out of Stock</button>
                 </div>
             </div>  
         </div> 
@@ -268,7 +248,7 @@
             <div class="modal-content">
                 <form action="#" methtod="post">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="addBreakfastLabel">Add to Everyday Menu</h5>
+                        <h5 class="modal-title" id="addBreakfastLabel">Add to Menu</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
@@ -323,25 +303,13 @@
         </div>
     </div>
 
-    <script>
-        <?php 
-            $menu_dates = $details['Dates'];   
-            $datesArr = explode(', ',  $menu_dates);        
-        ?> 
-        var dates = <?php echo json_encode($datesArr); ?>; 
-        $('#menu-date').datepicker({
-                    daysOfWeekDisabled: [0],
-                    orientation: "bottom right",
-                    multidate: true
-                });
-        $('#menu-date').datepicker('setDates', dates);
-                
-    </script> 
     <script> 
         $('.mark-oos').click(function(){
             var food_item = $(this).attr('value'); 
-            if(confirm("Remove " + food_item + " from the menu?")){
-               
+            if(confirm("Mark " + food_item + " out of stock?")){
+                $(this).closest('.list-group-item').addClass('out-of-stock'); 
+                
+                //This only works front end lol just wanted to see how itd look like
             } else {
 
             }
@@ -349,8 +317,10 @@
 
         $('.mark-all-oos').click(function(){
             var period = $(this).attr('value'); 
-            if(confirm("Remove everything in " + period + "?")){
-               
+            if(confirm("Mark everything in " + period + " menu out of stock?")){
+                $(this).closest('.card-footer').siblings('.card-body').find('.list-group-item').addClass('out-of-stock'); 
+                
+                //This only works front end lol just wanted to see how itd look like
             } else {
 
             }
