@@ -14,7 +14,49 @@ class FoodController extends Controller
      */
     public function index()
     {
-        //
+        /*
+            ----------------DUMMY FOOD-----------------
+            Save query results to $food_records
+        */ 
+
+        $food_records = array(
+            array(
+                "id"            => "1",
+                "image"         => "adobo.jpg", 
+                "food"          => "Arroz Caldo w/ Egg", 
+                "Category"      => "Ulam", 
+                "Subcategory"   => "Local", 
+                "Price"         => "P45.00"),
+            array(
+                "id"            => "2", 
+                "image"         => "sinigang.jpg",
+                "food"          => "Spicy Chicken Adobo", 
+                "Category"      => "Ulam", 
+                "Subcategory"   => "Local", 
+                "Price"         => "P70.00"),
+            array(
+                "id"            => "3", 
+                "image"         => "sinangag.jpg",
+                "food"          => "Cordon Bleu", 
+                "Category"      => "Ulam", 
+                "Subcategory"   => "International", 
+                "Price"         => "P85.00"), 
+            array(
+                "id"            => "4", 
+                "image"         => "palabok.jpg", 
+                "food"          => "Ham and Cheese Sandwich", 
+                "Category"      => "Quick Bites", 
+                "Subcategory"   => "Sammich", 
+                "Price"         => "P45.00"),           
+            array(
+                "id"            => "5", 
+                "image"         => "adobo.jpg", 
+                "food"          => "Coffee Jelly", 
+                "Category"      => "Sweet Delights", 
+                "Subcategory"   => "Cold", 
+                "Price"         => "P45.00"),              
+        );
+
     }
 
     /**
