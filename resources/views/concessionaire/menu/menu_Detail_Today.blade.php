@@ -26,7 +26,7 @@
     <div class="row">
         <!-- Breakfast --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="card card-small card-post h-100">
+            <div class="card card-small card-post h-100 menu-card">
                 <div class="card-post__image" style="background-image: url('{{ asset('images/food/sinangag.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
@@ -80,7 +80,7 @@
 
         <!-- Lunch --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="card card-small card-post h-100">
+            <div class="card card-small card-post h-100 menu-card">
                 <div class="card-post__image" style="background-image: url('{{ asset('images/food/adobo.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
@@ -134,7 +134,7 @@
 
         <!-- Afternoon --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="card card-small card-post h-100">
+            <div class="card card-small card-post h-100 menu-card">
                 <div class="card-post__image" style="background-image: url('{{ asset('images/food/palabok.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
@@ -188,7 +188,7 @@
 
         <!-- Dinner --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="card card-small card-post h-100">
+            <div class="card card-small card-post h-100 menu-card">
                 <div class="card-post__image" style="background-image: url('{{ asset('images/food/sinigang.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">

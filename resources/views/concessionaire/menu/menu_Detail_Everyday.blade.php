@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_top_buttons')
-    <button type="button" class="btn mt-3 btn-sm btn-success mr-1" data-toggle="modal" data-target="#add-to-menu">
+    <button type="button" class="btn mt-3 btn-sm btn-outline-success mr-1" data-toggle="modal" data-target="#add-to-menu">
         + Add Food
     </button> 
     <button type="button" class="btn mt-3 btn-sm btn-primary mr-1" onclick="window.location.href='{{route('menu_create')}}'">
@@ -22,7 +22,7 @@ Food enlisted here will appear everyday
     <div class="row">
         <!-- Breakfast --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="card card-small card-post h-100">
+            <div class="card card-small card-post h-100 menu-card">
                 <div class="card-post__image" style="background-image: url('{{ asset('images/food/sinangag.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
@@ -76,7 +76,7 @@ Food enlisted here will appear everyday
 
         <!-- Lunch --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="card card-small card-post h-100">
+            <div class="card card-small card-post h-100 menu-card">
                 <div class="card-post__image" style="background-image: url('{{ asset('images/food/adobo.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
@@ -130,7 +130,7 @@ Food enlisted here will appear everyday
 
         <!-- Afternoon --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="card card-small card-post h-100">
+            <div class="card card-small card-post h-100 menu-card">
                 <div class="card-post__image" style="background-image: url('{{ asset('images/food/palabok.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">
@@ -184,7 +184,7 @@ Food enlisted here will appear everyday
 
         <!-- Dinner --> 
         <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
-            <div class="card card-small card-post h-100">
+            <div class="card card-small card-post h-100 menu-card">
                 <div class="card-post__image" style="background-image: url('{{ asset('images/food/sinangag.jpg') }}');"></div>
                 <div class="card-body">
                     <h4 class="card-title">

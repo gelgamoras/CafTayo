@@ -34,7 +34,7 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
   
   </head>
   <body class="h-100">
-    <div class="color-switcher animated">
+    <!-- <div class="color-switcher animated">
       <h5>Accent Color</h5>
       
       <div class="social-wrapper">
@@ -48,7 +48,7 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
     </div>
     <div class="color-switcher-toggle animated pulse infinite">
       <i class="material-icons">settings</i>
-    </div>
+    </div> -->
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->

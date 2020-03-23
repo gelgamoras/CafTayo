@@ -66,12 +66,12 @@
                             <td>{{ $food['Price'] }}</td>
                             <td class='text-center'>
                                 <form action="{{ route('food_detail') }}" method='get' style="display: inline-block;">
-                                    <button type='submit' class='btn btn-info' 
+                                    <button type='submit' class='btn btn-secondary btn-sm' 
                                         data-toggle='tooltip' data-placement='top' title='View'> 
                                         <i class='fas fa-search'></i>
                                     </button> 
                                 </form>
-                                <button type='button' class='btn btn-danger delete-btn' data-food-id="{{ $food['id'] }}" value="{{ $food['food'] }}"> 
+                                <button type='button' class='btn btn-primary delete-btn btn-sm' data-food-id="{{ $food['id'] }}" value="{{ $food['food'] }}"> 
                                     <i class='fas fa-trash'></i>
                                 </button> 
                             </td>

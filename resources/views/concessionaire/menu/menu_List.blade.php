@@ -48,19 +48,19 @@
                             <td>{{ $menu_item['title'] }}</td>
                             <td style='display: none'>{{ $menu_item['date'] }}</td>
                             <td class='text-center'>
-                                <button type='button' class='btn btn-success' id="{{ $menu_item['id'] }}">
+                                <button type='button' class='btn btn-sm btn-secondary' id="{{ $menu_item['id'] }}">
                                     <i class='material-icons'>
                                         calendar_today
                                     </i>
                                 </button> 
                                 <form action="{{ route('menu_detail') }}" method='get' style='display: inline-block;'>
                                     <input type='hidden' value="{{ $menu_item['id'] }}" /> 
-                                    <button type='submit' class='btn btn-info' 
+                                    <button type='submit' class='btn btn-secondary btn-sm' 
                                         data-toggle='tooltip' data-placement='top' title='View'> 
                                         <i class='fas fa-search'></i>
                                     </button> 
                                 </form>
-                                <button type='button' class='btn btn-danger' value="{{ $menu_item['title'] }}" onclick="return confirm('Are you sure you want to delete ' + this.value + ' menu?')">  
+                                <button type='button' class='btn btn-primary btn-sm' value="{{ $menu_item['title'] }}" onclick="return confirm('Are you sure you want to delete ' + this.value + ' menu?')">  
                                     <i class='fas fa-trash'></i>
                                 </button> 
                             </td>
