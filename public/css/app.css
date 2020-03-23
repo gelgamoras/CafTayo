@@ -75,3 +75,7 @@ td .btn-light:hover {
   border-color: #d8d8d3;
 }
 
+.btn-group.filters .btn-secondary {
+  border-color: #616d5a;
+}
+

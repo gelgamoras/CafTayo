@@ -38,15 +38,17 @@
                 </div> 
             </div> 
         </div> 
-        Search by category: 
+        Filter by category: 
     <div class="row">
         <div class="col-lg-6 col-md-12 col-sm-12 mt-2">
-            <button type="button" class="btn btn-secondary" id="ulam-filter">Ulam</button> 
-            <button type="button" class="btn btn-secondary" id="qb-filter">Quick Bites</button> 
-            <button type="button" class="btn btn-secondary" id="mer-filter">Meryenda</button> 
-            <button type="button" class="btn btn-secondary" id="sd-filter">Sweet Delights</button> 
-            <button type="button" class="btn btn-secondary" id="drinks-filter">Drinks</button> 
-            <button type="button" class="btn btn-white" id="clear-filter">Clear</button> 
+            <div class="btn-group btn-group-sm filters">
+                <button type="button" class="btn btn-secondary btn-sm" id="ulam-filter">Ulam</button> 
+                <button type="button" class="btn btn-secondary btn-sm" id="qb-filter">Quick Bites</button> 
+                <button type="button" class="btn btn-secondary btn-sm" id="mer-filter">Meryenda</button> 
+                <button type="button" class="btn btn-secondary btn-sm" id="sd-filter">Sweet Delights</button> 
+                <button type="button" class="btn btn-secondary btn-sm" id="drinks-filter">Drinks</button>           
+            </div> 
+            <button type="button" class="btn btn-white btn-sm" id="clear-filter">Clear</button>
         </div>
     </div> 
         <!-- Menu of the Day -->
