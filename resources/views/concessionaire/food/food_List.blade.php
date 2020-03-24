@@ -74,7 +74,8 @@
                                         <i class='fas fa-search'></i>
                                     </button> 
                                 </form>
-                                <button type='button' class='btn btn-primary delete-btn btn-sm' data-food-id="{{ $food['id'] }}" value="{{ $food['food'] }}"> 
+                                <button type='button' class='btn btn-primary delete-btn btn-sm' value="{{ $food['food'] }}" 
+                                    onclick="return confirm('Are you sure you want to delete ' + this.value + '?')"> 
                                     <i class='fas fa-trash'></i>
                                 </button> 
                             </td>
@@ -102,30 +103,6 @@
             </table>
         </div> 
     </div> 
-
-    
-    <!-- Delete Modal -->
-    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Delete food</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Nope</button>
-            <form action="#" method="post">
-                <input type="hidden" value="" id="to-delete" /> 
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
-        </div>
-        </div>
-    </div>
-    </div>
 
     <script>
         $(document).ready(function () {

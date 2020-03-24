@@ -13,7 +13,47 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        //Dummy data 
+        $users = array(
+            array(
+                "id" => "1", 
+                "image" => "dog.png", 
+                "name" => "John Doe",
+                "role" => "Administrator", 
+                "campus" => "Main", 
+                "catering" => "N/A", 
+                "status" => "Active"
+            ),
+            array(
+                "id" => "2", 
+                "image" => "kitchencity.jpg", 
+                "name" => "Juan Pedro",
+                "role" => "Concessionaire", 
+                "campus" => "Main", 
+                "catering" => "Kitchen City - Taft", 
+                "status" => "Active"
+            ),
+            array(
+                "id" => "3", 
+                "image" => "kitchencity.jpg", 
+                "name" => "Maria Santos",
+                "role" => "Concessionaire", 
+                "campus" => "SDA", 
+                "catering" => "Kitchen City - SDA", 
+                "status" => "Active"
+            ),
+            array(
+                "id" => "4", 
+                "image" => "chefstation.jpg", 
+                "name" => "Maria Santos",
+                "role" => "Concessionaire", 
+                "campus" => "AKIC", 
+                "catering" => "Chef's Station", 
+                "status" => "Active"
+            )
+        ); 
+
+        return view('administrator.users.users_List')->with('records', $users); 
     }
 
     /**

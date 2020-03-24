@@ -1,3 +1,4 @@
 <!-- This is for me to access UI w/o messing with welcome and home --> 
 
-<a href="{{ route('con_homepage') }}">Concessionaire Homepage</a> 
+<a href="{{ route('con_homepage') }}">Concessionaire Homepage</a> <br /> 
+<a href="{{ route('admin_homepage') }}">Admin Homepage</a> 

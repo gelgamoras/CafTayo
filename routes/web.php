@@ -32,3 +32,7 @@ Route::get('/concessionaire/food', 'FoodController@index')->name('food_list');
 Route::get('/concessionaire/food/1', 'FoodController@show')->name('food_detail'); 
 //----SETTINGS (Period)
 Route::get('/concessionaire/settings', 'PeriodController@index')->name('con_settings');
+
+//======== ADMINISTRATOR ========
+Route::get('/administrator', function(){return view('administrator.administrator');})->name('admin_homepage');
+Route::get("/administrator/users", 'UserController@index')->name('users_list'); 
