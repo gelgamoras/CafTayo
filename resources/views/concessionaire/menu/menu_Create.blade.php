@@ -13,9 +13,9 @@
 @endsection
 
 @section('content')
-    <link href="{{ asset('css/mdb.min.css') }}" /> 
-    <script src="{{ asset('js/mdb.min.js') }}"></script> 
     <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet" type="text/css" /> 
+    <link href="{{ asset('css/material-table.css') }}" rel="stylesheet" type="text/css" /> 
+    <link href="{{ asset('css/material-datatables.css') }}" rel="stylesheet" type="text/css" /> 
     <script src="{{ asset('js/datatables.min.js') }}"></script>
  
     <form action="#" method="post">
@@ -40,21 +40,21 @@
         </div> 
         Filter by category: 
     <div class="row">
-        <div class="col-lg-6 col-md-12 col-sm-12 mt-2">
-            <div class="btn-group btn-group-sm filters">
+        <div class="col-lg-6 col-md-12 col-sm-12 mt-1 mb-1">
+            <div>
                 <button type="button" class="btn btn-secondary btn-sm" id="ulam-filter">Ulam</button> 
                 <button type="button" class="btn btn-secondary btn-sm" id="qb-filter">Quick Bites</button> 
                 <button type="button" class="btn btn-secondary btn-sm" id="mer-filter">Meryenda</button> 
                 <button type="button" class="btn btn-secondary btn-sm" id="sd-filter">Sweet Delights</button> 
-                <button type="button" class="btn btn-secondary btn-sm" id="drinks-filter">Drinks</button>           
-            </div> 
-            <button type="button" class="btn btn-white btn-sm" id="clear-filter">Clear</button>
-        </div>
+                <button type="button" class="btn btn-secondary btn-sm" id="drinks-filter">Drinks</button>  
+                <button type="button" class="btn btn-white btn-sm" id="clear-filter">Clear</button>
+            </div>         
+        </div> 
     </div> 
         <!-- Menu of the Day -->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
-            <table id="selectFoodTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <table id="selectFoodTable" class="mdl-data-table" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th class="th-sm">ID
@@ -145,7 +145,14 @@
     </form>
     <script>
         $(document).ready(function () {
-            var table = $('#foodTable').DataTable();    
+            var table = $('#selectFoodTable').DataTable({
+                columnDefs: [
+                    {
+                        targets: [0, 1, 2, 3, 4, 5, 6],   
+                        className: 'text-left'
+                    }
+                ]
+            });    
 
             $('#ulam-filter').click(function(){
                 jQuery('#selectFoodTable').dataTable().fnFilter('ulam'); 

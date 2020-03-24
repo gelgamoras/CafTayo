@@ -23,31 +23,32 @@
         </div> 
     </div> 
     <div class="row">
-        <link href="{{ asset('css/mdb.min.css') }}" /> 
-        <script src="{{ asset('js/mdb.min.js') }}"></script> 
         <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet" type="text/css" /> 
+        <link href="{{ asset('css/material-table.css') }}" rel="stylesheet" type="text/css" /> 
+        <link href="{{ asset('css/material-datatables.css') }}" rel="stylesheet" type="text/css" /> 
         <script src="{{ asset('js/datatables.min.js') }}"></script>
+        
 
         <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
-            <table id="menuTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <table id="menuTable" class="mdl-data-table" cellspacing="0" style="width: 100%">
                 <thead>
                     <tr>
-                        <th class="th-sm">ID
+                        <th class="th-sm text-left">ID
                         </th>
                         <th class="th-sm">Menu Title
                         <th style="display: none;"></th> 
                         </th>
-                        <th class="th-sm">Action
+                        <th class="th-sm text-left"  width="30%">Action
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($menu as $menu_item)
                         <tr>
-                            <td>{{ $menu_item['id'] }}</td>
+                            <td class="text-left" width="10%">{{ $menu_item['id'] }}</td>
                             <td>{{ $menu_item['title'] }}</td>
                             <td style='display: none'>{{ $menu_item['date'] }}</td>
-                            <td class='text-center'>
+                            <td class='text-left'>
                                 <button type='button' class='btn btn-sm btn-secondary' id="{{ $menu_item['id'] }}">
                                     <i class='material-icons'>
                                         calendar_today
@@ -101,7 +102,14 @@
 
     <script>
         $(document).ready(function () {
-            var table = $('#menuTable').DataTable();
+            var table = $('#menuTable').DataTable({
+                columnDefs: [
+                    {
+                        targets: [ 1, 2 ],   
+                        className: 'mdl-data-table__cell--non-numeric'
+                    }
+                ]
+            });
             $('#search-date').datepicker({
                 daysOfWeekDisabled: [0],
                 orientation: "bottom left"
