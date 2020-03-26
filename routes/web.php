@@ -35,4 +35,7 @@ Route::get('/concessionaire/settings', 'PeriodController@index')->name('con_sett
 
 //======== ADMINISTRATOR ========
 Route::get('/administrator', function(){return view('administrator.administrator');})->name('admin_homepage');
+//----USERS
 Route::get("/administrator/users", 'UserController@index')->name('users_list'); 
+Route::get("/administrator/users/view", 'UserController@show')->name('users_detail'); 
+Route::get('/administrator/users/create', 'UserController@create')->name('users_create'); 

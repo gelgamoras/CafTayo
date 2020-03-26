@@ -102,3 +102,7 @@ td .btn-light:hover {
   border-color: #616d5a;
 }
 
+.mdl-data-table tbody {
+  font-weight: 300 !important;
+}
+
