@@ -51,7 +51,7 @@
                             <td>{{ $user['campus'] }}</td>
                             <td>{{ $user['catering'] }}</td>
                             <td >
-                                <form action="{{ route('food_detail') }}" method='get' style="display: inline-block;">
+                                <form action="{{ route('users_detail') }}" method='get' style="display: inline-block;">
                                     <button type='submit' class='btn btn-secondary btn-sm' 
                                         data-toggle='tooltip' data-placement='top' title='View'> 
                                         <i class='fas fa-search'></i>

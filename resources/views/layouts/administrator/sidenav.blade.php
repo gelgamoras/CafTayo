@@ -34,21 +34,16 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('users_list') ? 'active' : '' }}" href="{{ route('users_list') }}">
+        <a class="nav-link {{ Route::is('users_list') ? 'active' : '' }} 
+                           {{ Route::is('users_create') ? 'active' : '' }} 
+                           {{ Route::is('users_detail') ? 'active' : '' }}" 
+                           href="{{ route('users_list') }}">
         <i class="material-icons">account_circle</i>
           <span>Manage Users</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('users_create') ? 'active' : '' }}" href="#">
-        <i class="material-icons">
-          person_add
-        </i>
-          <span>Create User</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {{ Route::is('users_create') ? 'active' : '' }}" href="#">
+        <a class="nav-link {{ Route::is('users_') ? 'active' : '' }}" href="#">
         <i class="material-icons">
           school
         </i>

@@ -63,7 +63,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('administrator.users.users_Create'); 
     }
 
     /**
@@ -83,9 +83,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(/*$id*/)
     {
-        //
+        //Dummmy data 
+
+        $user = array(
+            "id" => "1",
+            "image" => "dog.png", 
+            "firstName" => "John",
+            "lastName" => "Doe", 
+            "role" => "Administrator", 
+            "campus" => "Main", 
+            "catering" => "Kitchen City - Taft", 
+            "contact" => "09292458748", 
+            "email" => "john.doe@email.com", 
+            "username" => "john.doe",
+            "status" => "Active"
+        );
+
+        return view('administrator.users.users_Detail')->with('record', $user); 
     }
 
     /**
