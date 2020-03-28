@@ -8,7 +8,7 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
       <a class="navbar-brand w-100 mr-0" href="#" style="line-height: 25px;">
         <div class="d-table m-auto">
           <img id="main-logo" class="d-inline-block align-top mr-1" style="max-height: 25px;" src="{{ asset('images/icon-logo-leaf.png') }}" alt="Shards Dashboard">
-          <span class="d-none d-md-inline ml-1">CafTayo Dashboard</span>
+          <span class="d-none d-md-inline ml-1">CafTayo</span>
         </div>
       </a>
       <a class="toggle-sidebar d-sm-inline d-md-none d-lg-none">
@@ -42,13 +42,16 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('menu_list') ? 'active' : '' }}" href="{{ route('menu_list') }}">
+        <a class="nav-link {{ Route::is('menu_list') ? 'active' : '' }}
+                           {{ Route::is('menu_detail') ? 'active' : ''}} " href="{{ route('menu_list') }}">
           <i class="material-icons">table_chart</i>
           <span>Manage Menus</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('food_list') ? 'active' : '' }}" href="{{ route('food_list') }}">
+        <a class="nav-link {{ Route::is('food_list') ? 'active' : '' }}
+                           {{ Route::is('food_create') ? 'active' : '' }} 
+                           {{ Route::is('food_detail') ? 'active' : ''}}" href="{{ route('food_list') }}">
           <i class="material-icons">view_module</i>
           <span>Manage Food</span>
         </a>

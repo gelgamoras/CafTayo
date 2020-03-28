@@ -19,7 +19,7 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
         <span class="d-none d-md-inline-block">Kitchen City - Taft</span>
       </a>
       <div class="dropdown-menu dropdown-menu-small">
-        <a class="dropdown-item" href="user-profile-lite.html">
+        <a class="dropdown-item" href="{{ route('con_settings') }}">
           <i class="material-icons">&#xE7FD;</i> Profile</a>
         <a class="dropdown-item" href="components-blog-posts.html">
           <i class="material-icons">vertical_split</i>Change Password</a>
