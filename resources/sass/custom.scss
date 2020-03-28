@@ -1,4 +1,4 @@
-.list-food-category {
+.list-food-category, .list-subcategory {
     margin-top: 10px; 
     margin-bottom: 10px; 
     h6 {
@@ -15,7 +15,7 @@
     }
     
     .mark-oos:hover {
-        -webkit-font-smoothing: subpixel-antialiased;
+        //-webkit-font-smoothing: subpixel-antialiased;
         backface-visibility: hidden;
         transform: scale(1.15);
         cursor: pointer; 
@@ -116,3 +116,6 @@ td {
     }
 }
 
+.subcat-header {
+    background-color: #F5F6F8; 
+}
