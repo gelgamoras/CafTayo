@@ -14,7 +14,25 @@ class CampusController extends Controller
      */
     public function index()
     {
-        //
+        $campuses = array(
+            array(
+                "id" => "1", 
+                "name" => "Taft", 
+                "address" => "2544 Taft Ave, Malate, Manila, 1004 Metro Manila"
+            ),
+            array(
+                "id" => "2",
+                "name" => "SDA",
+                "address" => "950 Ocampo St, Malate, Manila, 1004 Metro Manila"
+            ),
+            array(
+                "id" => "3",
+                "name" => "AKIC",
+                "address" => "2509 Arellano Ave, San Andres Bukid, Manila, 1004 Metro Manila"
+            )
+        ); 
+
+        return view('administrator.campus.campus_List')->with('campuses', $campuses); 
     }
 
     /**

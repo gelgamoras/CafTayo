@@ -452,9 +452,10 @@ class MenuController extends Controller
                 array("FoodID" => "9", "FoodName" => "Mango Graham")
             )
         ); 
-
+        
         return view('concessionaire.menu.menu_Detail_Everyday')->with('breakfast', $breakfast)
         ->with('lunch', $lunch)->with('afternoon', $afternoon)
         ->with('dinner', $dinner)->with('allfood', $all_food); 
     }
+
 }
