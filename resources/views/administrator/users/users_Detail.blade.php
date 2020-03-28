@@ -21,7 +21,7 @@
             <div class="card card-small mb-4 pt-3">
                 <div class="card-header border-bottom text-center">
                     <div class="mb-3 mx-auto">
-                        <img src="{{ asset('images/avatars')}}/{{ $record['image'] }}" width="100px" height="100px" style="border-radius: 50px" /> 
+                        <img src="{{ asset('images/avatars')}}/{{ $record['image'] }}" width="200px" height="200px" style="border-radius: 100px" /> 
                     </div> 
                     <h4 class="mb-0">{{ $record['firstName'] }} {{ $record['lastName'] }}</h4> 
                     <span class="text-muted d-block mb-2">{{ $record['role'] }}</span> 
