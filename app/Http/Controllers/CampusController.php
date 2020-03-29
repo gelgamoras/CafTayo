@@ -42,7 +42,7 @@ class CampusController extends Controller
      */
     public function create()
     {
-        //
+        return view('administrator.campus.campus_Create'); 
     }
 
     /**
