@@ -43,7 +43,8 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('campus_list') ? 'active' : '' }}" href="{{ route('campus_list') }}">
+        <a class="nav-link {{ Route::is('campus_list') ? 'active' : '' }}
+                           {{ Route::is('campus_create') ? 'active' : '' }} " href="{{ route('campus_list') }}">
         <i class="material-icons">
           school
         </i>
@@ -51,7 +52,7 @@ saka ko na ipagsama if meron na. Sorry still learning ✌️
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {{ Route::is('logs_list') ? 'active' : '' }}" href="#">
+        <a class="nav-link {{ Route::is('menulogs_list') ? 'active' : '' }}" href="{{ route('menulogs_list') }}">
           <i class="material-icons">assignment</i>
           <span>Menu Logs</span>
         </a>

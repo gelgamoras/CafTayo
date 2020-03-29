@@ -43,3 +43,6 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::get('/administrator/users/create', 'UserController@create')->name('users_create'); 
     //----CAMPUS
         Route::get("/administrator/campus", 'CampusController@index')->name('campus_list'); 
+        Route::get("/administrator/campus/create", 'CampusController@create')->name('campus_create'); 
+    //----MENU LOGS 
+        Route::get("/administrator/menu-logs", 'MenuLogsController@index')->name("menulogs_list"); 

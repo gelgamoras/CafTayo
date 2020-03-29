@@ -5,7 +5,7 @@
 @endsection
 
 @section('page_top_buttons')
-<button type="button" class="btn mt-3 btn-sm btn-primary mr-1"  onclick="window.location.href='{{ route('users_create') }}'">
+<button type="button" class="btn mt-3 btn-sm btn-primary mr-1"  onclick="window.location.href='{{ route('campus_create') }}'">
         + New Campus
 </button>
 @endsection
