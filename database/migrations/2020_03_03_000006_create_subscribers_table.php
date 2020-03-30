@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePeriodsTable extends Migration
+class CreateSubscribersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class CreatePeriodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('periods', function (Blueprint $table) {
+        Schema::create('subscribers', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('email', 100)->unique();
+            $table->string('favorites', 300)->nullable();
+            $table->string('hash', 100);
+            $table->enum('status', ['Active', 'Inactive']);
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreatePeriodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('periods');
+        Schema::dropIfExists('subscribers');
     }
 }
