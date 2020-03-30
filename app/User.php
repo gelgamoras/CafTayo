@@ -36,4 +36,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Campus -> Users
+    public function campusUsers() {
+        return $this->belongsTo('App\Campus', 'campus_id', 'id');
+    }
+
+    //Users -> LogCategory
+    public function userLogCategory() {
+        return $this->hasMany('App\LogCategory', 'user_id', 'id');
+    }
+
+    //Users -> LogFood
+    public function userLogFood() {
+        return $this->hasMany('App\LogFood', 'user_id', 'id');
+    }
+
+    //Users -> LogMenu
+    public function userLogMenu() {
+        return $this->hasMany('App\LogMenu', 'user_id', 'id');
+    }
+
+    //Users -> LogPeriod
+    public function userLogPeriod() {
+        return $this->hasMany('App\LogPeriod', 'user_id', 'id');
+    }
+
+    //Users -> LogUser
+    public function u_userLogUser() {
+        return $this->hasMany('App\LogUser', 'user_id', 'id');
+    }
+
+    //Users -> LogUser
+    public function t_userLogUser() {
+        return $this->hasMany('App\LogUser', 'target_id', 'id');
+    }
 }
