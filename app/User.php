@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     //Users -> LogCategory
     public function userLogCategory() {
-        return $this->hasMany('App\LogCategory', 'user_id', 'id');
+        return $this->hasMany('App\LogCategories', 'user_id', 'id');
     }
 
     //Users -> LogFood

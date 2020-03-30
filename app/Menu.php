@@ -10,7 +10,7 @@ class Menu extends Model
 
     //Campus -> Menus
     public function campusMenus() {
-        return $this->belongsTo('App\Campus', 'campus_id', 'id');
+        return $this->belongsTo('App\Campuses', 'campus_id', 'id');
     }
 
     //MenuItem -> Menu

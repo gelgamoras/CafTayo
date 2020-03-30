@@ -10,7 +10,7 @@ class Categories extends Model
 
     //Campus -> Categories
     public function campusCategories() {
-        return $this->hasMany('App\Campus', 'campus_id', 'id');
+        return $this->hasMany('App\Campuses', 'campus_id', 'id');
     }
 
     //Categories -> Categories
