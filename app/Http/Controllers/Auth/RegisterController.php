@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\LogUser;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Rules\AlphaSpace;
+use App\Rules\ValidPHNumber;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -38,6 +41,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('hasAdmin');
         $this->middleware('guest');
     }
 
@@ -50,9 +54,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'firstname'     => ['required', 'string', 'max:50', new AlphaSpace],
+            'middlename'    => ['required', 'string', 'max:50', new AlphaSpace],
+            'lastname'      => ['required', 'string', 'max:50', new AlphaSpace],
+            'username'      => ['required', 'string', 'max:20', 'unique:users'],
+            'email'         => ['required', 'string', 'email', 'max:100', 'unique:users'],
+            'contactno'     => ['required', 'string', new ValidPHNumber],
+            'password'      => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -64,10 +72,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $User = User::create([
+            'firstname'     => $data['firstname'],
+            'middlename'    => $data['middlename'],
+            'lastname'      => $data['lastname'],
+            'username'      => $data['username'],
+            'email'         => $data['email'],
+            'contactno'     => $data['contactno'],
+            'role'          => 'Admin',
+            'password'      => Hash::make($data['password']),
+            'status'        => 'Active',
         ]);
+
+        LogUser::create([
+            'user_id'       => $User->id,
+            'action'        => 'Created User',
+            'target_id'     => $User->id
+        ]);
+        return $User;
     }
 }
