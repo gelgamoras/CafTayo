@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->belongsTo('App\Campuses', 'campus_id', 'id');
     }
 
+    //Users -> LogCampus
+    public function userLogCampus() {
+        return $this->hasMany('App\LogCampus', 'user_id', 'id');
+    }
+
     //Users -> LogCategory
     public function userLogCategory() {
         return $this->hasMany('App\LogCategories', 'user_id', 'id');
