@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('catering', 50)->nullable();
             $table->string('contactno', 20);
-            $table->string('coverphoto', 200);
+            $table->string('coverphoto', 200)->nullable();
             $table->string('username', 20)->unique();
             $table->string('password', 256);
             $table->bigInteger('campus_id')->nullable()->unsigned();

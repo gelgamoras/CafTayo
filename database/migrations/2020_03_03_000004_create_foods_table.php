@@ -28,7 +28,7 @@ class CreateFoodsTable extends Migration
             $table->double('price', 8, 2);
             $table->bigInteger('campus_id')->unsigned();
             $table->foreign('campus_id')->references('id')->on('campuses');
-            $table->string('coverphoto', 200);
+            $table->string('coverphoto', 200)->nullable();
             $table->enum('isFeatured', ['Yes', 'No']);
             $table->enum('status', ['Active', 'Deleted']);
             $table->timestamps();
