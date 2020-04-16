@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Campus;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model; 
 
 class CampusController extends Controller
 {
@@ -14,7 +15,8 @@ class CampusController extends Controller
      */
     public function index()
     {
-        //
+        $records = Campus::all();
+        return view('campus.index')->with('index', $records);
     }
 
     /**
@@ -24,7 +26,7 @@ class CampusController extends Controller
      */
     public function create()
     {
-        //
+        return view('campus.create');
     }
 
     /**
@@ -35,7 +37,19 @@ class CampusController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'max:50'],
+            'address' => ['required', 'max:100']
+        ]);
+
+        $record = new Campus();
+        $record->name = $request->name;
+        $record->address = $request->address;
+        $record->status = "Active";
+       
+        $record->save();
+
+        return redirect()->route("campus.index")->with('successMsg', 'Added a record!');
     }
 
     /**
@@ -44,9 +58,10 @@ class CampusController extends Controller
      * @param  \App\Campus  $campus
      * @return \Illuminate\Http\Response
      */
-    public function show(Campus $campus)
+    public function show($id)
     {
-        //
+        return redirect()->route("campus.index");
+        //return view("campus.index")->with("campus", $campus);
     }
 
     /**
@@ -55,9 +70,10 @@ class CampusController extends Controller
      * @param  \App\Campus  $campus
      * @return \Illuminate\Http\Response
      */
-    public function edit(Campus $campus)
+    public function edit($id)
     {
-        //
+       $campus = Campus::find($id);
+        return view("campus.edit")->with("campus", $campus);
     }
 
     /**
@@ -67,9 +83,21 @@ class CampusController extends Controller
      * @param  \App\Campus  $campus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Campus $campus)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => ['required', 'max:50'],
+            'address' => ['required', 'max:100']
+        ]);
+
+        $record = Campus::find($id);
+        $record->name = $request->name;
+        $record->address = $request->address;
+        $record->status = "Active";
+
+        $record->save();
+
+        return redirect(route('campus.show', $record->id))->with('successMsg', 'Record has been updated');
     }
 
     /**
@@ -78,8 +106,10 @@ class CampusController extends Controller
      * @param  \App\Campus  $campus
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Campus $campus)
+    public function destroy($id)
     {
-        //
+        $campus = Campus::find($id);
+        $campus->delete();
+        return Redirect()->route('campus.index');
     }
 }
