@@ -20,6 +20,20 @@ Route::prefix('user')->group(function () {
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::middleware('auth')->group(function() { 
+    Route::prefix('campus')->group(function () {
+        Route::get('/', 'CampusController@index')->name('campus.index');
+        Route::get('/create', 'CampusController@create')->name('campus.create');
+        Route::post('/create', 'CampusController@store')->name('campus.store');
+        Route::get('/{id}', 'CampusController@show')->name('campus.show');
+        Route::get('/{id}/edit', 'CampusController@edit')->name('campus.edit');
+        Route::put('/{id}', 'CampusController@update')->name('campus.update');
+        Route::delete('/index/{id}', 'CampusController@destroy')->name('campus.destroy');
+    });
+});
+
+
+/*
 //categories by ELLAAAAA
 Route::get('/categories/index', 'CategoriesController@index')->name('categories.index');
 Route::get('/categories/create', 'CategoriesController@create')->name('categories.create');
@@ -28,12 +42,6 @@ Route::get('categories/index/{id}', 'CategoriesController@show')->name('categori
 Route::get('categories/index/{id}/edit', 'CategoriesController@edit')->name('categories.edit');
 Route::put('categories/index/{id}', 'CategoriesController@update')->name('categories.update');
 Route::delete('categories/index/{id}', 'CategoriesController@destroy')->name('categories.destroy');
+*/
 
-//Campuses 
-Route::get('/campus/index', 'CampusController@index')->name('campus.index');
-Route::get('/campus/create', 'CampusController@create')->name('campus.create');
-Route::post('/campus/create', 'CampusController@store')->name('campus.store');
-Route::get('campus/index/{id}', 'CampusController@show')->name('campus.show');
-Route::get('campus/index/{id}/edit', 'CampusController@edit')->name('campus.edit');
-Route::put('campus/index/{id}', 'CampusController@update')->name('campus.update');
-Route::delete('campus/index/{id}', 'CampusController@destroy')->name('campus.destroy');
+

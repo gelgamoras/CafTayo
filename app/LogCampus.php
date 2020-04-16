@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogCampus extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [ 'user_id', 'campus_id', 'action' ];
     
     //Users -> LogCampus
     public function userLogCampus() {

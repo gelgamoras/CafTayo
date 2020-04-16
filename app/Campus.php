@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Campus extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [ 'Name', 'Address', 'Status' ];
 
     //Campus -> Users
     public function campusUsers() {
