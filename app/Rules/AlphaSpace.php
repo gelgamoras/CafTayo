@@ -35,6 +35,6 @@ class AlphaSpace implements Rule
      */
     public function message()
     {
-        return 'The field must only contain letters and spaces.';
+        return 'Must only contain letters and spaces.';
     }
 }

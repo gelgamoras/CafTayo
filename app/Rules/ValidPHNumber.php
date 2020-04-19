@@ -35,6 +35,6 @@ class ValidPHNumber implements Rule
      */
     public function message()
     {
-        return 'The field must contain a valid PH number.';
+        return 'Must contain a valid PH number.';
     }
 }
