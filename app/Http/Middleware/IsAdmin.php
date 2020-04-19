@@ -18,7 +18,6 @@ class IsAdmin
         if($request->user() && $request->user()->role != 'Admin')
         {
             return redirect(RouteServiceProvider::HOME);
-            //return new Response(view(‘unauthorized’)->with(‘role’, ‘ADMIN’));
         }
         return $next($request);
     }
