@@ -6,3 +6,16 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+//Bootstrap Tags Input
+@import 'tagsinput';
+
+
+.autocomplete li:hover {
+    background-color: #f0f0f0;
+}
+
+.autocomplete-pos {
+    display:block;
+    position:absolute
+}
