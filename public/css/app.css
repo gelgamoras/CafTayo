@@ -10898,6 +10898,7 @@ a.text-dark:focus {
   width: 100%;
   line-height: 22px;
   cursor: text;
+  height: auto;
 }
 
 .bootstrap-tagsinput input {
