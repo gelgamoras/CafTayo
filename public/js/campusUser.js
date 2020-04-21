@@ -86,9 +86,9 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/createuser.js":
+/***/ "./resources/js/campusUser.js":
 /*!************************************!*\
-  !*** ./resources/js/createuser.js ***!
+  !*** ./resources/js/campusUser.js ***!
   \************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -99,7 +99,41 @@ $(document).ready(function () {
     itemValue: 'id',
     itemText: 'text',
     confirmKeys: [128, 149]
-  });
+  }); //@error('campuses') is-invalid @enderror
+
+  var campusParent = $('#campuses');
+
+  if (campusParent.siblings('span').children('strong').length) {
+    campusParent.siblings('.bootstrap-tagsinput').addClass('is-invalid');
+  }
+
+  if (campusParent.val() !== '') {
+    var _token = $('input[name="_token"]').val();
+
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $.ajax({
+      url: "/admin/campus/fetchCampuses",
+      method: "POST",
+      data: {
+        query: campusParent.val(),
+        _token: _token
+      },
+      dataType: "json",
+      success: function success(data) {
+        data.forEach(function (i) {
+          $('#campuses').tagsinput('add', {
+            id: i.id,
+            text: i.name
+          });
+        });
+      }
+    });
+  }
+
   $(campus[0].$input).keyup(function () {
     var query = $(this).val();
 
@@ -144,12 +178,14 @@ $(document).ready(function () {
       text: details[1]
     });
     $('#campus').fadeOut();
-    console.log($("#campuses").val());
-  }); //    document.getElementById("borrower").addEventListener("blur", function() { 
-  //       $('#patronList').fadeOut();  
-  //   });
-
-  $('#campuses').on('beforeItemAdd', function (event) {//console.log(event.item);
+  });
+  document.getElementById("campuses").addEventListener("blur", function () {
+    $('#campus').fadeOut();
+  });
+  $('html').click(function (e) {
+    if (!$(e.target).hasClass('autocomplete')) {
+      $('#campus').fadeOut();
+    }
   });
 });
 
@@ -157,12 +193,12 @@ $(document).ready(function () {
 
 /***/ 1:
 /*!******************************************!*\
-  !*** multi ./resources/js/createuser.js ***!
+  !*** multi ./resources/js/campusUser.js ***!
   \******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/rjbobeles/Sites/caftayo_app/resources/js/createuser.js */"./resources/js/createuser.js");
+module.exports = __webpack_require__(/*! /Users/rjbobeles/Sites/caftayo_app/resources/js/campusUser.js */"./resources/js/campusUser.js");
 
 
 /***/ })
