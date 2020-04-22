@@ -7,6 +7,7 @@ use App\LogCampus;
 use App\Rules\AlphaSpace;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model; 
+use Illuminate\Support\Facades\DB;
 use Validator;
 
 class CampusController extends Controller
@@ -20,6 +21,45 @@ class CampusController extends Controller
     {
         $records = Campus::all();
         return view('campus.index')->with('index', $records);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function ajaxName(Request $request)
+    {
+        $query = $request->get('query');
+        if($query != null) 
+        {
+            $data = DB::table('campuses')
+                    ->select('id', 'name', 'address')
+                    ->where('status', 'Active')
+                    ->where('name', 'LIKE', "%{$query}%")
+                    ->take(6)
+                    ->get(); 
+            return response()->json($data);
+        }
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function ajaxNames(Request $request)
+    {
+        $query = $request->get('query');
+        $tmpQuery = explode(',', $query);   
+        $arr = array();
+
+        foreach($tmpQuery as $tmp)
+        {
+            $data = Campus::select('id', 'name', 'address')->where('status', 'active')->where('id', $tmp)->first();
+            array_push($arr, $data);
+        }
+        return response()->json($arr);
     }
 
     /**
@@ -42,7 +82,7 @@ class CampusController extends Controller
     {
         $validator = Validator::make($request->all(), 
         [
-            'name' => ['required', 'max:50'],
+            'name' => ['required', 'max:100'],
             'address' => ['required', 'max:100']
         ],
         [
@@ -66,7 +106,7 @@ class CampusController extends Controller
                 'action' => 'Created Campus'
             ]);
 
-            return redirect()->route("campus.index")->with('success', 'You have successfullly added a new campus!');
+            return redirect()->route('campus.index')->with('success', 'You have successfullly added a new campus!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
@@ -79,7 +119,7 @@ class CampusController extends Controller
     public function show($id)
     {
         $campus = Campus::find($id);
-        return view("campus.single")->with("campus", $campus);
+        return view('campus.single')->with('campus', $campus);
     }
 
     /**
@@ -91,7 +131,7 @@ class CampusController extends Controller
     public function edit($id)
     {
        $campus = Campus::find($id);
-        return view("campus.edit")->with("campus", $campus);
+        return view('campus.edit')->with('campus', $campus);
     }
 
     /**
@@ -105,7 +145,7 @@ class CampusController extends Controller
     {
         $validator = Validator::make($request->all(), 
         [
-            'name' => ['required', 'max:50'],
+            'name' => ['required', 'max:100'],
             'address' => ['required', 'max:100']
         ],
         [
@@ -128,7 +168,7 @@ class CampusController extends Controller
                 'action' => 'Edited Campus'
             ]);
 
-            return redirect()->route("campus.index")->with('success', 'You have successfullly updated the campus!');
+            return redirect()->route('campus.index')->with('success', 'You have successfullly updated the campus!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
@@ -140,6 +180,7 @@ class CampusController extends Controller
      */
     public function destroy($id)
     {
+        //Should we deactivate if there is a user with that same campus?    
         $campus = Campus::find($id);
         $action = null;
         $message = null;
@@ -164,6 +205,6 @@ class CampusController extends Controller
             'action' => $action
         ]);
 
-        return redirect()->route("campus.index")->with('success', 'You have successfullly ' . $message . ' the campus!');
+        return redirect()->route('campus.index')->with('success', 'You have successfullly ' . $message . ' the campus!');
     }
 }
