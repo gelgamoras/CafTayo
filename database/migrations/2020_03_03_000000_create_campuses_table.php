@@ -15,7 +15,7 @@ class CreateCampusesTable extends Migration
     {
         Schema::create('campuses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name', 50);
+            $table->string('name', 100);
             $table->string('address', 100);
             $table->enum('status', ['Active', 'Deleted']);
             $table->timestamps();

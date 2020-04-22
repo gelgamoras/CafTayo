@@ -26,9 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('coverphoto', 200)->nullable();
             $table->string('username', 20)->unique();
             $table->string('password', 256);
-            $table->bigInteger('campus_id')->nullable()->unsigned();
-            $table->foreign('campus_id')->references('id')->on('campuses');
-            $table->enum('Status', ['Active', 'Deactivated']);
+            $table->enum('status', ['Active', 'Deactivated']);
             $table->rememberToken();
             $table->timestamps();
         });

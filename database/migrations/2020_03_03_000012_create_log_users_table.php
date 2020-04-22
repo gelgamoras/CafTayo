@@ -17,7 +17,7 @@ class CreateLogUsersTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->enum('action', ['Created User', 'Edited User', 'Deleted User', 'Update Profile', 'Changed Passowrd']);
+            $table->enum('action', ['Created User', 'Edited User', 'Deactivated User', 'Restored User', 'Update Profile', 'Changed Password', 'Added Campuses', 'Updated Campuses']);
             $table->bigInteger('target_id')->unsigned();
             $table->foreign('target_id')->references('id')->on('users');
             $table->timestamps();
