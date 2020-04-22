@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'middlename', 'lastname', 'username', 'email', 'password', 'role', 'catering', 'contactno', 'coverphoto', 'campus_id', 'status'
+        'firstname', 'middlename', 'lastname', 'username', 'email', 'password', 'role', 'catering', 'contactno', 'coverphoto', 'status'
     ];
     
     /**
@@ -37,9 +37,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //Campus -> Users
-    public function campusUsers() {
-        return $this->belongsTo('App\Campuses', 'campus_id', 'id');
+    //Campus -> UserCampus
+    public function periodLogPeriod() {
+        return $this->hasMany('App\UserCampus', 'user_id', 'id');
     }
 
     //Users -> LogCampus

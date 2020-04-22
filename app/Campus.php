@@ -8,9 +8,9 @@ class Campus extends Model
 {
     protected $fillable = [ 'Name', 'Address', 'Status' ];
 
-    //Campus -> Users
+    //Campus -> CampusUsers
     public function campusUsers() {
-        return $this->hasMany('App\User', 'campus_id', 'id');
+        return $this->hasMany('App\UserCampus', 'campus_id', 'id');
     }
 
     //Campus -> Menus
