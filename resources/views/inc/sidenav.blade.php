@@ -40,17 +40,51 @@
       </li>
       <li class="nav-item">
         <a class="nav-link {{ Route::is('campus.index') ? 'active' : '' }}
-                           {{ Route::is('campus.create') ? 'active' : '' }} " href="{{ route('campus.index') }}">
+                           {{ Route::is('campus.create') ? 'active' : '' }} 
+                           {{ Route::is('campus.edit') ? 'active' : '' }} " href="{{ route('campus.index') }}">
         <i class="material-icons">
           school
         </i>
           <span>Campuses</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="log-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="material-icons">assignment</i>
-          <span>Menu Logs</span>
+          <span>Logs</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">
+            <i class="material-icons ml-3">import_contacts</i>
+            Menu Logs
+          </a>
+          <a class="dropdown-item" href="#">
+            <i class="material-icons ml-3">restaurant</i>
+            Food Logs
+          </a>
+          <a class="dropdown-item" href="#">
+            <i class="material-icons ml-3">timelapse</i>
+            Period Logs
+          </a>
+          <a class="dropdown-item" href="#">
+            <i class="material-icons ml-3">category</i>
+            Category Logs
+          </a>
+          <a class="dropdown-item" href="#">
+            <i class="material-icons ml-3">assignment_ind</i>
+            User Logs
+          </a>
+          <a class="dropdown-item" href="#">
+            <i class="material-icons ml-3">apartment</i>
+            Campus Logs
+          </a> 
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" 
+            href="{{ route('users.index') }}">
+        <i class="material-icons">people</i>
+          <span>Subscribers</span>
         </a>
       </li>
     </ul>
