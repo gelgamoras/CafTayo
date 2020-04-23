@@ -1,7 +1,11 @@
 @extends('layouts.main')
 
 @section('page_header', 'Create a User')
-@section('subheader', 'Add an Admin or Concessionaire')
+@section('subheader')
+<a href="{{ route('users.index') }}" class="btn btn-secondary btn-sm mb-2" style="text-transform: none; letter-spacing: initial;">
+    Back
+</a>
+@endsection
 
 @section('content')
 

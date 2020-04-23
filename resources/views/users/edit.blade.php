@@ -17,6 +17,16 @@
                     <i class="fas fa-phone ml-3"></i>
                     <span>{{ $user->contactno }}</span>
                 </li> 
+                <li class="list-group-item px-4 d-flex justify-content-between" style="font-size: 0.7rem">
+                    <span class="d-inine-block">
+                        <span class="text-muted font-weight-bold">Created at: </span> 
+                        {{ $user->created_at }}
+                    </span>
+                    <span class="d-inine-block">
+                        <span class="text-muted font-weight-bold">Last updated: </span> 
+                        {{ $user->updated_at }}
+                    </span>
+                </li>
             </ul>
         </div> 
     </div>
