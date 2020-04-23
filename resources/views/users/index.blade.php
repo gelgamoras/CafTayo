@@ -9,12 +9,30 @@
     </button> 
 @endsection
 
-@section('content')
+@section('styles')
     <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet" type="text/css" /> 
     <link href="{{ asset('css/material-table.css') }}" rel="stylesheet" type="text/css" /> 
     <link href="{{ asset('css/material-datatables.css') }}" rel="stylesheet" type="text/css" /> 
-    <script src="{{ asset('js/datatables.min.js') }}"></script>
+@endsection
 
+@section('scripts')
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            var table = $('#userTable').DataTable({
+                columnDefs: [
+                    {
+                        targets: [0, 1, 2, 3, 4, 5],   
+                        className: 'text-left'
+                    }
+                ]
+            });    
+        });
+    </script> 
+@endsection
+
+@section('content')
+    
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
             <table id="userTable" class="mdl-data-table" cellspacing="0" width="100%">
@@ -95,18 +113,6 @@
         </div> 
     </div>
 
-    <script>
-        $(document).ready(function () {
-            var table = $('#userTable').DataTable({
-                columnDefs: [
-                    {
-                        targets: [0, 1, 2, 3, 4, 5],   
-                        className: 'text-left'
-                    }
-                ]
-            });    
-        });
-    </script> 
 
     <!-- <div class="row justify-content-center">
         <div class="col-md-8">

@@ -17,16 +17,10 @@
     <!--Main CSS--> 
     <link rel="stylesheet" id="main-stylesheet" data-version="1.1.0" href="{{ asset('css/app.css') }}">
     
+    @yield('styles')
+
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     
-    <!--JQuery js--> 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <!--Shards js--> 
-    <script src="{{ asset('js/shards.min.js') }}"></script>
-    <!--Popper js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <!--Bootstrap js--> 
-    <script src="{{ asset('js/app.js') }}"></script>
   
   </head>
   <body class="h-100">
@@ -52,12 +46,20 @@
         </main>
       </div>
     </div>
-    @yield('scripts')
+    <!--JQuery js--> 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!--Shards js--> 
+    <script src="{{ asset('js/shards.min.js') }}"></script>
+    <!--Popper js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <!--Bootstrap js--> 
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script src="https://unpkg.com/shards-ui@latest/dist/js/shards.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sharrre/2.0.1/jquery.sharrre.min.js"></script>
     <script src="{{ asset('js/shards-dashboards.1.1.0.min.js') }}"></script>
     <script src="{{ asset('js/extras.1.1.0.min.js') }}"></script>
     <script src="{{ asset('js/app-blog-overview.1.1.0.min.js') }}"></script>
+    @yield('scripts')
   </body>
 </html>
