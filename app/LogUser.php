@@ -12,11 +12,11 @@ class LogUser extends Model
     
     //Users -> LogUser
     public function u_userLogUser() {
-        return $this->belongsTo('App\LogUser', 'user_id', 'id');
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
     //Users -> LogUser
     public function t_userLogUser() {
-        return $this->belongsTo('App\LogUser', 'target_id', 'id');
+        return $this->belongsTo('App\User', 'target_id', 'id');
     }
 }

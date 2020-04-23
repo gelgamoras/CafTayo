@@ -15,6 +15,15 @@
                     @endif
 
                     You are logged in!
+
+                    <br><br>
+                    <a href="{{ route('users.index') }}">Users</a><br>
+                    <a href="{{ route('campus.index') }}">Campus</a><br><br>
+                    <a href="{{ route('logs.campus.index') }}">Campus Logs</a><br>
+                    <a href="{{ route('logs.category.index') }}">Category Logs</a><br>
+                    <a href="{{ route('logs.food.index') }}">Food Logs</a><br>
+                    <a href="{{ route('logs.menu.index') }}">Menu logs</a><br>
+                    <a href="{{ route('logs.user.index') }}">User Logs</a>
                 </div>
             </div>
         </div>

@@ -30,8 +30,11 @@ Route::middleware('auth')->group(function() {
         Route::get('/', 'DashboardController@index')->name('dashboard.index');
     
         // Profile
-        //xx: MyProfile, EditProfile, ChangePassword
-        
+        Route::get('/myprofile', 'DashboardController@myprofile')->name('dashboard.profile');
+        Route::get('/editprofile', 'DashboardController@editprofile')->name('dashboard.edit.profile');
+        Route::post('/editprofile', 'DashboardController@updateprofile')->name('dashboard.update.profile');
+        Route::get('/changepassword', 'DashboardController@changepassword')->name('dashboard.edit.password');
+        Route::post('/changepassword', 'DashboardController@changepassword')->name('dashboard.update.password');        
     });
 
     // For Admins Only
@@ -52,6 +55,46 @@ Route::middleware('auth')->group(function() {
 
                 Route::post('/fetchCampus', 'CampusController@ajaxName')->name('campus.ajaxName');
                 Route::post('/fetchCampuses', 'CampusController@ajaxNames')->name('campus.ajaxNames');
+            });
+
+            // Logs
+            Route::prefix('logs')->group(function() {
+            
+                Route::prefix('campus')->group(function() {
+                    Route::get('/', 'LogController@indexCampus')->name('logs.campus.index');
+                    //Route::get('/{id}', 'LogController@showCampus')->name('logs.campus.show');
+                });
+
+                Route::prefix('category')->group(function() {
+                    Route::get('/', 'LogController@indexCategory')->name('logs.category.index');
+                    //Route::get('/{id}', 'LogController@showCategory')->name('logs.category.show');
+                });
+
+                Route::prefix('food')->group(function() {
+                    Route::get('/', 'LogController@indexFood')->name('logs.food.index');
+                    //Route::get('/{id}', 'LogController@showFood')->name('logs.food.show');
+                });
+
+                Route::prefix('menu')->group(function() {
+                    Route::get('/', 'LogController@indexMenu')->name('logs.menu.index');
+                    //Route::get('/{id}', 'LogController@showMenu')->name('logs.menu.show');
+                });
+
+                Route::prefix('user')->group(function() {
+                    Route::get('/', 'LogController@indexUser')->name('logs.user.index');
+                    //Route::get('/{id}', 'LogController@showUser')->name('logs.user.show');
+                });
+            });
+
+            // Periods
+            Route::prefix('periods')->group(function() {
+                Route::get('/', 'PeriodController@index')->name('period.index');
+                Route::get('/create', 'PeriodController@create')->name('period.create');
+                Route::post('/create', 'PeriodController@store')->name('period.store');
+                Route::get('/{id}', 'PeriodController@show')->name('period.show');
+                Route::get('/{id}/edit', 'PeriodController@edit')->name('period.edit');
+                Route::put('/{id}', 'PeriodController@update')->name('period.update');
+                Route::delete('/{id}', 'PeriodController@destroy')->name('period.destroy');
             });
 
             // Users

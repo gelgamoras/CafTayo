@@ -10,6 +10,11 @@ class LogCampus extends Model
     
     //Users -> LogCampus
     public function userLogCampus() {
-        return $this->belongsTo('App\Users', 'user_id', 'id');
+        return $this->belongsTo('App\User', 'user_id', 'id');
+    }
+
+    //Campus -> LogCampus
+    public function campusLogCampus() {
+        return $this->belongsTo('App\Campus', 'campus_id', 'id');
     }
 }
