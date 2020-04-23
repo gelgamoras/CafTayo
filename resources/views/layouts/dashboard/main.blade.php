@@ -30,22 +30,22 @@
     <div class="container-fluid">
       <div class="row">
         <!-- Main Sidebar -->
-        @include('inc.sidenav')
+        @include('inc.dashboard.sidenav')
         <!-- End Main Sidebar -->
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 offset-md-3">
           <div class="main-navbar sticky-top bg-white">
             <!-- Main Navbar -->
-            @include('inc.topnav')
+            @include('inc.dashboard.topnav')
           </div>
           <!-- / .main-navbar -->
           @include('inc.messages')
           <div class="main-content-container container-fluid px-4">
             <!-- Page Header -->
-            @include('inc.pageheader')
+            @include('inc.dashboard.pageheader')
             <!-- End Page Header -->
             @yield('content')
           </div>
-          @include('inc.footer')
+          @include('inc.dashboard.footer')
         </main>
       </div>
     </div>

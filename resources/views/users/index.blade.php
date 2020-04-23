@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.dashboard.main')
 
 @section('page_header', 'Users')
 @section('subheader', 'Administrators and Concessionaires')
