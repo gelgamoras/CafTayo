@@ -2,7 +2,7 @@
 
 @section('page_header', 'View or Update a User')
 @section('subheader')
-    <a href="{{ route('users.index') }}" class="btn btn-secondary btn-sm mb-4" style="text-transform: none; letter-spacing: initial;">
+    <a href="javascript:history.back()" class="btn btn-secondary btn-sm mb-4" style="text-transform: none; letter-spacing: initial;">
         Back
     </a>
 @endsection
