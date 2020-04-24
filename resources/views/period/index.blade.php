@@ -60,7 +60,7 @@
                                 <td>{{ $period->end }}</td>
                                 <td>{{ $period->status }}</td>
                                 <td >
-                                   <a href="{{ route('period.edit', $period->id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
+                                   <a href="{{ route('period.edit', $period->id) }}" class="btn btn-sm btn-primary">{{ __('View Period') }}</a>
                                     <a href="#" onclick="event.preventDefault(); if(confirm('Are you sure?')) { document.getElementById('periods-delete-{{ $period->id }}').submit(); }" class='btn btn-primary delete-btn btn-sm' >
                                         @if($period->status == 'Active')
                                             Delete

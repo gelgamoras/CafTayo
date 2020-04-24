@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogPeriod extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [ 'user_id', 'period_id', 'action'];
     
     //Users -> LogPeriod
     public function userLogPeriod() {
-        return $this->belongsTo('App\LogPeriod', 'user_id', 'id');
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
     //Periods -> LogPeriod

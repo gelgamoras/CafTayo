@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Period;
 use App\LogPeriod;
 use Illuminate\Http\Request;
+use Validator;
 
 class PeriodController extends Controller
 {
@@ -80,7 +81,7 @@ class PeriodController extends Controller
      */
     public function show(Period $period)
     {
-        return view('period.single')->with('campus', $campus);
+        return view('period.single')->with('period', $period);
     }
 
     /**
@@ -91,7 +92,7 @@ class PeriodController extends Controller
      */
     public function edit(Period $period)
     {
-        return view('campus.edit')->with('campus', $campus);
+        return view('period.edit')->with('period', $period);
     }
 
     /**

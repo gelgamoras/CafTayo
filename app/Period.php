@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Period extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [ 'period', 'start', 'end', 'status' ];
     
     //MenuItem -> Period
     public function menuitemPeriod() {
@@ -15,6 +15,6 @@ class Period extends Model
 
     //Periods -> LogPeriod
     public function periodLogPeriod() {
-        return $this->hasMany('App\Period', 'period_id', 'id');
+        return $this->hasMany('App\LogPeriod', 'period_id', 'id');
     }
 }

@@ -15,7 +15,7 @@
                     <h5 class="mb-0">Period Details</h5> 
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('campus.create') }}">
+                    <form method="POST" action="{{ route('period.create') }}">
                         @csrf
                         <div class="form-row">
                             <div class="form-group w-100 px-1">

@@ -45,7 +45,7 @@
                         <tr>
                             <td width="10%">{{ $logperiod->id }}</td>
                             <td>{{ $logperiod->user_id }} | {{ $logperiod->userLogPeriod->username }}</td>
-                            <td>{{ $logperiod->period_id }} | {{ $logperiod->periodLogPeriod->name }}</td>
+                            <td>{{ $logperiod->period_id }} | {{ $logperiod->periodLogPeriod->period }}</td>
                             <td>{{ $logperiod->action }}</td>
                             <td>{{ $logperiod->created_at }}</td>
                             <td>
