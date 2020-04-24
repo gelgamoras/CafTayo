@@ -116,9 +116,8 @@ class CampusController extends Controller
      * @param  \App\Campus  $campus
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Campus $campus)
     {
-        $campus = Campus::find($id);
         return view('campus.single')->with('campus', $campus);
     }
 
@@ -128,9 +127,8 @@ class CampusController extends Controller
      * @param  \App\Campus  $campus
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Campus $campus)
     {
-       $campus = Campus::find($id);
         return view('campus.edit')->with('campus', $campus);
     }
 
@@ -141,7 +139,7 @@ class CampusController extends Controller
      * @param  \App\Campus  $campus
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Campus $campus)
     {
         $validator = Validator::make($request->all(), 
         [
@@ -157,7 +155,6 @@ class CampusController extends Controller
 
         if(!$validator->fails())
         {
-            $campus = Campus::find($id);
             $campus->name = $request->name;
             $campus->address = $request->address;
             $campus->save();
@@ -178,10 +175,9 @@ class CampusController extends Controller
      * @param  \App\Campus  $campus
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Campus $campus)
     {
         //Should we deactivate if there is a user with that same campus?    
-        $campus = Campus::find($id);
         $action = null;
         $message = null;
 
