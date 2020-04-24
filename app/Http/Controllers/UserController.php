@@ -135,9 +135,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::find($id);
         return view('users.single')->with('user', $user);
     }
 
@@ -147,13 +146,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        if(auth()->user()->id == $id) abort(403, "You can't edit your own account. Use edit profile!");
-        if($id == 1) abort(403, "You can't edit super account");
+        if(auth()->user()->id == $user->id) abort(403, "You can't edit your own account. Use edit profile!");
+        if($user->id == 1) abort(403, "You can't edit super account");
 
-        $user = User::find($id);
-        $userCampuses = UserCampus::where('user_id', $id)->get();
+        $userCampuses = UserCampus::where('user_id', $user->id)->get();
         $campuses = array();
 
         foreach($userCampuses as $campus)
@@ -171,10 +169,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        if(auth()->user()->id == $id) abort(403, "You can't edit your own account. Use edit profile!");
-        if($id == 1) abort(403, "You can't update super account");
+        if(auth()->user()->id == $user->id) abort(403, "You can't edit your own account. Use edit profile!");
+        if($user->id == 1) abort(403, "You can't update super account");
 
         $validator = Validator::make($request->all(), 
         [
@@ -182,9 +180,9 @@ class UserController extends Controller
             'middlename' => ['required', new AlphaSpace],
             'lastname' => ['required', new AlphaSpace],
             'role' => ['required', 'in:Admin,Concessionaire'],
-            'email' => ['required', Rule::unique('users')->ignore($id)],
+            'email' => ['required', Rule::unique('users')->ignore($user->id)],
             'contactno' => ['required', new ValidPHNumber],
-            'username' => ['required', Rule::unique('users')->ignore($id)],
+            'username' => ['required', Rule::unique('users')->ignore($user->id)],
         ],
         [
             'firstname.required' => 'User must have a first name.',
@@ -214,7 +212,6 @@ class UserController extends Controller
             if($request->role == 'Admin') $catering = null;
             else $catering = $request->catering;
 
-            $user = User::find($id);
             $user->firstname = $request->firstname;
             $user->middlename = $request->middlename;
             $user->lastname = $request->lastname;
@@ -265,12 +262,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        if(auth()->user()->id == $id) abort(403, "You can't deactivate your own account");
-        if($id == 1) abort(403, "You can't deactivate super account");
+        if(auth()->user()->id == $user->id) abort(403, "You can't deactivate your own account");
+        if($user->id == 1) abort(403, "You can't deactivate super account");
     
-        $user = User::find($id);
         $action = null;
         $message = null;
 
