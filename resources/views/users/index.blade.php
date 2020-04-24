@@ -65,12 +65,11 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->status }}</td>
                                 <td >
-                                    <form action="{{ route('users.edit', $user->id) }}" method='get' style="display: inline-block;">
-                                        <button type='submit' class='btn btn-secondary btn-sm' 
-                                            data-toggle='tooltip' data-placement='top' title='View'> 
-                                            <i class='fas fa-search'></i>
-                                        </button> 
-                                    </form>
+                                    @if(Auth::user()->id == $user->id)
+                                        <a href="#" class="btn btn-sm btn-secondary">{{ __('View User') }}</a>
+                                    @else
+                                        <a href="{{ route('users.edit', $user->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
+                                    @endif
                                     <!-- <button type='button' class='btn btn-primary delete-btn btn-sm' value="{{ $user['name'] }}"
                                         onclick="return confirm('Are you sure you want to delete ' + this.value + '?')"> 
                                         Deactivate
