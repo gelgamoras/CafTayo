@@ -27,4 +27,9 @@ class Campus extends Model
     public function campusFood() {
         return $this->hasMany('App\Food', 'campus_id', 'id');
     }
+
+    //Campus -> LogCampus
+    public function campusLogCampus() {
+        return $this->hasMany('App\Campus', 'campus_id', 'id');
+    }
 }
