@@ -137,3 +137,21 @@ td {
         max-width: 400px; 
     }
 }
+
+.subnav {
+    transition: all 1s; 
+    .dropdown-item {
+        color: #40473a !important; 
+        .material-icons {
+            color: #dcdccd !important; 
+        }
+    }
+
+    .dropdown-item:hover {
+        color: #818536 !important; 
+        background-color: #FBFBFB !important; 
+        .material-icons {
+            color: #818536 !important; 
+        }
+    }
+}

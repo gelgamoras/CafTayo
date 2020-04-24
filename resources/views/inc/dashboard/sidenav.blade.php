@@ -63,7 +63,7 @@
           <i class="material-icons">assignment</i>
           <span>Logs</span>
         </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu subnav" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="{{ route('logs.menu.index') }}">
             <i class="material-icons ml-3">import_contacts</i>
             Menu Logs
@@ -89,6 +89,13 @@
             Period Logs
           </a> 
         </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"
+          href="{{ route('period.index') }}">
+          <i class="material-icons">timelapse</i>
+            Periods
+        </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" 

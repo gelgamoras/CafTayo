@@ -229,6 +229,27 @@ td .btn-light:hover {
   }
 }
 
+.subnav {
+  transition: all 1s;
+}
+
+.subnav .dropdown-item {
+  color: #40473a !important;
+}
+
+.subnav .dropdown-item .material-icons {
+  color: #dcdccd !important;
+}
+
+.subnav .dropdown-item:hover {
+  color: #818536 !important;
+  background-color: #FBFBFB !important;
+}
+
+.subnav .dropdown-item:hover .material-icons {
+  color: #818536 !important;
+}
+
 .autocomplete li:hover {
   background-color: #f0f0f0;
 }
