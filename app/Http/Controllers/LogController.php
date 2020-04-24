@@ -6,6 +6,7 @@ use App\LogCampus;
 use App\LogCategories;
 use App\LogFood;
 use App\LogMenu;
+use App\LogPeriod;
 use App\LogUser;
 use Illuminate\Http\Request;
 
@@ -102,6 +103,30 @@ class LogController extends Controller
        $LogMenu = LogMenu::find($id);
        return view('logs.menu.single')->with('logmenu', $LogMenu);
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexPeriod()
+    {
+        $records = LogPeriod::all();
+        return view('logs.period.index')->with('index', $records);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\LogPeriod  $LogPeriod
+     * @return \Illuminate\Http\Response
+     */
+    public function showPeriod($id)
+    {
+       $LogPeriod = LogPeriod::find($id);
+       return view('logs.menu.single')->with('logperiod', $LogPeriod);
+    }
+
 
     /**
      * Display a listing of the resource.

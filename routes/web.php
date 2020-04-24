@@ -80,6 +80,11 @@ Route::middleware('auth')->group(function() {
                     //Route::get('/{id}', 'LogController@showMenu')->name('logs.menu.show');
                 });
 
+                Route::prefix('period')->group(function() {
+                    Route::get('/', 'LogController@indexPeriod')->name('logs.period.index');
+                    //Route::get('/{id}', 'LogController@showMenu')->name('logs.menu.show');
+                });
+
                 Route::prefix('user')->group(function() {
                     Route::get('/', 'LogController@indexUser')->name('logs.user.index');
                     //Route::get('/{id}', 'LogController@showUser')->name('logs.user.show');

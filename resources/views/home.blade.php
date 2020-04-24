@@ -23,6 +23,7 @@
                     <a href="{{ route('logs.category.index') }}">Category Logs</a><br>
                     <a href="{{ route('logs.food.index') }}">Food Logs</a><br>
                     <a href="{{ route('logs.menu.index') }}">Menu logs</a><br>
+                    <a href="{{ route('logs.period.index') }}">Period logs</a><br>
                     <a href="{{ route('logs.user.index') }}">User Logs</a>
                 </div>
             </div>
