@@ -68,7 +68,7 @@
                                     @if(Auth::user()->id == $user->id)
                                         <a href="#" class="btn btn-sm btn-secondary">{{ __('View User') }}</a>
                                     @else
-                                        <a href="{{ route('users.edit', $user->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
+                                        <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
                                     @endif
                                     <!-- <button type='button' class='btn btn-primary delete-btn btn-sm' value="{{ $user['name'] }}"
                                         onclick="return confirm('Are you sure you want to delete ' + this.value + '?')"> 
