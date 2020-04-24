@@ -12,9 +12,16 @@
         <a class="dropdown-item" href="#">
           <i class="material-icons">note_add</i>Settings</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item text-danger" href="#">
-          <i class="material-icons text-danger">&#xE879;</i> Logout </a>
-      </div>
+        <a class="dropdown-item" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+           <i class="material-icons text-danger">&#xE879;</i> {{ __('Logout') }} </a>
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    </div>
     </li>
   </ul>
   <nav class="nav">
