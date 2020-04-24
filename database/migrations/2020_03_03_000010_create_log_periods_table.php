@@ -17,7 +17,7 @@ class CreateLogPeriodsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->enum('action', ['Created Period', 'Edited Period', 'Deleted Period']);
+            $table->enum('action', ['Created Period', 'Edited Period', 'Deleted Period', 'Restored Period']);
             $table->bigInteger('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('periods');
             $table->timestamps();
