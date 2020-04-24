@@ -66,13 +66,17 @@
             <i class="material-icons ml-3">category</i>
             Category Logs
           </a>
-          <a class="dropdown-item" href="{{ route('logs.menu.index') }}">
+          <a class="dropdown-item" href="{{ route('logs.user.index') }}">
             <i class="material-icons ml-3">assignment_ind</i>
             User Logs
           </a>
           <a class="dropdown-item" href="{{ route('logs.campus.index') }}">
             <i class="material-icons ml-3">apartment</i>
             Campus Logs
+          </a> 
+          <a class="dropdown-item" href="{{ route('logs.period.index') }}">
+            <i class="material-icons ml-3">timelapse</i>
+            Period Logs
           </a> 
         </div>
       </li>
