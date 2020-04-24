@@ -1,0 +1,139 @@
+.list-food-category, .list-subcategory {
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    h6 {
+        font-weight: bold; 
+    }
+    .inv-button {
+        background-color: rgba(0, 0, 0, 0); 
+        border: none; 
+        padding: none; 
+    }
+  
+    .mark-oos {
+        transition: all 0.3s ease; 
+    }
+    
+    .mark-oos:hover {
+        //-webkit-font-smoothing: subpixel-antialiased;
+        backface-visibility: hidden;
+        transform: scale(1.15);
+        cursor: pointer; 
+    }
+
+    .mark-oos:focus {
+        outline: none; 
+        box-shadow: none; 
+    }
+
+
+    .out-of-stock.list-group-item {
+        .text-semibold {
+            color: rgba(0,0,0,.5) !important; 
+            text-decoration: line-through
+        }
+        .text-right {
+            display: none; 
+        }
+    }
+
+}
+
+#menu-title, #menu-date {
+    font-size: 1.1rem; 
+}
+
+.input-note {
+    margin-top: .25rem; 
+    font-size: 80%; 
+    color: gray; 
+}
+
+.dataTables_wrapper {
+    .row {
+        overflow: auto; 
+        padding-left: 5px; 
+        padding-right: 5px; 
+        .col-sm-12 {
+            .mdl-data-table {
+                box-shadow: 0px 5px 15px rgba(0,0,0,0.25); 
+                border: none;
+                border-radius: 15px; 
+            }
+        }
+    }
+
+    .row:nth-child(2){
+        padding-top: 15px;
+        padding-bottom: 20px; 
+    }
+}
+
+.dataTables_empty {
+    text-align: center !important; 
+}
+
+.dataTables_length, .dataTables_filter {
+    label {
+        padding-bottom: 0 !important; 
+        margin-bottom: 0; 
+    }
+}
+.card.menu-card {
+    .card-body {
+        padding: 0 !important; 
+        h4.card-title {
+            padding: .7rem .5rem 0 .5rem;
+        }
+        
+        ul.list-group {
+            h6 {
+                padding: 0 1.2rem 0; 
+            }
+        }
+    }
+}
+
+td {
+    .btn-light {
+        border-color: #d8d8d3; 
+    }
+
+    .btn-light:hover {
+        border-color: #d8d8d3; 
+    }
+}
+
+.btn-group.filters {
+    .btn-secondary {
+        border-color: #616d5a; 
+    }
+}
+
+.mdl-data-table {
+    tbody {
+        font-weight: 300 !important; 
+    }
+}
+
+.subcat-header {
+    background-color: #F5F6F8; 
+}
+
+.bootstrap-tagsinput {
+    .badge {
+        font-weight: 400; 
+        font-size: 100%; 
+    }
+}
+
+.modal-dialog {
+    margin: auto; 
+    width: 300px; 
+}
+
+@media (min-width: 576px){
+    .modal-dialog {
+        max-width: 400px; 
+    }
+}

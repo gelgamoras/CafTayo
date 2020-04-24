@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.dashboard.main')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header border-bottom"><h4 class="mb-0">Dashboard</h4></div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -13,18 +13,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                    <span style="font-weight: 300">You are logged in!</span>
 
-                    You are logged in!
-
-                    <br><br>
-                    <a href="{{ route('users.index') }}">Users</a><br>
-                    <a href="{{ route('campus.index') }}">Campus</a><br><br>
-                    <a href="{{ route('logs.campus.index') }}">Campus Logs</a><br>
-                    <a href="{{ route('logs.category.index') }}">Category Logs</a><br>
-                    <a href="{{ route('logs.food.index') }}">Food Logs</a><br>
-                    <a href="{{ route('logs.menu.index') }}">Menu logs</a><br>
-                    <a href="{{ route('logs.period.index') }}">Period logs</a><br>
-                    <a href="{{ route('logs.user.index') }}">User Logs</a>
                 </div>
             </div>
         </div>

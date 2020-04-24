@@ -1,14 +1,21 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+//@import '~bootstrap/scss/bootstrap';
 
 //Bootstrap Tags Input
 @import 'tagsinput';
+
+//Shards Dashboards
+@import 'shards-dashboards.css'; 
+@import 'extras.1.1.0.min.css'; 
+
+//Custom css by gel 
+@import 'custom'; 
 
 
 .autocomplete li:hover {
