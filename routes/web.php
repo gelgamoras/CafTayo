@@ -48,10 +48,10 @@ Route::middleware('auth')->group(function() {
                 Route::get('/', 'CampusController@index')->name('campus.index');
                 Route::get('/create', 'CampusController@create')->name('campus.create');
                 Route::post('/create', 'CampusController@store')->name('campus.store');
-                Route::get('/{id}', 'CampusController@show')->name('campus.show');
-                Route::get('/{id}/edit', 'CampusController@edit')->name('campus.edit');
-                Route::put('/{id}', 'CampusController@update')->name('campus.update');
-                Route::delete('/{id}', 'CampusController@destroy')->name('campus.destroy');
+                Route::get('/{campus}', 'CampusController@show')->name('campus.show');
+                Route::get('/{campus}/edit', 'CampusController@edit')->name('campus.edit');
+                Route::put('/{campus}', 'CampusController@update')->name('campus.update');
+                Route::delete('/{campus}', 'CampusController@destroy')->name('campus.destroy');
 
                 Route::post('/fetchCampus', 'CampusController@ajaxName')->name('campus.ajaxName');
                 Route::post('/fetchCampuses', 'CampusController@ajaxNames')->name('campus.ajaxNames');
@@ -80,6 +80,11 @@ Route::middleware('auth')->group(function() {
                     //Route::get('/{id}', 'LogController@showMenu')->name('logs.menu.show');
                 });
 
+                Route::prefix('period')->group(function() {
+                    Route::get('/', 'LogController@indexPeriod')->name('logs.period.index');
+                    //Route::get('/{id}', 'LogController@showMenu')->name('logs.menu.show');
+                });
+
                 Route::prefix('user')->group(function() {
                     Route::get('/', 'LogController@indexUser')->name('logs.user.index');
                     //Route::get('/{id}', 'LogController@showUser')->name('logs.user.show');
@@ -91,10 +96,10 @@ Route::middleware('auth')->group(function() {
                 Route::get('/', 'PeriodController@index')->name('period.index');
                 Route::get('/create', 'PeriodController@create')->name('period.create');
                 Route::post('/create', 'PeriodController@store')->name('period.store');
-                Route::get('/{id}', 'PeriodController@show')->name('period.show');
-                Route::get('/{id}/edit', 'PeriodController@edit')->name('period.edit');
-                Route::put('/{id}', 'PeriodController@update')->name('period.update');
-                Route::delete('/{id}', 'PeriodController@destroy')->name('period.destroy');
+                Route::get('/{period}', 'PeriodController@show')->name('period.show');
+                Route::get('/{period}/edit', 'PeriodController@edit')->name('period.edit');
+                Route::put('/{period}', 'PeriodController@update')->name('period.update');
+                Route::delete('/{period}', 'PeriodController@destroy')->name('period.destroy');
             });
 
             // Users
@@ -102,10 +107,10 @@ Route::middleware('auth')->group(function() {
                 Route::get('/', 'UserController@index')->name('users.index');
                 Route::get('/create', 'UserController@create')->name('users.create');
                 Route::post('/create', 'UserController@store')->name('users.store');
-                Route::get('/{id}', 'UserController@show')->name('users.show');
-                Route::get('/{id}/edit', 'UserController@edit')->name('users.edit');
-                Route::put('/{id}', 'UserController@update')->name('users.update');
-                Route::delete('/{id}', 'UserController@destroy')->name('users.destroy');
+                Route::get('/{user}', 'UserController@show')->name('users.show');
+                Route::get('/{user}/edit', 'UserController@edit')->name('users.edit');
+                Route::put('/{user}', 'UserController@update')->name('users.update');
+                Route::delete('/{user}', 'UserController@destroy')->name('users.destroy');
             });
         });
     });
