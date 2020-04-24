@@ -218,6 +218,17 @@ td .btn-light:hover {
   font-size: 100%;
 }
 
+.modal-dialog {
+  margin: auto;
+  width: 300px;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 400px;
+  }
+}
+
 .autocomplete li:hover {
   background-color: #f0f0f0;
 }
