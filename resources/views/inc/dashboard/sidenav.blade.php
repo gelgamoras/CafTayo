@@ -54,27 +54,23 @@
           <span>Logs</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item" href="{{ route('logs.menu.index') }}">
             <i class="material-icons ml-3">import_contacts</i>
             Menu Logs
           </a>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item" href="{{ route('logs.food.index') }}">
             <i class="material-icons ml-3">restaurant</i>
             Food Logs
           </a>
-          <a class="dropdown-item" href="#">
-            <i class="material-icons ml-3">timelapse</i>
-            Period Logs
-          </a>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item" href="{{ route('logs.category.index') }}">
             <i class="material-icons ml-3">category</i>
             Category Logs
           </a>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item" href="{{ route('logs.menu.index') }}">
             <i class="material-icons ml-3">assignment_ind</i>
             User Logs
           </a>
-          <a class="dropdown-item" href="#">
+          <a class="dropdown-item" href="{{ route('logs.campus.index') }}">
             <i class="material-icons ml-3">apartment</i>
             Campus Logs
           </a> 
