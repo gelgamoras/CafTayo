@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Period;
+use App\LogPeriod;
 use Illuminate\Http\Request;
 
 class PeriodController extends Controller
@@ -14,7 +15,8 @@ class PeriodController extends Controller
      */
     public function index()
     {
-        //
+        $records = Period::all();
+        return view('period.index')->with('index', $records);
     }
 
     /**
@@ -24,7 +26,7 @@ class PeriodController extends Controller
      */
     public function create()
     {
-        //
+        return view('period.create');
     }
 
     /**

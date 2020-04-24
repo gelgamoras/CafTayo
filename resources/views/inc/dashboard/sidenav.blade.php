@@ -48,6 +48,16 @@
           <span>Campuses</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link {{ Route::is('period.index') ? 'active' : '' }}
+                           {{ Route::is('period.create') ? 'active' : '' }} 
+                           {{ Route::is('period.edit') ? 'active' : '' }} " href="{{ route('period.index') }}">
+          <i class="material-icons">
+            query_builder
+          </i>
+          <span>Periods</span>
+        </a>
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="log-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="material-icons">assignment</i>
