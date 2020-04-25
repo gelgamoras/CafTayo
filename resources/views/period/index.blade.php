@@ -25,7 +25,7 @@
 @section('content')
     <div class="row">
         <div class="col-xl-4">
-            <div class="card card-small mb-4 pt-3">
+            <div class="card card-small mb-4">
                 <div class="card-header border-bottom" id="periods">
                     <h3 class="mb-0">Periods</h3> 
                 </div>
