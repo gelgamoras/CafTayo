@@ -22,7 +22,7 @@
                         <div class="form-group w-100 px-1">
                             <label for="name">{{ __('Campus Name') }}</label>
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" 
-                                placeholder="Name of Campus" name="name" value="{{ $campus->name }}" reqired autocomplete="name" autofocus>
+                                placeholder="Name of Campus" name="name" value="{{ $campus->name }}" required autocomplete="name" autofocus>
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">

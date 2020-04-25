@@ -5,9 +5,9 @@
         <span class="d-none d-md-inline-block">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }} - {{ Auth::user()->role }}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-small">
-        <a class="dropdown-item" href="user-profile-lite.html">
+        <a class="dropdown-item" href="{{ route('dashboard.profile') }}">
           <i class="material-icons">&#xE7FD;</i> Profile</a>
-        <a class="dropdown-item" href="components-blog-posts.html">
+        <a class="dropdown-item" href="{{ route('dashboard.password.edit') }}">
           <i class="material-icons">vertical_split</i>Change Password</a>
         <a class="dropdown-item" href="#">
           <i class="material-icons">note_add</i>Settings</a>
