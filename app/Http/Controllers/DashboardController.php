@@ -11,6 +11,7 @@ use App\Rules\ValidPHNumber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Validator;
+use Illuminate\Validation\Rule;
 
 class DashboardController extends Controller
 {
@@ -70,7 +71,7 @@ class DashboardController extends Controller
             'firstname' => ['required', 'max:50', new AlphaSpace],
             'middlename' => ['required', 'max:50', new AlphaSpace],
             'lastname' => ['required', 'max:50', new AlphaSpace],
-            'email' => ['required', 'email', 'max:100', Rule::unique('users')->ignore($user->id)],
+            'email' => ['required', 'email', 'max:100', Rule::unique('users')->ignore($request->id)],
             'catering' => ['required', 'max:50'],
             'contactno' => ['required', 'max:20', new ValidPHNumber],
             'coverphoto' => ['image', 'nullable', 'max:10240']
