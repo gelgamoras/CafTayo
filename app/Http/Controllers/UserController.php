@@ -53,7 +53,7 @@ class UserController extends Controller
             'middlename' => ['required', new AlphaSpace],
             'lastname' => ['required', new AlphaSpace],
             'role' => ['required', 'in:Admin,Concessionaire'],
-            'email' => ['required', 'unique:users'],
+            'email' => ['required', 'email', 'unique:users'],
             'contactno' => ['required', new ValidPHNumber],
             'username' => ['required', 'unique:users'],
         ],
@@ -72,7 +72,7 @@ class UserController extends Controller
             'campuses.required' => 'User is required to have a campus'
         ]);
 
-        $validator->sometimes('catering', 'required', function($input) {
+        $validator->sometimes('catering', ['required', new AlphaSpace()], function($input) {
             return $input->role == "Concessionaire";
         });
 
@@ -132,7 +132,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
@@ -143,7 +143,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+    * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
@@ -166,7 +166,7 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
@@ -180,7 +180,7 @@ class UserController extends Controller
             'middlename' => ['required', new AlphaSpace],
             'lastname' => ['required', new AlphaSpace],
             'role' => ['required', 'in:Admin,Concessionaire'],
-            'email' => ['required', Rule::unique('users')->ignore($user->id)],
+            'email' => ['required', 'email', Rule::unique('users')->ignore($user->id)],
             'contactno' => ['required', new ValidPHNumber],
             'username' => ['required', Rule::unique('users')->ignore($user->id)],
         ],
@@ -199,7 +199,7 @@ class UserController extends Controller
             'campuses.required' => 'User is required to have a campus'
         ]);
 
-        $validator->sometimes('catering', 'required', function($input) {
+        $validator->sometimes('catering', ['required', new AlphaSpace()], function($input) {
             return $input->role == "Concessionaire";
         });
 
@@ -259,7 +259,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  User  $user
      * @return \Illuminate\Http\Response
      */
     public function destroy(User $user)
