@@ -117,6 +117,7 @@ class DashboardController extends Controller
 
                 $User->coverphoto = $filename;
             } 
+            
             $User->save();
             
             return redirect()->route('dashboard.profile')->with('success', 'You have successfullly updated your profile!');

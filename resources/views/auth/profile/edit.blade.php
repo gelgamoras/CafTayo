@@ -1,5 +1,5 @@
 @extends('layouts.dashboard.main')
-
+    
 @section('page_header')
     My Profile
 @endsection
@@ -43,7 +43,7 @@
                                     <div class="form-group col-md-4"> 
                                         <label for="firstname">{{ __('First Name') }}</label>
                                         <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" 
-                                            name="firstname" value="{{ $user->firstname }}" placeholder="First Name" required autocomplete="firstname" autofocus>
+                                            name="firstname" value="{{ old('firstname') }}" placeholder="First Name" required autocomplete="firstname" autofocus>
                                         @error('firstname')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -53,7 +53,7 @@
                                     <div class="form-group col-md-4">
                                         <label for="middlename">{{ __('Middle Name') }}</label>
                                         <input id="middlename" type="text" class="form-control @error('middlename') is-invalid @enderror" 
-                                            name="middlename" value="{{ $user->middlename }}" placeholder="Middle Name" required autocomplete="middlename">
+                                            name="middlename" value="{{ old('middlename') }}" placeholder="Middle Name" required autocomplete="middlename">
 
                                         @error('middlename')
                                             <span class="invalid-feedback" role="alert">
@@ -64,7 +64,7 @@
                                     <div class="form-group col-md-4">   
                                         <label for="lastname">{{ __('Last Name') }}</label>
                                         <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" 
-                                            placeholder="Last Name" name="lastname" value="{{ $user->lastname }}" required autocomplete="lastname">
+                                            placeholder="Last Name" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname">
 
                                         @error('lastname')
                                             <span class="invalid-feedback" role="alert">
@@ -88,7 +88,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="contactno">{{ __('Contact Number') }}</label>
                                         <input id="contactno" type="text" class="form-control @error('contactno') is-invalid @enderror" 
-                                            placeholder="Contact Number" name="contactno" value="{{ $user->contactno }}" required autocomplete="contactno">
+                                            placeholder="Contact Number" name="contactno" value="{{ old('contactno') }}" required autocomplete="contactno">
 
                                         @error('contactno')
                                             <span class="invalid-feedback" role="alert">
@@ -98,17 +98,6 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="username">{{ __('Username') }}</label>
-                                        <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" 
-                                            placeholder="Username" name="username" value="{{ $user->username }}" autocomplete="username">
-
-                                        @error('username')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
                                     <div class="form-group col-md-6">
                                         <label for="coverphoto" class="form-label">{{ __('Cover Photo') }}</label><br>
                                         <input id="coverphoto" class="form-control" type="file" class="@error('coverphoto') is-invalid @enderror" name="coverphoto">
@@ -124,7 +113,7 @@
                                         <div class="form-group col-md-12">
                                             <label for="catering">{{ __('Catering Company') }}</label>
                                             <input id="catering" type="text" class="form-control @error('catering') is-invalid @enderror" 
-                                                placeholder="Catering Company" name="catering" value="{{ $user->catering }}" autocomplete="catering">
+                                                placeholder="Catering Company" name="catering" value="{{ old('catering') }}" autocomplete="catering">
 
                                             @error('catering')
                                                 <span class="invalid-feedback" role="alert">
