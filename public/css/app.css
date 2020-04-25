@@ -280,6 +280,10 @@ td .btn-light:hover {
   font-size: 1.7rem;
 }
 
+.font-weight-featherlight {
+  font-weight: 300;
+}
+
 .autocomplete li:hover {
   background-color: #f0f0f0;
 }
