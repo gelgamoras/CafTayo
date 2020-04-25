@@ -229,6 +229,7 @@ td .btn-light:hover {
   }
 }
 
+<<<<<<< Updated upstream
 .subnav {
   transition: all 1s;
 }
@@ -248,6 +249,31 @@ td .btn-light:hover {
 
 .subnav .dropdown-item:hover .material-icons {
   color: #818536 !important;
+=======
+.choose {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
+
+.bg-black {
+  background-color: #212529;
+}
+
+.btn-black {
+  background-color: #212529;
+  border-color: #212529;
+  color: white;
+}
+
+.btn-black:hover {
+  background-color: #212529;
+  border-color: #212529;
+  color: white;
+}
+
+.comic-font {
+  font-family: 'Comfortaa', cursive;
+>>>>>>> Stashed changes
 }
 
 .autocomplete li:hover {

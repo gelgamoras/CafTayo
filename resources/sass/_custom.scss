@@ -1,3 +1,5 @@
+$black: #212529; 
+
 .list-food-category, .list-subcategory {
     margin-top: 10px; 
     margin-bottom: 10px; 
@@ -138,6 +140,7 @@ td {
     }
 }
 
+<<<<<<< Updated upstream
 .subnav {
     transition: all 1s; 
     .dropdown-item {
@@ -154,4 +157,29 @@ td {
             color: #818536 !important; 
         }
     }
+=======
+.choose {
+    font-size: 0.75rem; 
+    letter-spacing: 1px; 
+}
+
+.bg-black {
+    background-color: $black; 
+}
+
+.btn-black {
+    background-color: $black; 
+    border-color: $black; 
+    color: white; 
+}
+
+.btn-black:hover {
+    background-color: $black; 
+    border-color: $black; 
+    color: white; 
+}
+
+.comic-font {
+    font-family: 'Comfortaa', cursive; 
+>>>>>>> Stashed changes
 }
