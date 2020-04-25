@@ -9,7 +9,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-6">
             <div class="card card-small mb-4">
                 <div class="card-header border-bottom" id="periods">
                     <h5 class="mb-0">Campus Details</h5> 
@@ -44,7 +44,7 @@
                             </div> 
                         </div> 
                         <div class="form-row px-1">
-                            <button type="submit" class="btn btn-sm btn-primary">Add Campus</button> 
+                            <button type="submit" class="btn btn-sm btn-primary mt-3">Add Campus</button> 
                         </div> 
                     </form> 
                 </div> 
