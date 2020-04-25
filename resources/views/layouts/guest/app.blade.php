@@ -44,7 +44,6 @@
             @yield('content')
           </div>
         </main>
-        @include('inc.dashboard.footer')
       </div>
     </div>
     <!--JQuery js--> 

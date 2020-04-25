@@ -275,6 +275,11 @@ td .btn-light:hover {
   font-family: 'Comfortaa', cursive;
 }
 
+.campus-button {
+  width: 200px;
+  font-size: 1.7rem;
+}
+
 .autocomplete li:hover {
   background-color: #f0f0f0;
 }

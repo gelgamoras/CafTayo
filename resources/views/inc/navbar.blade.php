@@ -25,7 +25,7 @@
                 </button>
             </div>
             <div class="modal-body text-center">
-                <h4 style="font-weight: 600"><strong>Subscribe to Caftayo</strong></h4> 
+                <h4 class="font-weight-bold"><strong>Subscribe to Caftayo</strong></h4> 
                 <form action="#" method="POST" class="mb-5">
                     <input type="email" name="email" class="form-control" /> 
                     <button type="submit" class="btn mt-3 mb-2 btn-black w-100">Subscribe</button>
