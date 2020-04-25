@@ -1,8 +1,7 @@
 @extends('layouts.dashboard.main')
 
-@section('page_header', 'View or Update a Campus')
 @section('subheader')
-    <a href="javascript:history.back()" class="btn btn-secondary btn-sm mb-4" style="text-transform: none; letter-spacing: initial;">
+    <a href="javascript:history.back()" class="btn btn-secondary btn-sm " style="text-transform: none; letter-spacing: initial;">
         Back
     </a>
 @endsection
@@ -10,30 +9,6 @@
 @section('content')
 
 <div class="row">
-    <div class="col-lg-4">
-        <div class="card card-small mb-4 pt-3">
-            <div class="card-header border-bottom text-center">
-                <h4 class="mb-0">{{ $campus->name }}</h4> 
-                <span style="font-weight: 300" class="d-block">{{ $campus->address }}</span>
-            </div>
-            <ul class="list-group list-group-flush text-center">
-                <li class="list-group-item px-4">
-                    <span class="text-muted" style="font-weight: 500;">Status: </span> 
-                    {{ $campus->status }} 
-                </li> 
-                <li class="list-group-item px-4">
-                    <span class="d-block">
-                        <span class="text-muted font-weight-bold">Created at: </span> 
-                        {{ $campus->created_at }}
-                    </span>
-                    <span>
-                        <span class="text-muted font-weight-bold">Last updated: </span> 
-                        {{ $campus->updated_at }}
-                    </span>
-                </li>
-            </ul>
-        </div> 
-    </div>
     <div class="col-lg-6">
         <div class="card card-small mb-4">
             <div class="card-header border-bottom" id="periods">
