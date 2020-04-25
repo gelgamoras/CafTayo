@@ -229,7 +229,6 @@ td .btn-light:hover {
   }
 }
 
-<<<<<<< Updated upstream
 .subnav {
   transition: all 1s;
 }
@@ -249,7 +248,8 @@ td .btn-light:hover {
 
 .subnav .dropdown-item:hover .material-icons {
   color: #818536 !important;
-=======
+}
+
 .choose {
   font-size: 0.75rem;
   letter-spacing: 1px;
@@ -273,7 +273,6 @@ td .btn-light:hover {
 
 .comic-font {
   font-family: 'Comfortaa', cursive;
->>>>>>> Stashed changes
 }
 
 .autocomplete li:hover {
