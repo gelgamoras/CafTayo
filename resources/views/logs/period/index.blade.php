@@ -50,11 +50,7 @@
                             <td>{{ $logperiod->created_at }}</td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-primary">{{ __('View Campus') }}</a>
-                                @if(Auth::user()->id == $logperiod->user_id)
-                                    <a href="#" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
-                                @else
-                                    <a href="{{ route('users.edit', $loguser->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
-                                @endif
+                                <a href="{{ route('users.show', $loguser->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
                             </td>
                         </tr>
                     @endforeach 

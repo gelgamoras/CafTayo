@@ -51,12 +51,8 @@
                                 <td>{{ $logcampus->action }}</td>
                                 <td>{{ $logcampus->created_at }}</td> 
                                 <td>
-                                    <a href="{{ route('campus.edit', $logcampus->campus_id) }}" class="btn btn-sm btn-primary">{{ __('View Campus') }}</a>
-                                    @if(Auth::user()->id == $logcampus->user_id)
-                                        profile link
-                                    @else
-                                        <a href="{{ route('users.edit', $logcampus->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
-                                    @endif
+                                    <a href="{{ route('campus.show', $logcampus->campus_id) }}" class="btn btn-sm btn-primary">{{ __('View Campus') }}</a>
+                                    <a href="{{ route('users.show', $logcampus->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
                                 </td>
                             </tr>
                         @endforeach 

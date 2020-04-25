@@ -57,12 +57,15 @@
                                 <td>{{ $campus->address }}</td>
                                 <td>{{ $campus->status }}</td>
                                 <td>
-                                    <a href="{{ route('campus.edit', $campus->id) }}" class="btn btn-sm btn-secondary">
+                                    <a href="{{ route('campus.show', $campus->id) }}" class="btn btn-sm btn-secondary">
                                         <i class='fas fa-search'></i>
+                                    </a>
+                                    <a href="{{ route('campus.edit', $campus->id) }}" class="btn btn-sm btn-secondary">
+                                        <i class='fas fa-edit'></i>
                                     </a>
                                     <a href="#" onclick="event.preventDefault(); if(confirm('Are you sure?')) { document.getElementById('campus-delete-{{ $campus->id }}').submit(); }" class="btn btn-sm btn-primary">
                                         @if($campus->status == 'Active')
-                                            Delete
+                                            <i class="fas fa-trash"></i> 
                                         @else 
                                             Restore
                                         @endif

@@ -50,11 +50,7 @@
                             <td>{{ $logmenu->created_at }}</td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-primary">{{ __('View Category') }}</a>
-                                @if(Auth::user()->id == $logmenu->user_id)
-                                    profile link
-                                @else
-                                    <a href="{{ route('users.edit', $logmenu->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
-                                @endif
+                                <a href="{{ route('users.show', $logmenu->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
                             </td>
                         </tr>
                     @endforeach 

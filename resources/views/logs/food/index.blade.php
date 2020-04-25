@@ -51,11 +51,7 @@
                             <td>{{ $logfood->created_at }}</td> 
                             <td>
                                 <a href="#" class="btn btn-sm btn-primary">{{ __('View Food') }}</a>
-                                @if(Auth::user()->id == $logfood->user_id)
-                                    profile link
-                                @else
-                                    <a href="{{ route('users.edit', $logfood->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
-                                @endif
+                                <a href="{{ route('users.show', $logfood->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
                             </td>
                         </tr>
                     @endforeach 

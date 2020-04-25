@@ -49,12 +49,8 @@
                             <td>{{ $loguser->action }}</td>
                             <td>{{ $loguser->created_at }}</td>
                             <td>
-                                <a href="{{ route('users.edit', $loguser->target_id) }}" class="btn btn-sm btn-primary">{{ __('View Target') }}</a>
-                                @if(Auth::user()->id == $loguser->user_id)
-                                    profile link
-                                @else
-                                    <a href="{{ route('users.edit', $loguser->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
-                                @endif
+                                <a href="{{ route('users.show', $loguser->target_id) }}" class="btn btn-sm btn-primary">{{ __('View Target') }}</a>
+                                <a href="{{ route('users.show', $loguser->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
                             </td>
                         </tr>
                     @endforeach 
