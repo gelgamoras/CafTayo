@@ -28,6 +28,11 @@ Route::get('categories/index/{id}', 'CategoriesController@show')->name('categori
 Route::get('categories/index/{id}/edit', 'CategoriesController@edit')->name('categories.edit');
 Route::put('categories/index/{id}', 'CategoriesController@update')->name('categories.update');
 Route::delete('categories/index/{id}', 'CategoriesController@destroy')->name('categories.destroy');
+//Route::get('/campus/index/{id}/categories/create', 'CategoriesController@create')->name('categories.create');
+//Route::post('/campus/index/{id}/categories/create', 'CategoriesController@store')->name('categories.store');
+Route::get('api/campus/{campus}', function (App\Campus $campus) {
+    return $campus->id;
+});
 
 //Campuses 
 Route::get('/campus/index', 'CampusController@index')->name('campus.index');
