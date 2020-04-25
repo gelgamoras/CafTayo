@@ -1,11 +1,12 @@
 <nav class="navbar align-items-stretch justify-content-end navbar-light flex-md-nowrap p-0">
   <ul class="navbar-nav border-left flex-row ">
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle text-nowrap px-3 mt-2" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <img class="user-avatar rounded-circle mr-2" src="{{ asset('images/icon-logo-leaf.png') }}" alt="User Avatar">
         <span class="d-none d-md-inline-block">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }} - {{ Auth::user()->role }}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-small">
-        <a class="dropdown-item" href="{{ route('dashboard.profile') }}">
+        <a class="dropdown-item" href="{{ route('dashboard.profile.edit') }}">
           <i class="material-icons">&#xE7FD;</i> Profile</a>
         <a class="dropdown-item" href="{{ route('dashboard.password.edit') }}">
           <i class="material-icons">vertical_split</i>Change Password</a>
