@@ -47,7 +47,7 @@
                         <div class="form-group w-100 px-1">
                             <label for="name">{{ __('Period Name') }}</label>
                             <input id="period" type="text" class="form-control @error('period') is-invalid @enderror" 
-                                placeholder="Name of period" name="period" value="{{ $period->period }}" reqired autocomplete="period" autofocus>
+                                placeholder="Name of period" name="period" value="{{ $period->period }}" required autocomplete="period" autofocus>
 
                             @error('period')
                                 <span class="invalid-feedback" role="alert">
