@@ -91,13 +91,6 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link"
-          href="{{ route('period.index') }}">
-          <i class="material-icons">timelapse</i>
-            Periods
-        </a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" 
             href="{{ route('users.index') }}">
         <i class="material-icons">people</i>
