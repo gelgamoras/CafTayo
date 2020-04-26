@@ -32,9 +32,8 @@ Route::middleware('auth')->group(function() {
         Route::get('/', 'DashboardController@index')->name('dashboard.index');
     
         // Profile
-        Route::get('/profile', 'DashboardController@myprofile')->name('dashboard.profile');
-        Route::get('/profile/edit', 'DashboardController@editprofile')->name('dashboard.profile.edit');
-        Route::put('/profile/edit', 'DashboardController@updateprofile')->name('dashboard.profile.update');
+        Route::get('/profile', 'DashboardController@editprofile')->name('dashboard.profile.edit');
+        Route::put('/profile', 'DashboardController@updateprofile')->name('dashboard.profile.update');
         Route::get('/changepassword', 'DashboardController@editpassword')->name('dashboard.password.edit');
         Route::put('/changepassword', 'DashboardController@updatepassword')->name('dashboard.password.update');        
     });

@@ -10,7 +10,11 @@
         <div class="card mb-5">
             <div class="card-body border-bottom text-center">
                 <div class="mb-3 mx-auto">
-                    <img src="{{ asset('images/icon-logo-leaf.png')}}" width="200px" height="200px" style="border-radius: 100px" /> 
+                    @if( $user->coverphoto == " ")
+                        <img src="{{ asset('images/icon-logo-leaf.png')}}" width="200px" height="200px" style="border-radius: 100px" /> 
+                    @else 
+                        <img src="{{ asset('storage/coverphotos/' . $user->coverphoto) }}" width="200px" height="200px" style="border-radius: 100px" /> 
+                    @endif
                 </div> 
                 <h2 class="mt-1 mb-3 font-weight-bold">{{ $user->firstname }} {{ $user->middlename }} {{ $user->lastname }}</h2>  
                 <h5 class="font-weight-bold text-muted d-inline-block mr-1">{{ $user->role }} </h5>
@@ -43,7 +47,7 @@
                                     <div class="form-group col-md-4"> 
                                         <label for="firstname">{{ __('First Name') }}</label>
                                         <input id="firstname" type="text" class="form-control @error('firstname') is-invalid @enderror" 
-                                            name="firstname" value="{{ old('firstname') }}" placeholder="First Name" required autocomplete="firstname" autofocus>
+                                            name="firstname" value="{{ $user->firstname }}" placeholder="First Name" required autocomplete="firstname" autofocus>
                                         @error('firstname')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -53,7 +57,7 @@
                                     <div class="form-group col-md-4">
                                         <label for="middlename">{{ __('Middle Name') }}</label>
                                         <input id="middlename" type="text" class="form-control @error('middlename') is-invalid @enderror" 
-                                            name="middlename" value="{{ old('middlename') }}" placeholder="Middle Name" required autocomplete="middlename">
+                                            name="middlename" value="{{ $user->middlename }}" placeholder="Middle Name" required autocomplete="middlename">
 
                                         @error('middlename')
                                             <span class="invalid-feedback" role="alert">
@@ -64,7 +68,7 @@
                                     <div class="form-group col-md-4">   
                                         <label for="lastname">{{ __('Last Name') }}</label>
                                         <input id="lastname" type="text" class="form-control @error('lastname') is-invalid @enderror" 
-                                            placeholder="Last Name" name="lastname" value="{{ old('lastname') }}" required autocomplete="lastname">
+                                            placeholder="Last Name" name="lastname" value="{{ $user->lastname }}" required autocomplete="lastname">
 
                                         @error('lastname')
                                             <span class="invalid-feedback" role="alert">
@@ -77,7 +81,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="email">{{ __('Email') }}</label>
                                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" 
-                                            placeholder="Email Address" name="email" value="{{  old('email') }}" required autocomplete="email">
+                                            placeholder="Email Address" name="email" value="{{  $user->email }}" required autocomplete="email">
 
                                         @error('email')
                                             <span class="invalid-feedback" role="alert">
@@ -88,7 +92,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="contactno">{{ __('Contact Number') }}</label>
                                         <input id="contactno" type="text" class="form-control @error('contactno') is-invalid @enderror" 
-                                            placeholder="Contact Number" name="contactno" value="{{ old('contactno') }}" required autocomplete="contactno">
+                                            placeholder="Contact Number" name="contactno" value="{{ $user->contactno }}" required autocomplete="contactno">
 
                                         @error('contactno')
                                             <span class="invalid-feedback" role="alert">

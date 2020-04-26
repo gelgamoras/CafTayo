@@ -37,17 +37,6 @@ class DashboardController extends Controller
     }
 
     /**
-     * Show the user profile.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function myprofile() 
-    {
-        $User = Auth::User();
-        return view('auth.profile.index')->with('user', $User);
-    }
-
-    /**
      * Show the form for updating profile.
      *
      * @return \Illuminate\Http\Response
@@ -66,13 +55,14 @@ class DashboardController extends Controller
      */
     public function updateprofile(Request $request) 
     {
+        $User = Auth::User();
+
         $validator = Validator::make($request->all(), 
         [
             'firstname' => ['required', 'max:50', new AlphaSpace],
             'middlename' => ['required', 'max:50', new AlphaSpace],
             'lastname' => ['required', 'max:50', new AlphaSpace],
-            'email' => ['required', 'email', 'max:100', Rule::unique('users')->ignore($request->id)],
-            'catering' => ['required', 'max:50'],
+            'email' => ['required', 'email', 'max:100', Rule::unique('users')->ignore($User->id)],
             'contactno' => ['required', 'max:20', new ValidPHNumber],
             'coverphoto' => ['image', 'nullable', 'max:10240']
         ],
@@ -94,14 +84,21 @@ class DashboardController extends Controller
             'coverphoto.max' => 'Your coverphoto exceeds the maximum file size'
         ]);
 
+        $validator->sometimes('catering', ['required', 'max:50', new AlphaSpace()], function($input) {
+            return $input->role == "Concessionaire";
+        });
+
         if(!$validator->fails())
         {
-            $User = Auth::User();
             $User->firstname = $request->firstname;
             $User->middlename = $request->middlename;
             $User->lastname = $request->lastname;
             $User->catering = $request->catering;
-            if($User->email != $request->email) $User->email == $request->email;
+            if($User->email != $request->email) 
+            {
+                $User->email == $request->email;
+                $User->email_verified_at == null;
+            }
 
             if($request->hasFile('coverphoto'))
             {
@@ -110,9 +107,9 @@ class DashboardController extends Controller
                 }
             
                 $file = $request->file('coverphoto')->getClientOriginalName();
-                $name = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+                $name = pathinfo($file, PATHINFO_FILENAME);
                 $ext = $request->file('coverphoto')->getClientOriginalExtension();
-                $filename = $filename . '_' . time() . '.' . $Ext;
+                $filename = $file . '_' . time() . '.' . $ext;
                 $path = $request->file('coverphoto')->storeAs('public/coverphotos', $filename);
 
                 $User->coverphoto = $filename;
@@ -120,7 +117,7 @@ class DashboardController extends Controller
             
             $User->save();
             
-            return redirect()->route('dashboard.profile')->with('success', 'You have successfullly updated your profile!');
+            return redirect()->route('dashboard.index')->with('success', 'You have successfullly updated your profile!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
@@ -165,7 +162,7 @@ class DashboardController extends Controller
                 'target_id' => $user->id
             ]);
 
-            return redirect()->route('dashboard.profile')->with('success', 'You have successfullly changed your password!');
+            return redirect()->route('dashboard.index')->with('success', 'You have successfullly changed your password!');
         }  else return redirect()->back()->withErrors($validator)->withInput();       
     }
 }
