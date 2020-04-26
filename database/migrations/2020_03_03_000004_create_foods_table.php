@@ -18,8 +18,6 @@ class CreateFoodsTable extends Migration
             $table->string('name', 200);
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->bigInteger('subcategory_id')->unsigned();
-            $table->foreign('subcategory_id')->references('id')->on('categories');
             $table->string('shortdescription', 256);
             $table->string('description', 256);
             $table->string('ingredients');
