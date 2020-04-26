@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\LogUser;
 use App\Rules\AlphaSpace;
 use App\Rules\IsOldPassword;
 use App\Rules\MatchOldPassword;
 use App\Rules\ValidPHNumber;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Validator;

@@ -38,7 +38,7 @@ class User extends Authenticatable
     ];
 
     //Campus -> UserCampus
-    public function periodLogPeriod() {
+    public function userUserCampus() {
         return $this->hasMany('App\UserCampus', 'user_id', 'id');
     }
 

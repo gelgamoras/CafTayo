@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categories extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [ 'name', 'campus_id', 'parent_id', 'status' ];
 
     //Campus -> Categories
     public function campusCategories() {

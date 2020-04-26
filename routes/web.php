@@ -117,25 +117,24 @@ Route::middleware('auth')->group(function() {
     });
 
     // For Consessionaires Only
-    Route::middleware('isConcessionaire')->group(function() {
+    Route::middleware('canManage')->group(function() {
+        Route::prefix('manage/{campus}')->group(function() {
 
+            //Category
+            Route::prefix('category')->group(function() {
+                Route::get('/', 'CategoriesController@index')->name('categories.index');
+                Route::get('/create', 'CategoriesController@create')->name('categories.create');
+                Route::post('/create', 'CategoriesController@store')->name('categories.store');
+                Route::get('/{categories}/edit', 'CategoriesController@edit')->name('categories.edit');
+                Route::put('/{categories}', 'CategoriesController@update')->name('categories.update');
+                Route::delete('/{categories}', 'CategoriesController@destroy')->name('categories.destroy');
+            });
+
+            //Food 
+
+
+            //Menu
+
+        });
     });
 });
-
-
-
-/*
-    Route::prefix('category')->group(function() {
-        Route::get('/', 'CategoriesController@index')->name('categories.index');
-        Route::get('/create', 'CategoriesController@create')->name('categories.create');
-        Route::post('/create', 'CategoriesController@store')->name('categories.store');
-        Route::get('/{id}', 'CategoriesController@show')->name('categories.show');
-        Route::get('/{id}/edit', 'CategoriesController@edit')->name('categories.edit');
-        Route::put('/{id}', 'CategoriesController@update')->name('categories.update');
-        Route::delete('/{id}', 'CategoriesController@destroy')->name('categories.destroy');
-    });
-
-    // Period 
-    //Categories Food, Menu, MenuItem, Period, Subscribers, User
-*/
-

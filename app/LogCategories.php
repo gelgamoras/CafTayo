@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogCategories extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [ 'user_id', 'action', 'category_id' ];
     
     //Users -> LogCategory
     public function userLogCategory() {
