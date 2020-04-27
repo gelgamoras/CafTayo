@@ -27,7 +27,7 @@
                             {{ Route::is('users.edit') ? 'active' : '' }}" 
                             href="{{ route('users.index') }}">
           <i class="material-icons">account_circle</i>
-            <span>Manage Users</span>
+            <span>Users</span>
           </a>
         </li>
         <li class="nav-item">
@@ -87,6 +87,15 @@
               href="{{ route('users.index') }}">
           <i class="material-icons">people</i>
             <span>Subscribers</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ Route::is('dashboard.mycampuses') ? 'active' : '' }}
+                            {{ Route::is('categories.index') ? 'active' : '' }} 
+                            {{ Route::is('categories.create') ? 'active' : '' }}" 
+              href="{{ route('dashboard.mycampuses') }}">
+          <i class="material-icons">apartment</i>
+            <span>My Campuses</span>
           </a>
         </li>
       @else 

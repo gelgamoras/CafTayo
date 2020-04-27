@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\LogUser;
+use App\Campus; 
+use App\User; 
+use App\UserCampus; 
 use App\Rules\AlphaSpace;
 use App\Rules\IsOldPassword;
 use App\Rules\MatchOldPassword;
@@ -165,5 +168,24 @@ class DashboardController extends Controller
 
             return redirect()->route('dashboard.index')->with('success', 'You have successfullly changed your password!');
         }  else return redirect()->back()->withErrors($validator)->withInput();       
+    }
+
+    public function myCampuses(){
+        $user = Auth::User();  
+        $campuses = collect();
+        
+        if($user->role == 'Admin'){
+            $campuses = Campus::all();
+        }
+        else {
+            $mycampuses = User::find($user->id)->userUserCampus;  
+            foreach($mycampuses as $campus){
+                $x = $campus->campus_id; 
+                $campuses->push(Campus::find($x)); 
+            }   
+        } 
+
+        return view('auth.mycampuses.index')->with('index', $campuses); 
+
     }
 }

@@ -1,6 +1,5 @@
 @extends('layouts.dashboard.main')
 
-@section('page_header', 'Campuses')
 @section('subheader')
 <a href="{{ route('campus.index') }}" class="btn btn-secondary btn-sm mb-2" style="text-transform: none; letter-spacing: initial;">
     Back
