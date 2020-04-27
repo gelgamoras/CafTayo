@@ -18,6 +18,11 @@ class CategoriesController extends Controller
     public function index(Campus $campus)
     {
         $records = Categories::where('campus_id', $campus->id)->get();
+        //To get name of parent category  
+        foreach($records as $cat){
+            $parent_cat = Categories::find($cat->id)->s_categoriesCategories;
+            $cat->p_name = $parent_cat['name']; 
+        }
         return view('category.index')->with('index', $records);
     }
 
