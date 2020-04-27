@@ -10,7 +10,12 @@
                 <a href="#" class="btn btn-black" data-toggle="modal" data-target="#exampleModal"> Subscribe</a> 
             </li>
             <li class="nav-item"> 
-                <a href="{{ route('login') }}" class="mt-1 d-inline-block ml-3" style="font-weight: 400;">Login</a> 
+                @guest 
+                    <a href="{{ route('login') }}" class="mt-1 d-inline-block ml-3" style="font-weight: 400;">Login</a> 
+                @endguest
+                @auth 
+                    <a href="{{ route('dashboard.index') }}" class="mt-1 d-inline-block ml-3" style="font-weight: 400;">Dashboard</a> 
+                @endauth
             </li>
         </ul> 
     </div>
