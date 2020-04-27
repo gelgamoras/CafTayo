@@ -35,8 +35,8 @@ Route::middleware('auth')->group(function() {
         Route::get('/profile', 'DashboardController@editprofile')->name('dashboard.profile.edit');
         Route::put('/profile', 'DashboardController@updateprofile')->name('dashboard.profile.update');
         Route::get('/changepassword', 'DashboardController@editpassword')->name('dashboard.password.edit');
-        Route::put('/changepassword', 'DashboardController@updatepassword')->name('dashboard.password.update');        
-    });
+        Route::put('/changepassword', 'DashboardController@updatepassword')->name('dashboard.password.update');
+    }); 
 
     // For Admins Only
     Route::middleware('isAdmin')->group(function() {
@@ -115,6 +115,9 @@ Route::middleware('auth')->group(function() {
             });
         });
     });
+
+    //My Campuses 
+    Route::get('/manage', 'DashboardController@myCampuses')->name('dashboard.mycampuses'); 
 
     // For Consessionaires Only
     Route::middleware('canManage')->group(function() {
