@@ -2,7 +2,7 @@
   <ul class="navbar-nav border-left flex-row ">
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-        <img class="user-avatar rounded-circle mr-2" src="{{ asset('images/icon-logo-leaf.png') }}" alt="User Avatar">
+        <img class="user-avatar rounded-circle mr-2" src="{{ asset('storage/coverphotos/' . Auth::user()->coverphoto) }}" alt="User Avatar">
         <span class="d-none d-md-inline-block">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }} - {{ Auth::user()->role }}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-small">
