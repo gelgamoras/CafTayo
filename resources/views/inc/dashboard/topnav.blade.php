@@ -2,7 +2,12 @@
   <ul class="navbar-nav border-left flex-row ">
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-        <img class="user-avatar rounded-circle mr-2" width="40px" height="40px" src="{{ asset('storage/coverphotos/' . Auth::user()->coverphoto) }}" alt="User Avatar">
+        
+        @if( $user->coverphoto == null)
+            <img src="{{ asset('images/icon-logo-leaf.png')}}" class="user-avatar rounded-circle mr-2" width="40px" height="40px" alt="User Avatar" /> 
+        @else 
+            <img src="{{ asset('storage/coverphotos/' . $user->coverphoto) }}" class="user-avatar rounded-circle mr-2" width="40px" height="40px" alt="User Avatar"/> 
+        @endif
         <span class="d-none d-md-inline-block">{{ Auth::user()->firstname }} {{ Auth::user()->lastname }} - {{ Auth::user()->role }}</span>
       </a>
       <div class="dropdown-menu dropdown-menu-small">
