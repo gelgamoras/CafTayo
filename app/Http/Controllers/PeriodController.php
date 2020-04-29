@@ -124,10 +124,19 @@ class PeriodController extends Controller
         if(!$validator->fails())
         {
             foreach($request->period as $key=>$value) {
-               $tmp = Period::find($key);
-               $tmp->period = $value;
-               $tmp->start = $request->timestart[$key];
-               $tmp->end = $request->timeend[$key];
+                $tmp = Period::find($key);
+                if($tmp->period == $value || $tmp->start == $request->timestart[$key] || $tmp->end == $request->timeend[$key]) continue;
+                
+                $tmp->period = $value;
+                $tmp->start = $request->timestart[$key];
+                $tmp->end = $request->timeend[$key];
+                $tmp->save();
+                
+                LogPeriod::create([
+                    'user_id' => auth()->user()->id,
+                    'period_id' => $tmp->id,
+                    'action' => 'Updated Period'
+                ]);
             }
 
             return redirect()->route('period.index')->with('success', 'You have successfullly updated periods!');
