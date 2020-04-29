@@ -134,7 +134,19 @@ Route::middleware('auth')->group(function() {
             });
 
             //Food 
-
+            Route::get('food/list', 'FoodController@index')->name('food.index'); 
+            Route::get('food/create', 'FoodController@create')->name('food.create'); 
+            Route::post('food/create', 'FoodController@store')->name('food.store'); 
+            Route::get('food/list/{id}', 'FoodController@show')->name('food.show');
+            Route::get('food/list/{id}/edit', 'FoodController@edit')->name('food.edit');
+            Route::put('food/list/{id}', 'FoodController@update')->name('food.update');
+            Route::delete('food/list/{id}', 'FoodController@destroy')->name('food.destroy');
+            Route::get('api/categories/{categories}', function (App\Categories $categories) {
+                return $categories->id;
+            });
+            Route::get('api/campus/{campus}', function (App\Campus $campus) {
+                return $campus->id;
+            });
 
             //Menu
 

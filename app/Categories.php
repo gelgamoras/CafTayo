@@ -18,11 +18,6 @@ class Categories extends Model
         return $this->hasMany('App\Categories', 'category_id', 'id');
     }
 
-    //Categories -> Categories
-    public function s_categoriesCategories() {
-        return $this->belongsTo('App\Categories', 'parent_id', 'id');
-    }
-
     //Categories -> Food
     public function p_categoriesFood() {
         return $this->hasMany('App\Food', 'category_id', 'id');

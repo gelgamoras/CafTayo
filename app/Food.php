@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-    protected $fillable = [];
+    protected $fillable = ['name', 'category_id', 'shortDescription', 'description', 'ingredients', 'calories', 'isHalal', 'price', 'campus_id', 'coverphoto', 'isFeatured', 'status'];
 
     //Categories -> Campus
     public function campusFood() {
@@ -16,11 +16,6 @@ class Food extends Model
     //Categories -> Food
     public function p_categoriesFood() {
         return $this->belongsTo('App\Food', 'category_id', 'id');
-    }
-
-    //Categories -> Food
-    public function s_categoriesFood() {
-        return $this->belongsTo('App\Food', 'subcategory_id', 'id');
     }
 
     //MenuItem -> Food
