@@ -11,7 +11,7 @@
             <div class="card-body border-bottom text-center">
                 <div class="mb-3 mx-auto">
                     @if( $user->coverphoto == null)
-                        <img src="{{ asset('images/icon-logo-leaf.png')}}" width="200px" height="200px" style="border-radius: 100px" /> 
+                        <img src="{{ asset('images/default_avatar.jpg')}}" width="200px" height="200px" style="border-radius: 100px" /> 
                     @else 
                         <img src="{{ asset('storage/coverphotos/' . $user->coverphoto) }}" width="200px" height="200px" style="border-radius: 100px" /> 
                     @endif
