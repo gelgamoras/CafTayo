@@ -6,6 +6,7 @@ use App\Period;
 use App\LogPeriod;
 use Illuminate\Http\Request;
 use Validator;
+use Illuminate\Support\Facades\Log; 
 
 class PeriodController extends Controller
 {
@@ -123,6 +124,16 @@ class PeriodController extends Controller
 
         if(!$validator->fails())
         {
+            $temp_timestart = $request->timestart; 
+            $temp_timeend = $request->timeend; 
+
+            foreach($request->period as $i=>$p){
+                $temp_timestart[$i] = date("H:i", strtotime($temp_timestart[$i]));
+                $temp_timeend[$i] = date("H:i", strtotime($temp_timeend[$i]));
+            }
+
+            $request->merge(['timestart' => $temp_timestart]); 
+            $request->merge(['timeend' => $temp_timeend]); 
             dd($request);
             //return redirect()->route('period.index')->with('success', 'You have successfullly updated periods!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
