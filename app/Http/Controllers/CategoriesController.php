@@ -28,7 +28,7 @@ class CategoriesController extends Controller
      */
     public function create(Campus $campus)
     {   
-        $records = Categories::where('campus_id', $campus->id)->where('parent_id', null)->get();
+        $records = Categories::where('campus_id', $campus->id)->where('parent_id', null)->where('status', 'Active')->get();
         return view('category.create')->with('index', $records);
     }
 
