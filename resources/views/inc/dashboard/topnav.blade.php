@@ -4,7 +4,7 @@
       <a class="nav-link dropdown-toggle text-nowrap px-3" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
         
         @if( auth()->user()->coverphoto == null)
-            <img src="{{ asset('images/icon-logo-leaf.png')}}" class="user-avatar rounded-circle mr-2" width="40px" height="40px" alt="User Avatar" /> 
+            <img src="{{ asset('images/default_avatar.jpg')}}" class="user-avatar rounded-circle mr-2" width="40px" height="40px" alt="User Avatar" /> 
         @else 
             <img src="{{ asset('storage/coverphotos/' . Auth::user()->coverphoto) }}" class="user-avatar rounded-circle mr-2" width="40px" height="40px" alt="User Avatar"/> 
         @endif
