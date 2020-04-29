@@ -133,14 +133,18 @@ Route::middleware('auth')->group(function() {
                 Route::delete('/{categories}', 'CategoriesController@destroy')->name('categories.destroy');
             });
 
+            Route::prefix('food')->group(function() {
+                Route::get('/', 'FoodController@index')->name('food.index'); 
+                Route::get('/create', 'FoodController@create')->name('food.create'); 
+                Route::post('/create', 'FoodController@store')->name('food.store'); 
+                Route::get('/{id}', 'FoodController@show')->name('food.show');
+                Route::get('/{id}/edit', 'FoodController@edit')->name('food.edit');
+                Route::put('/{id}', 'FoodController@update')->name('food.update');
+                Route::delete('/{id}', 'FoodController@destroy')->name('food.destroy');
+            });
+
             //Food 
-            Route::get('food/list', 'FoodController@index')->name('food.index'); 
-            Route::get('food/create', 'FoodController@create')->name('food.create'); 
-            Route::post('food/create', 'FoodController@store')->name('food.store'); 
-            Route::get('food/list/{id}', 'FoodController@show')->name('food.show');
-            Route::get('food/list/{id}/edit', 'FoodController@edit')->name('food.edit');
-            Route::put('food/list/{id}', 'FoodController@update')->name('food.update');
-            Route::delete('food/list/{id}', 'FoodController@destroy')->name('food.destroy');
+           
             Route::get('api/categories/{categories}', function (App\Categories $categories) {
                 return $categories->id;
             });
