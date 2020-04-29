@@ -95,6 +95,7 @@ Route::middleware('auth')->group(function() {
             // Periods
             Route::prefix('periods')->group(function() {
                 Route::get('/', 'PeriodController@index')->name('period.index');
+                Route::put('/', 'PeriodController@updatePeriods')->name('periods.update');
                 Route::get('/create', 'PeriodController@create')->name('period.create');
                 Route::post('/create', 'PeriodController@store')->name('period.store');
                 Route::get('/{period}', 'PeriodController@show')->name('period.show');
@@ -133,6 +134,7 @@ Route::middleware('auth')->group(function() {
                 Route::delete('/{categories}', 'CategoriesController@destroy')->name('categories.destroy');
             });
 
+            //Food 
             Route::prefix('food')->group(function() {
                 Route::get('/', 'FoodController@index')->name('food.index'); 
                 Route::get('/create', 'FoodController@create')->name('food.create'); 
@@ -143,8 +145,6 @@ Route::middleware('auth')->group(function() {
                 Route::delete('/{id}', 'FoodController@destroy')->name('food.destroy');
             });
 
-            //Food 
-           
             Route::get('api/categories/{categories}', function (App\Categories $categories) {
                 return $categories->id;
             });

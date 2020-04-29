@@ -47,9 +47,9 @@ class PeriodController extends Controller
         [
             'period.required' => 'Period name is required',
             'period.max' => 'Period name can only have a maximum of :max',
-            'timestart' => 'Period start is required',
+            'timestart.required' => 'Period start is required',
             'timestart.date_format' => 'Period start must be HH:MM',
-            'timeend' => 'Period end is required',
+            'timeend.required' => 'Period end is required',
             'timeend.date_format' =>  'Period end must be HH:MM',
             'timeend.after' => 'Period end nust be after your period starts'
         ]);
@@ -96,6 +96,39 @@ class PeriodController extends Controller
     }
 
     /**
+     * Update all resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Period  $period
+     * @return \Illuminate\Http\Response
+     */
+    public function updatePeriods(Request $request)
+    {
+        $validator = Validator::make($request->all(), 
+        [
+            'period.*' => ['required', 'max:50'],
+            'timestart.*' => ['required'], //'date_format:H:i'
+            'timeend.*' => ['required', 'after:timestart.*'] //'date_format:H:i'
+        ],
+        [
+            'period.*.required' => 'Period name is required',
+            'period.*.max' => 'Period name can only have a maximum of :max',
+            'timestart.*.required' => 'Period start is required',
+            'timestart.date_format' => 'Period start must be HH:MM',
+            'timeend.*.required' => 'Period end is required',
+            'timeend.date_format' =>  'Period end must be HH:MM',
+            'timeend.*.after' => 'Time end nust be after your period starts'
+
+        ]);
+
+        if(!$validator->fails())
+        {
+            dd($request);
+            //return redirect()->route('period.index')->with('success', 'You have successfullly updated periods!');
+        }  else return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -113,9 +146,9 @@ class PeriodController extends Controller
         [
             'period.required' => 'Period name is required',
             'period.max' => 'Period name can only have a maximum of :max',
-            'timestart' => 'Period start is required',
+            'timestart.required' => 'Period start is required',
             'timestart.date_format' => 'Period start must be HH:MM',
-            'timeend' => 'Period end is required',
+            'timeend.required' => 'Period end is required',
             'timeend.date_format' =>  'Period end must be HH:MM',
             'timeend.after' => 'Period end nust be after your period starts'
         ]);
@@ -133,7 +166,7 @@ class PeriodController extends Controller
                 'action' => 'Updated Period'
             ]);
 
-            return redirect()->route('campus.index')->with('success', 'You have successfullly updated the period!');
+            return redirect()->route('period.index')->with('success', 'You have successfullly updated the period!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
