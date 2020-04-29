@@ -108,8 +108,8 @@ class PeriodController extends Controller
         $validator = Validator::make($request->all(), 
         [
             'period.*' => ['required', 'max:50'],
-            'timestart.*' => ['required'], //'date_format:H:i'
-            'timeend.*' => ['required', 'after:timestart.*'] //'date_format:H:i'
+            'timestart.*' => ['required', 'date_format:H:i'], 
+            'timeend.*' => ['required', 'date_format:H:i', 'after:timestart.*']
         ],
         [
             'period.*.required' => 'Period name is required',
@@ -134,8 +134,26 @@ class PeriodController extends Controller
 
             $request->merge(['timestart' => $temp_timestart]); 
             $request->merge(['timeend' => $temp_timeend]); 
-            dd($request);
+            //dd($request);
             //return redirect()->route('period.index')->with('success', 'You have successfullly updated periods!');
+            
+            foreach($request->period as $key=>$value) {
+                $tmp = Period::find($key);
+                if($tmp->period == $value || $tmp->start == $request->timestart[$key] || $tmp->end == $request->timeend[$key]) continue;
+                
+                $tmp->period = $value;
+                $tmp->start = $request->timestart[$key];
+                $tmp->end = $request->timeend[$key];
+                $tmp->save();
+                
+                LogPeriod::create([
+                    'user_id' => auth()->user()->id,
+                    'period_id' => $tmp->id,
+                    'action' => 'Updated Period'
+                ]);
+            }
+
+            return redirect()->route('period.index')->with('success', 'You have successfullly updated periods!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 

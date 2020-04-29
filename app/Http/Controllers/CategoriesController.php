@@ -18,11 +18,6 @@ class CategoriesController extends Controller
     public function index(Campus $campus)
     {
         $records = Categories::where('campus_id', $campus->id)->get();
-        //To get name of parent category  
-        foreach($records as $cat){
-            $parent_cat = Categories::find($cat->id)->s_categoriesCategories;
-            $cat->p_name = $parent_cat['name']; 
-        }
         return view('category.index')->with('index', $records);
     }
 
@@ -85,10 +80,11 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Campus $campus,Categories $category)
+    public function edit(Campus $campus, Categories $category)
     {
         if($category->campus_id != $campus->id) abort(403);
-        return view('category.edit')->with('category', $category);
+        $records = Categories::where('campus_id', $campus->id)->where('parent_id', null)->get();
+        return view('category.edit')->with('category', $category)->with('index', $records);
     }
 
     /**
@@ -98,7 +94,7 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Categories $category)
+    public function update(Request $request, Campus $campus, Categories $category)
     {
         $validator = Validator::make($request->all(), 
         [
@@ -129,10 +125,10 @@ class CategoriesController extends Controller
 
             LogCategories::create([
                 'user_id' => auth()->user()->id,
-                'action' => 'Updated Category',
+                'action' => 'Edited Category',
                 'category_id' => $category->id
             ]);
-
+                
             return redirect()->route('categories.index', $campus)->with('success', 'You have successfullly updated a the category!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
@@ -143,7 +139,7 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Categories $category)
+    public function destroy(Campus $campus, Categories $category)
     {
         $action = null;
         $message = null;
@@ -168,12 +164,12 @@ class CategoriesController extends Controller
         }
         $category->save();
 
-        LogCampus::create([
+        LogCategories::create([
             'user_id' => auth()->user()->id,
             'category_id' => $category->id,
             'action' => $action
         ]);
-        return redirect()->route('categories.index')->with('success', 'You have successfullly ' . $message . ' the category!');
+        return redirect()->route('categories.index', $campus)->with('success', 'You have successfullly ' . $message . ' the category!');
 
     }
 }

@@ -56,15 +56,26 @@
                             <tr>
                                 <td width="10%">{{ $category->id }}</td>
                                 <td>{{ $category->name }}</td>
-                                <td>{{ $category->p_name }}</td>
+                                <td>@if($category->parent_id != null) {{ $category->s_categoriesCategories->name }} @endif</td>
                                 <td>{{ $category->status }}</td>
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-secondary">
+                                    <a href="{{ route('categories.edit', ['campus' => request()->route('campus'), 'category' => $category->id]) }}" class="btn btn-sm btn-secondary">
                                         <i class='fas fa-edit'></i>
                                     </a> 
-                                    <a href="#" class="btn btn-sm btn-primary">
-                                        <i class='fas fa-trash'></i>
+                                    <a href="#" onclick="event.preventDefault(); if(confirm('Are you sure?')) { document.getElementById('category-delete-{{ $category->id }}').submit(); }" class='btn btn-sm btn-primary'>
+                                        @if($category->status == 'Active')
+                                            <i class="fas fa-trash"></i> 
+                                        @else 
+                                            Restore
+                                        @endif
                                     </a>
+                                    <form id="category-delete-{{ $category->id }}" method="POST" action="{{ route('categories.destroy', ['campus' => request()->route('campus'), 'category' => $category->id]) }}">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+
+
+                                    
                                 </td>
                             </tr>
                         @endforeach 

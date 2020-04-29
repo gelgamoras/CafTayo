@@ -129,9 +129,9 @@ Route::middleware('auth')->group(function() {
                 Route::get('/', 'CategoriesController@index')->name('categories.index');
                 Route::get('/create', 'CategoriesController@create')->name('categories.create');
                 Route::post('/create', 'CategoriesController@store')->name('categories.store');
-                Route::get('/{categories}/edit', 'CategoriesController@edit')->name('categories.edit');
-                Route::put('/{categories}', 'CategoriesController@update')->name('categories.update');
-                Route::delete('/{categories}', 'CategoriesController@destroy')->name('categories.destroy');
+                Route::get('/{category}/edit', 'CategoriesController@edit')->name('categories.edit');
+                Route::put('/{category}', 'CategoriesController@update')->name('categories.update');
+                Route::delete('/{category}', 'CategoriesController@destroy')->name('categories.destroy');
             });
 
             //Food 
