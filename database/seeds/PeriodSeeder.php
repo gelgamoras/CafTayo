@@ -27,7 +27,7 @@ class PeriodSeeder extends Seeder
         ]);
         
         DB::table('periods')->insert([
-            'period' => 'Breakfast',
+            'period' => 'Snacks',
             'start' => '14:00',
             'end' => '16:00',
             'status' => 'active'

@@ -107,8 +107,8 @@ class PeriodController extends Controller
         $validator = Validator::make($request->all(), 
         [
             'period.*' => ['required', 'max:50'],
-            'timestart.*' => ['required'], //'date_format:H:i'
-            'timeend.*' => ['required', 'after:timestart.*'] //'date_format:H:i'
+            'timestart.*' => ['required', 'date_format:H:i'], 
+            'timeend.*' => ['required', 'date_format:H:i', 'after:timestart.*']
         ],
         [
             'period.*.required' => 'Period name is required',
@@ -123,8 +123,14 @@ class PeriodController extends Controller
 
         if(!$validator->fails())
         {
-            dd($request);
-            //return redirect()->route('period.index')->with('success', 'You have successfullly updated periods!');
+            foreach($request->period as $key=>$value) {
+               $tmp = Period::find($key);
+               $tmp->period = $value;
+               $tmp->start = $request->timestart[$key];
+               $tmp->end = $request->timeend[$key];
+            }
+
+            return redirect()->route('period.index')->with('success', 'You have successfullly updated periods!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
