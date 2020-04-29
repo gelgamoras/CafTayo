@@ -17,7 +17,7 @@ class CreateLogCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->enum('action', ['Created Category', 'Edited Category', 'Deleted Category']);
+            $table->enum('action', ['Created Category', 'Edited Category', 'Deleted Category', 'Restored Category']);
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();

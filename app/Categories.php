@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Categories extends Model
 {
-    protected $fillable = [ 'name', 'campus_id', 'parent_id', 'p_name', 'status' ];
+    protected $fillable = [ 'name', 'campus_id', 'parent_id', 'status' ];
 
     //Campus -> Categories
     public function campusCategories() {
@@ -16,6 +16,11 @@ class Categories extends Model
     //Categories -> Categories
     public function p_categoriesCategories() {
         return $this->hasMany('App\Categories', 'category_id', 'id');
+    }
+
+    //Categories -> Categories
+    public function s_categoriesCategories() {
+        return $this->belongsTo('App\Categories', 'parent_id', 'id');
     }
 
     //Categories -> Food

@@ -11,16 +11,15 @@
 @section('content')
 <div class="row">
     <div class="col-lg-6">
-        @if($errors->any())
-            {{ implode('', $errors->all('<div>:message</div>')) }}
-        @endif
         <div class="card card-small mb-4">
             <div class="card-header border-bottom">
                 <h5 class="mb-0">Update a Category</h5> 
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('categories.store', request()->route('campus')) }}">
+                <form method="POST" action="{{ route('categories.update', ['campus' => request()->route('campus'), 'category' => $category]) }}">
                     @csrf
+                    @method('PUT')
+
                     <div class="form-row">
                         <div class="form-group col">
                             <label for="name">{{ __('Category Name') }}</label>

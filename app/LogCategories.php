@@ -10,7 +10,7 @@ class LogCategories extends Model
     
     //Users -> LogCategory
     public function userLogCategory() {
-        return $this->belongsTo('App\LogCategories', 'user_id', 'id');
+        return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
     //Category -> LogCategory
