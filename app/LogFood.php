@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogFood extends Model
 {
-    protected $fillable = [];
+    protected $fillable = ['user_id', 'action', 'food_id'];
     
     //Users -> LogFood
     public function userLogFood() {
