@@ -66,7 +66,7 @@
             <label for="ingredients">{{ __('Ingredients') }}</label>
             <input id="ingredients" type="text" class="form-control @error('ingredients') is-invalid @enderror" placeholder="Ingredients" name="ingredients" value="{{ old('ingredients') }}" required autocomplete="ingredients">
 
-            @error('name')
+            @error('ingredients')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -79,7 +79,7 @@
             <label for="calories">{{ __('Calories') }}</label>
             <input id="calories" type="text" class="form-control @error('calories') is-invalid @enderror" placeholder="Calories" name="calories" value="{{ old('calories') }}" required autocomplete="calories">
 
-            @error('name')
+            @error('calories')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -90,9 +90,9 @@
     <div class="form-row">
         <div class="form-group col">
             <label for="price">{{ __('Price') }}</label>
-            <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" placeholder="Price" name="name" value="{{ old('price') }}" required autocomplete="price">
+            <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" placeholder="Price" name="price" value="{{ old('price') }}" required autocomplete="price">
 
-            @error('name')
+            @error('price')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
@@ -103,10 +103,7 @@
     <div class="form-row">
         <div class="form-group col">
             <label for="halal">{{ __('Halal?') }}</label>
-            <input type="radio" id="halal" name="ishalal" value="Halal" class="form-control @error('halal') is-invalid @enderror" @if(old('halal') == 'Halal') selected @endif>
-            <label for="halal">Yes</label>
-            <input type="radio" id="haram" name="ishalal" value="Haram" class="form-control @error('halal') is-invalid @enderror" @if(old('halal') == 'Haram') selected @endif>
-            <label for="haram">No</label> 
+            <input type="checkbox" id="halal" name="ishalal" value="Halal" class="form-control @error('halal') is-invalid @enderror" {{ old('halal') == 'Halal' ? 'checked' : '' }} >
 
             @error('name')
                 <span class="invalid-feedback" role="alert">
