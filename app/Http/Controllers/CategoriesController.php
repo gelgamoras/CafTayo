@@ -83,7 +83,7 @@ class CategoriesController extends Controller
     public function edit(Campus $campus, Categories $category)
     {
         if($category->campus_id != $campus->id) abort(403);
-        $records = Categories::where('campus_id', $campus->id)->where('parent_id', null)->get();
+        $records = Categories::where('campus_id', $campus->id)->where('parent_id', null)->where('status', 'Active')->get();
         return view('category.edit')->with('category', $category)->with('index', $records);
     }
 
