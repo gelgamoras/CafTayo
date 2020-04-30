@@ -33,7 +33,7 @@
                         <td>{{ $food->id }}</td>
                         <td>{{ $food->name }}</td>
                         <td>{{ $food->category_id }}</td> 
-                        <td>{{ $food->shortDescription }}</td>
+                        <td>{{ $food->shortdescription }}</td>
                         <td>{{ $food->description }}</td>
                         <td>{{ $food->ingredients }}</td>
                         <td>{{ $food->calories }}</td>
@@ -43,14 +43,15 @@
                         <td>{{ $food->isFeatured }}</td>  
                         <td>{{ $food->status }}</td>
                         <td>
-                            <form method="POST" action="{{ route('food.destroy', $food->id) }}">
+                            <form method="POST" action="{{ route('food.destroy', ['campus' => request()->route('campus'), 'food' => $food->id]) }}">
                                 @csrf
                                 @method("delete")
-                                <input type="submit" value="Delete Record"/>
+                                <button type="submit" onclick="return confirm('Are you sure you want to {{ $food->status == 'Active' ? 'delete' : 'restore' }} this record?')">
+                                    {{ $food->status == 'Active' ? 'Delete' : 'Restore' }}
                             </form>
                         </td>
                         <td class='text-center'>
-                            <a href="{{ route('food.edit', $food->id) }}">EDIT RECORD</a>
+                            <a href="{{ route('food.edit', ['campus' => request()->route('campus'), 'food' => $food->id]) }}">EDIT RECORD</a>
                         </td>         
                     </tr>
                 @endforeach
