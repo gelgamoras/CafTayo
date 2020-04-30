@@ -21,6 +21,7 @@
                                     {{ $campus->address }}
                                 </span>
                                 <span class="ml-auto text-right my-auto">
+                                    <a href="{{ route('food.index', $campus) }}" class="btn btn-primary btn-squared">View Food</a> 
                                     <a href="{{ route('categories.index', $campus) }}" class="btn btn-primary btn-squared">View Categories</a> 
                                 </span>
                             </li> 
