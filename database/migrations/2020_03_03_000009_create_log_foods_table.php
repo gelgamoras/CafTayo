@@ -19,7 +19,7 @@ class CreateLogFoodsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->enum('action', ['Created Food', 'Edited Food', 'Deleted Food']);
             $table->bigInteger('food_id')->unsigned();
-            $table->foreign('food_id')->references('id')->on('foods');
+            //$table->foreign('food_id')->references('id')->on('foods');
             $table->timestamps();
         });
     }

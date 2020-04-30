@@ -139,17 +139,10 @@ Route::middleware('auth')->group(function() {
                 Route::get('/', 'FoodController@index')->name('food.index'); 
                 Route::get('/create', 'FoodController@create')->name('food.create'); 
                 Route::post('/create', 'FoodController@store')->name('food.store'); 
-                Route::get('/{id}', 'FoodController@show')->name('food.show');
-                Route::get('/{id}/edit', 'FoodController@edit')->name('food.edit');
-                Route::put('/{id}', 'FoodController@update')->name('food.update');
-                Route::delete('/{id}', 'FoodController@destroy')->name('food.destroy');
-            });
-
-            Route::get('api/categories/{categories}', function (App\Categories $categories) {
-                return $categories->id;
-            });
-            Route::get('api/campus/{campus}', function (App\Campus $campus) {
-                return $campus->id;
+                Route::get('/{food}', 'FoodController@show')->name('food.show');
+                Route::get('/{food}/edit', 'FoodController@edit')->name('food.edit');
+                Route::put('/{food}', 'FoodController@update')->name('food.update');
+                Route::delete('/{food}', 'FoodController@destroy')->name('food.destroy');
             });
 
             //Menu

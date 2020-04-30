@@ -22,8 +22,6 @@
                 </th>
                 <th class="th-sm">Campus ID
                 </th>
-                <th class="th-sm">Featured? 
-                </th>
                 <th class="th-sm">Status
                 </th>
             </tr>
@@ -62,4 +60,4 @@
     </table>
 </div> 
 </div>
-<a href="{{ route('food.create', $food->id) }}">Add Food</a>
+<a href="{{ route('food.create', request()->route('campus')) }}">Add Food</a>

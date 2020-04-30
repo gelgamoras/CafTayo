@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Food extends Model
 {
-    protected $fillable = ['name', 'category_id', 'shortDescription', 'description', 'ingredients', 'calories', 'isHalal', 'price', 'campus_id', 'coverphoto', 'isFeatured', 'status'];
+    protected $fillable = ['name', 'category_id', 'shortDescription', 'description', 'ingredients', 'calories', 'isHalal', 'price', 'campus_id', 'coverphoto', 'status'];
 
     //Categories -> Campus
     public function campusFood() {
