@@ -20,7 +20,7 @@ class FoodController extends Controller
      */
     public function index(Campus $campus)
     {
-        $records = Food::where('campus_id', $campus->id);
+        $records = Food::where('campus_id', $campus->id)->get();
         return view('food.index')->with('index', $records);
     }
 
@@ -51,7 +51,7 @@ class FoodController extends Controller
             'category' => ['required', new ValidCategory()],
             'shortDescription' => ['required', 'max:256'],
             'description' => ['required', 'max:256'], 
-            'ishalal' => ['required', 'in:Halal,Haram'],
+            'ishalal' => ['in:Halal,Haram'],
             'ingredients' => ['required', 'max:191'], 
             'calories' => ['required', 'numeric'], 
             'price' => ['required', 'numeric'],
@@ -65,7 +65,6 @@ class FoodController extends Controller
             'shortDescription.max' => 'Short description cannot exceed :max characters',
             'description.required' => 'Description is required',
             'description.max' => 'Description cannot exceed :max characters',
-            'ishalal.required' => 'Food needs to be identification is required',
             'ishalal.in' => 'Food needs to be identified as either halal or haram',
             'ingredients.required' => 'Ingredients is required',
             'ingredients.max' => 'Ingredients cannot exceed :max characters',
@@ -88,6 +87,12 @@ class FoodController extends Controller
                 $path = $request->file('coverphoto')->storeAs('public/foodphotos', $filename);
             } else $filename = null;
 
+            if($request->ishalal == 'Halal'){
+                $is_halal = "Halal"; 
+            } else {
+                $is_halal = "Haram"; 
+            }
+
             $food = Food::create([
                 'name' => $request->name,
                 'category_id' => $request->category, 
@@ -95,7 +100,7 @@ class FoodController extends Controller
                 'description' => $request->description, 
                 'ingredients' => $request->ingredients,
                 'calories' => $request->calories,
-                'isHalal' => $request->ishalal,
+                'isHalal' => $is_halal,
                 'price' => $request->price,
                 'campus_id' => $campus->id,
                 'coverphoto' => $filename,
@@ -107,7 +112,7 @@ class FoodController extends Controller
                 'food_id' => $food->id,
                 'action' => 'Created Food'
             ]);
-            return redirect()->route('food.index')->with('success', 'You have successfullly added a new food item!');
+            return redirect()->route('food.index', $campus)->with('success', 'You have successfullly added a new food item!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
@@ -150,7 +155,7 @@ class FoodController extends Controller
             'category' => ['required', new ValidCategory()],
             'shortDescription' => ['required', 'max:256'],
             'description' => ['required', 'max:256'], 
-            'ishalal' => ['required', 'in:Halal,Haram'],
+            'ishalal' => ['in:Halal,Haram'],
             'ingredients' => ['required', 'max:191'], 
             'calories' => ['required', 'numeric'], 
             'price' => ['required', 'numeric'],
@@ -163,8 +168,7 @@ class FoodController extends Controller
             'shortDescription.required' => 'Short description is required',
             'shortDescription.max' => 'Short description cannot exceed :max characters',
             'description.required' => 'Description is required',
-            'description.max' => 'Description cannot exceed :max characters',
-            'ishalal.required' => 'Food needs to be identification is required',
+            'description.max' => 'Description cannot exceed :max characters', 
             'ishalal.in' => 'Food needs to be identified as either halal or haram',
             'ingredients.required' => 'Ingredients is required',
             'ingredients.max' => 'Ingredients cannot exceed :max characters',
@@ -191,6 +195,12 @@ class FoodController extends Controller
                 $path = $request->file('coverphoto')->storeAs('public/foodphotos', $filename);
             } else $filename = null;
 
+            if($request->ishalal == 'Halal'){
+                $is_halal = "Halal"; 
+            } else {
+                $is_halal = "Haram"; 
+            }
+
             $food->name = $request->name; 
             $food->category_id = $request->category;
             $food->shortDescription = $request->shortDescription;
@@ -198,7 +208,7 @@ class FoodController extends Controller
             $food->ingredients = $request->ingredients; 
             $food->calories = $request->calories; 
             $food->price = $request->price;
-            $food->isHalal = $request->ishalal;
+            $food->isHalal = $is_halal;
             $food->coverphoto = $filename;
             $food->save(); 
 
@@ -208,7 +218,7 @@ class FoodController extends Controller
                 'action' => 'Edited Food'
             ]);
 
-            return redirect()->route('food.index')->with('success', 'You have successfullly added updated the food item!');
+            return redirect()->route('food.index', $campus)->with('success', 'You have successfullly added updated the food item!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
@@ -221,13 +231,26 @@ class FoodController extends Controller
     public function destroy(Campus $campus, Food $food)
     {
         //LOOK FOR FOOD IN MENU ITEMS AND DELETE
-        $food->delete();
+        $action = null;
+        $message = null;
+
+        if($food->status == 'Active'){
+            $food->status = 'Deleted'; 
+            $action = "Deleted Food"; 
+            $message = "deleted"; 
+        } else {
+            $food->status = 'Active'; 
+            $action = "Restored Food"; 
+            $message = "restored"; 
+        }
+
+        $food->save(); 
 
         LogFood::create([
             'user_id' => auth()->user()->id,
             'food_id' => $food->id,
-            'action' => 'Delited Food'
+            'action' => $action
         ]);
-        return Redirect()->route('food.index');
+        return Redirect()->route('food.index', $campus)->with('success', 'You have successfullly ' . $message . ' the food!');
     }
 }
