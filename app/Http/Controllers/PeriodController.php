@@ -115,9 +115,9 @@ class PeriodController extends Controller
             'period.*.required' => 'Period name is required',
             'period.*.max' => 'Period name can only have a maximum of :max',
             'timestart.*.required' => 'Period start is required',
-            'timestart.date_format' => 'Period start must be HH:MM',
+            'timestart.*.date_format' => 'Period start must be HH:MM',
             'timeend.*.required' => 'Period end is required',
-            'timeend.date_format' =>  'Period end must be HH:MM',
+            'timeend.*.date_format' =>  'Period end must be HH:MM',
             'timeend.*.after' => 'Time end nust be after your period starts'
 
         ]);

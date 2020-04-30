@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\Food;
 use App\Campus;
 use App\Categories;
+use App\LogFood;
+use App\Rules\ValidCategory;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model; 
+use Validator;
 
 class FoodController extends Controller
 {
@@ -15,14 +18,10 @@ class FoodController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Campus $campus)
     {
-        $records = Food::all();
-        $categories = Categories::select('id','name')->get(); 
-        $campus = Campus::select('id','name')->get();
-        return view('food.index')->with('index', $records)
-            ->with('categories', $categories)
-            ->with('campus', $campus);
+        $records = Food::where('campus_id', $campus->id);
+        return view('food.index')->with('index', $records);
     }
 
     /**
@@ -30,12 +29,12 @@ class FoodController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Campus $campus)
     {
         $categories = Categories::select('id','name')->get();
-        $campus = Campus::select('id','name')->get();
-        return view('food.create')->with('categories', $categories)
-            ->with('campus', $campus); 
+
+        if(count($categories) < 1) return redirect()->route('categories.index', $campus)->with('error', 'This campus does not have any categories. Add a category first!');
+        return view('food.create')->with('categories', $categories)->with('campus', $campus); 
     }
 
     /**
@@ -44,71 +43,72 @@ class FoodController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Campus $campus)
     {
-        $this->validate($request, [
-            'name' => ['required', 'max:200'], 
+        $validator = Validator::make($request->all(), 
+        [
+            'name' => ['required', 'max:200'],
+            'category' => ['required', new ValidCategory()],
             'shortDescription' => ['required', 'max:256'],
             'description' => ['required', 'max:256'], 
+            'ishalal' => ['required', 'in:Halal,Haram'],
             'ingredients' => ['required', 'max:191'], 
             'calories' => ['required', 'numeric'], 
             'price' => ['required', 'numeric'],
-            //'image' => ['required', 'image', 'max:2048'],
             'coverphoto' => ['image', 'nullable', 'max:10240'],
-        ]); 
+        ],
+        [
+            'name.required' => 'Food name is required',
+            'name.max' => 'Food name cannot exceed :max characters',
+            'category.required' => 'Food category is required',
+            'shortDescription.required' => 'Short description is required',
+            'shortDescription.max' => 'Short description cannot exceed :max characters',
+            'description.required' => 'Description is required',
+            'description.max' => 'Description cannot exceed :max characters',
+            'ishalal.required' => 'Food needs to be identification is required',
+            'ishalal.in' => 'Food needs to be identified as either halal or haram',
+            'ingredients.required' => 'Ingredients is required',
+            'ingredients.max' => 'Ingredients cannot exceed :max characters',
+            'calories.required' => 'Calorie count is required',
+            'calories.numeric' => 'Calorie count must be numeric',
+            'price.required' => 'Price is required',
+            'price.numeric' => 'Price must be numeric',
+            'coverphoto.image' => 'Food image needs to be an image',
+            'coverphoto.max' => 'Food image exceeded the maximum file size'
+        ]);
 
-        /*$image = $request->file('image');
-        $image_name = rand() . '_' . $image->getClientOriginalExtension();
-        $image->move(public_path('images'), $image_name);*/
-
-        $record = new Food(); 
-        $record->name = $request->name; 
-        $record->category_id = $request->categories;
-        $record->campus_id = $request->campus;
-        $record->shortDescription = $request->shortDescription;
-        $record->description = $request->description;  
-        $record->ingredients = $request->ingredients; 
-        $record->calories = $request->calories; 
-        $record->price = $request->price;
-        //$record->coverphoto = $request->image;
-        
-        //$record->$coverphoto = time().'.'.$request->image->extension();  
-   
-        //$request->image->move(public_path('images'));
-
-        if($request->hasFile('coverphoto'))
+        if(!$validator->fails())
+        {
+            if($request->hasfile('coverphoto'))
             {
-                if ($record->coverphoto != "" || $record->coverphoto != null){
-                    Storage::delete('public/coverphotos/' . $record->coverphoto);
-                }
-            
                 $file = $request->file('coverphoto')->getClientOriginalName();
                 $name = pathinfo($file, PATHINFO_FILENAME);
                 $ext = $request->file('coverphoto')->getClientOriginalExtension();
                 $filename = $file . '_' . time() . '.' . $ext;
-                $path = $request->file('coverphoto')->storeAs('public/images', $filename);
+                $path = $request->file('coverphoto')->storeAs('public/foodphotos', $filename);
+            } else $filename = null;
 
-                $record->coverphoto = $filename;
-            } 
-
-        $halal = $request->ishalal; 
-        if($halal != null){
-            $record->isHalal = "Halal"; 
-        } else {
-            $record->isHalal = "Haram"; 
-        }
-
-        $featured = $request->isfeatured; 
-        if($featured != null){
-            $record->isFeatured = "YES"; 
-        } else {
-            $record->isFeatured = "NO"; 
-        }
-
-        $record->status = "Active"; 
-        $record->save(); 
-
-        return redirect()->route("food.index")->with('successMsg', 'Added a record!');
+            $food = Food::create([
+                'name' => $request->name,
+                'category_id' => $request->category, 
+                'shortDescription' => $request->shortDescription,
+                'description' => $request->description, 
+                'ingredients' => $request->ingredients,
+                'calories' => $request->calories,
+                'isHalal' => $request->ishalal,
+                'price' => $request->price,
+                'campus_id' => $campus->id,
+                'coverphoto' => $filename,
+                'status' => 'Active'
+            ]);
+            
+            LogFood::create([
+                'user_id' => auth()->user()->id,
+                'food_id' => $food->id,
+                'action' => 'Created Food'
+            ]);
+            return redirect()->route('food.index')->with('success', 'You have successfullly added a new food item!');
+        }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
     /**
@@ -117,7 +117,7 @@ class FoodController extends Controller
      * @param  \App\Food  $food
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Campus $campus, Food $food)
     {
         return redirect()->route("food.index");
     }
@@ -128,15 +128,11 @@ class FoodController extends Controller
      * @param  \App\Food  $food
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Campus $campus, Food $food)
     {
-        $food = Food::find($id);
-        $campus = Campus::select('id','name')->get();
+        if($food->campus_id != $campus->id) abort(403);
         $categories = Categories::select('id','name')->get();
-        return view('food.edit')
-            ->with('food', $food)
-            ->with('campus', $campus)
-            ->with('categories', $categories); 
+        return view('food.edit')->with('food', $food)->with('campus', $campus)->with('categories', $categories); 
     }
 
     /**
@@ -146,43 +142,74 @@ class FoodController extends Controller
      * @param  \App\Food  $food
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Campus $campus, Food $food)
     {
-        $this->validate($request, [
-            'name' => ['required', 'max:200'], 
+        $validator = Validator::make($request->all(), 
+        [
+            'name' => ['required', 'max:200'],
+            'category' => ['required', new ValidCategory()],
             'shortDescription' => ['required', 'max:256'],
             'description' => ['required', 'max:256'], 
+            'ishalal' => ['required', 'in:Halal,Haram'],
             'ingredients' => ['required', 'max:191'], 
             'calories' => ['required', 'numeric'], 
             'price' => ['required', 'numeric'],
-        ]); 
+            'coverphoto' => ['image', 'nullable', 'max:10240'],
+        ],
+        [
+            'name.required' => 'Food name is required',
+            'name.max' => 'Food name cannot exceed :max characters',
+            'category.required' => 'Food category is required',
+            'shortDescription.required' => 'Short description is required',
+            'shortDescription.max' => 'Short description cannot exceed :max characters',
+            'description.required' => 'Description is required',
+            'description.max' => 'Description cannot exceed :max characters',
+            'ishalal.required' => 'Food needs to be identification is required',
+            'ishalal.in' => 'Food needs to be identified as either halal or haram',
+            'ingredients.required' => 'Ingredients is required',
+            'ingredients.max' => 'Ingredients cannot exceed :max characters',
+            'calories.required' => 'Calorie count is required',
+            'calories.numeric' => 'Calorie count must be numeric',
+            'price.required' => 'Price is required',
+            'price.numeric' => 'Price must be numeric',
+            'coverphoto.image' => 'Food image needs to be an image',
+            'coverphoto.max' => 'Food image exceeded the maximum file size'
+        ]);
 
-        $record = Food::find($id);
-        $record->name = $request->name; 
-        $record->shortDescription = $request->shortDescription;
-        $record->description = $request->description;  
-        $record->ingredients = $request->ingredients; 
-        $record->calories = $request->calories; 
-        $record->price = $request->price;
-        
-        $halal = $request->ishalal; 
-        if($halal != null){
-            $record->isHalal = "Halal"; 
-        } else {
-            $record->isHalal = "Haram"; 
-        }
+        if(!$validator->fails())
+        {
+            if($request->hasfile('coverphoto'))
+            {
+                if ($food->coverphoto != "" || $food->coverphoto != null){
+                    Storage::delete('public/coverphotos/' . $food->coverphoto);
+                }
 
-        $featured = $request->isfeatured; 
-        if($featured != null){
-            $record->isFeatured = "YES"; 
-        } else {
-            $record->isFeatured = "NO"; 
-        }
+                $file = $request->file('coverphoto')->getClientOriginalName();
+                $name = pathinfo($file, PATHINFO_FILENAME);
+                $ext = $request->file('coverphoto')->getClientOriginalExtension();
+                $filename = $file . '_' . time() . '.' . $ext;
+                $path = $request->file('coverphoto')->storeAs('public/foodphotos', $filename);
+            } else $filename = null;
 
-        $record->status = "Active"; 
-        $record->save(); 
+            $food->name = $request->name; 
+            $food->category_id = $request->category;
+            $food->shortDescription = $request->shortDescription;
+            $food->description = $request->description;  
+            $food->ingredients = $request->ingredients; 
+            $food->calories = $request->calories; 
+            $food->price = $request->price;
+            $food->isHalal = $request->ishalal;
+            $food->coverphoto = $filename;
+            $food->save(); 
 
-        return redirect()->route("food.show", $record->id)->with('successMsg', 'Edited a record!'); 
+            LogFood::create([
+                'user_id' => auth()->user()->id,
+                'food_id' => $food->id,
+                'action' => 'Edited Food'
+            ]);
+
+            return redirect()->route('food.index')->with('success', 'You have successfullly added updated the food item!');
+        }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
     /**
@@ -191,10 +218,16 @@ class FoodController extends Controller
      * @param  \App\Food  $food
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Campus $campus, Food $food)
     {
-        $food = Food::find($id);
+        //LOOK FOR FOOD IN MENU ITEMS AND DELETE
         $food->delete();
+
+        LogFood::create([
+            'user_id' => auth()->user()->id,
+            'food_id' => $food->id,
+            'action' => 'Delited Food'
+        ]);
         return Redirect()->route('food.index');
     }
 }
