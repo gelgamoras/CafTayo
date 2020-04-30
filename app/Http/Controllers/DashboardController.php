@@ -100,8 +100,8 @@ class DashboardController extends Controller
             $User->catering = $request->catering;
             if($User->email != $request->email) 
             {
-                $User->email == $request->email;
-                $User->email_verified_at == null;
+                $User->email = $request->email;
+                $User->email_verified_at = null;
             }
 
             if($request->hasFile('coverphoto'))
