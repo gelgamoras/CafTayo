@@ -161,6 +161,16 @@ $black: #212529;
             }
         }
     }
+    .main-sidebar__nav-title
+    {
+        text-transform:uppercase;
+        margin:0;font-size:.625rem;
+        letter-spacing:.125rem;
+        padding:1px 1.5625rem;
+        font-weight:500;
+        color:#9ea8b9;
+        border-bottom:1px solid #e1e5eb;
+    }
 
 
 /* =============================
@@ -170,10 +180,14 @@ $black: #212529;
         font-family: 'Comfortaa', cursive; 
     }
 
+    .white-space-break-spaces {
+        white-space: break-spaces !important;
+    }
+
     .campus-button {
         width: 200px; 
-        font-size: 1.7rem
-    }
+        font-size: 1.7rem; 
+    }   
 
     .font-weight-featherlight {
         font-weight: 300; 

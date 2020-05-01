@@ -232,12 +232,27 @@ td .btn-light:hover {
   color: #818536 !important;
 }
 
+.main-sidebar__nav-title {
+  text-transform: uppercase;
+  margin: 0;
+  font-size: .625rem;
+  letter-spacing: .125rem;
+  padding: 1px 1.5625rem;
+  font-weight: 500;
+  color: #9ea8b9;
+  border-bottom: 1px solid #e1e5eb;
+}
+
 /* =============================
     --TEXT
    ============================= */
 
 .comic-font {
   font-family: 'Comfortaa', cursive;
+}
+
+.white-space-break-spaces {
+  white-space: break-spaces !important;
 }
 
 .campus-button {
