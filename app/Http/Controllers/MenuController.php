@@ -42,7 +42,9 @@ class MenuController extends Controller
             if($c->categoriesFood->count() > 0){
                 $categories->push($c); 
                 if($c->parent_id != null){
-                    $categories->push($c->categoriesCategories); 
+                    if(!$categories->contains('id', $c->parent_id)){
+                        $categories->push($c->categoriesCategories); 
+                    }   
                 }
             }
         }
