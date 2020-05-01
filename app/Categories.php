@@ -14,23 +14,13 @@ class Categories extends Model
     }
 
     //Categories -> Categories
-    public function p_categoriesCategories() {
-        return $this->hasMany('App\Categories', 'category_id', 'id');
-    }
-
-    //Categories -> Categories
-    public function s_categoriesCategories() {
+    public function categoriesCategories() {
         return $this->belongsTo('App\Categories', 'parent_id', 'id');
     }
 
     //Categories -> Food
-    public function p_categoriesFood() {
+    public function categoriesFood() {
         return $this->hasMany('App\Food', 'category_id', 'id');
-    }
-
-    //Categories -> Food
-    public function s_categoriesFood() {
-        return $this->hasMany('App\Food', 'subcategory_id', 'id');
     }
 
     //Category -> LogCategory
