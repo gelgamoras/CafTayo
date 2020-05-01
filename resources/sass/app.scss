@@ -59,6 +59,12 @@ $black: #212529;
         position:absolute
     }
     
+    .custom-checkbox .custom-control-input:checked~.custom-control-label::after {
+        opacity: 1; 
+        -webkit-transform: rotate(45deg); 
+        transform: rotate(45deg) scale(1); 
+        background-image: none; 
+    }
 
 /* =============================
     --DATATABLES 

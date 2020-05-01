@@ -134,6 +134,12 @@
   position: absolute;
 }
 
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+  background-image: none;
+}
+
 /* =============================
     --DATATABLES 
    ============================= */
@@ -189,7 +195,7 @@ td .btn-light:hover {
   background-color: #eee !important;
 }
 
-.deleted-record .food-table-image {
+.deleted-record .table-image {
   background-blend-mode: saturation;
   opacity: 0.7;
 }

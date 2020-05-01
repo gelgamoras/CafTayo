@@ -32,7 +32,7 @@ class FoodController extends Controller
      */
     public function create(Campus $campus)
     {
-        $categories = Categories::select('id','name')->get();
+        $categories = Categories::select('id','name', 'parent_id')->orderBy('parent_id', 'asc')->get();
 
         if(count($categories) < 1) return redirect()->route('categories.index', $campus)->with('error', 'This campus does not have any categories. Add a category first!');
         return view('food.create')->with('categories', $categories)->with('campus', $campus); 
@@ -210,7 +210,6 @@ class FoodController extends Controller
             $food->calories = $request->calories; 
             $food->price = $request->price;
             $food->isHalal = $is_halal;
-            $food->coverphoto = $filename;
             $food->save(); 
 
             LogFood::create([
