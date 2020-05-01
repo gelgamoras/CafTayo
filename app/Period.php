@@ -10,7 +10,7 @@ class Period extends Model
     
     //MenuItem -> Period
     public function menuitemPeriod() {
-        return $this->belongsTo('App\MenuItem', 'period_id', 'id');
+        return $this->hasMany('App\MenuItem', 'period_id', 'id');
     }
 
     //Periods -> LogPeriod

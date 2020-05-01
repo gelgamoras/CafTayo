@@ -20,7 +20,7 @@ class Food extends Model
 
     //MenuItem -> Food
     public function menuitemFood() {
-        return $this->belongsTo('App\MenuItem', 'food_id', 'id');
+        return $this->hasMany('App\MenuItem', 'food_id', 'id');
     }
 
     //Food -> LogFood
