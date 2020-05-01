@@ -11,7 +11,7 @@
                 <h3 class="mb-0">My Campuses</h3> 
             </div>
             <div class="card-body">
-                <span class="font-weight-regular mb-4 d-inline-block">Welcome!🌞 Below is a list of campuses you cater to. Click Manage to manage available food and categories for that campus.</span> 
+                <span class="font-weight-regular mb-4 d-inline-block">Welcome!🌞 Below is a list of campuses you cater to. Click Manage to manage menu, food, and categories for that campus.</span> 
                 <ul class="list-group list-group-small mx-3 list-group-flush">
                     @if($index->count() > 0)
                         @foreach($index as $campus)
@@ -21,8 +21,7 @@
                                     {{ $campus->address }}
                                 </span>
                                 <span class="ml-auto text-right my-auto">
-                                    <a href="{{ route('food.index', $campus) }}" class="btn btn-primary btn-squared">View Food</a> 
-                                    <a href="{{ route('categories.index', $campus) }}" class="btn btn-primary btn-squared">View Categories</a> 
+                                    <a href="{{ route('food.index', $campus) }}" class="btn btn-primary btn-squared">Manage</a> 
                                 </span>
                             </li> 
                         @endforeach
