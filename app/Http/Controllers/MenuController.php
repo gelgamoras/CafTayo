@@ -32,7 +32,7 @@ class MenuController extends Controller
         $periods = Period::all(); 
         $categories = Categories::where('campus_id', $campus->id)->where('status', 'Active')->get(); 
         $foods = Food::where('campus_id', $campus->id)->where('status', 'Active')->get();
-        return view('menu.create')->with('index', $foods)->with('categories', $categories)->with('periods', $periods);
+        return view('menu.create')->with('index', $foods)->with('categories', $categories)->with('periods', $periods)->with('campus', $campus);
     }
 
     /**

@@ -18,7 +18,7 @@ class CategoriesController extends Controller
     public function index(Campus $campus)
     {
         $records = Categories::where('campus_id', $campus->id)->get();
-        return view('category.index')->with('index', $records);
+        return view('category.index')->with('index', $records)->with('campus', $campus);
     }
 
     /**
@@ -29,7 +29,7 @@ class CategoriesController extends Controller
     public function create(Campus $campus)
     {   
         $records = Categories::where('campus_id', $campus->id)->where('parent_id', null)->where('status', 'Active')->get();
-        return view('category.create')->with('index', $records);
+        return view('category.create')->with('index', $records)->with('campus', $campus);
     }
 
     /**
@@ -84,7 +84,7 @@ class CategoriesController extends Controller
     {
         if($category->campus_id != $campus->id) abort(403);
         $records = Categories::where('campus_id', $campus->id)->where('parent_id', null)->where('status', 'Active')->get();
-        return view('category.edit')->with('category', $category)->with('index', $records);
+        return view('category.edit')->with('category', $category)->with('index', $records)->with('campus', $campus);
     }
 
     /**

@@ -23,7 +23,7 @@ class FoodController extends Controller
     {
         $records = Food::where('campus_id', $campus->id)->where('status', 'Active')->orderBy('status')->get();
         $categories = Categories::where('status', 'Active')->get(); 
-        return view('food.index')->with('index', $records)->with('categories', $categories);
+        return view('food.index')->with('index', $records)->with('categories', $categories)->with('campus', $campus);
     }
 
     /**

@@ -105,11 +105,43 @@
           <a class="nav-link {{ Route::is('dashboard.mycampuses') ? 'active' : '' }}" 
             href="{{ route('dashboard.mycampuses') }}">
           <i class="material-icons">home</i>
-            <span>My Campuses</span>
+            <span>{{ Route::is('dashboard.mycampuses') ? 'Home' : 'Back to Home' }}</span>
           </a>
         </li>
-       </ul> 
+      </ul> 
+      @if(Request::is('manage/*/*'))
+        <h6 class="main-sidebar__nav-title">{{ $campus->name }}</h6> 
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link {{ Route::is('menu.index') ? 'active' : '' }}
+                               {{ Route::is('menu.create') ? 'active' : '' }}
+                               {{ Route::is('menu.show') ? 'active' : '' }}
+                               {{ Route::is('menu.edit') ? 'active' : '' }}" 
+              href="{{ route('menu.index', $campus) }}">
+            <i class="material-icons">book</i>
+              <span>Menu</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Route::is('food.index') ? 'active' : '' }} 
+                               {{ Route::is('food.create') ? 'active' : '' }} 
+                               {{ Route::is('food.edit') ? 'active' : '' }} " 
+              href="{{ route('food.index', $campus) }}">
+            <i class="material-icons">restaurant</i>
+              <span>Food</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {{ Route::is('categories.index') ? 'active' : '' }}
+                               {{ Route::is('categories.create') ? 'active' : '' }}
+                               {{ Route::is('categories.edit') ? 'active' : '' }}" 
+              href="{{ route('categories.index', $campus) }}">
+            <i class="material-icons">widgets</i>
+              <span>Categories</span>
+            </a>
+          </li>
+        </ul> 
       @endif
-    </ul>
+    @endif
   </div>
 </aside>
