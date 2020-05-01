@@ -120,6 +120,20 @@ $black: #212529;
         background-color: #F5F6F8; 
     }
 
+    .deleted-record {
+        background-color: #eee !important; 
+        .table-image {
+            background-blend-mode: saturation;
+            opacity: 0.7; 
+        }
+    }
+
+    .food-table-image {
+        height: 100px; 
+        width: 100px; 
+        background-size: cover; 
+        background-position: center;
+    }
 /* =============================
     --NAVBAR
    ============================= */
