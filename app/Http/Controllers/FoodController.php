@@ -236,7 +236,7 @@ class FoodController extends Controller
                 'action' => 'Edited Food'
             ]);
 
-            return redirect()->route('food.index', $campus)->with('success', 'You have successfullly added updated the food item!');
+            return redirect()->route('food.index', $campus)->with('success', 'You have successfullly updated the food item!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
