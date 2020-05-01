@@ -23,7 +23,7 @@ class MenuController extends Controller
     public function index(Campus $campus)
     {
         $records = Menu::where('campus_id', $campus->id)->where('Status', 'Active')->get();
-        return view('menu.index')->with('index', $records);
+        return view('menu.index')->with('index', $records)->with('campus', $campus);
     }
 
     /**
