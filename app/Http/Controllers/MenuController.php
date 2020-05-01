@@ -31,10 +31,21 @@ class MenuController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Campus $campus)
-    {
-        $periods = Period::all(); 
-        $categories = Categories::where('campus_id', $campus->id)->where('status', 'Active')->get(); 
+    {   
         $foods = Food::where('campus_id', $campus->id)->where('status', 'Active')->get();
+        $periods = Period::all(); 
+        $categories = collect(); 
+        $all_categories = Categories::where('campus_id', $campus->id)->where('status', 'Active')->get(); 
+
+        foreach($all_categories as $c){
+            if($c->categoriesFood->count() > 0){
+                $categories->push($c); 
+                if($c->parent_id != null){
+                    $categories->push($c->categoriesCategories); 
+                }
+            }
+        }
+
         return view('menu.create')->with('index', $foods)->with('categories', $categories)->with('periods', $periods)->with('campus', $campus);
     }
 
