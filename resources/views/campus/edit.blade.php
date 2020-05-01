@@ -23,7 +23,9 @@
                             <label for="name">{{ __('Campus Name') }}</label>
                             <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" 
                                 placeholder="Name of Campus" name="name" value="{{ $campus->name }}" required autocomplete="name" autofocus>
-
+                            <div class="input-note font-weight-featherlight">
+                                For maximum readability, use the abbreviated forms of campuses with long names (e.g. AKIC)
+                            </div> 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
