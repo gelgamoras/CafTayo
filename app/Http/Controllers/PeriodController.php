@@ -134,9 +134,7 @@ class PeriodController extends Controller
 
             $request->merge(['timestart' => $temp_timestart]); 
             $request->merge(['timeend' => $temp_timeend]); 
-            //dd($request);
-            //return redirect()->route('period.index')->with('success', 'You have successfullly updated periods!');
-            
+                 
             foreach($request->period as $key=>$value) {
                 $tmp = Period::find($key);
                 if($tmp->period == $value || $tmp->start == $request->timestart[$key] || $tmp->end == $request->timeend[$key]) continue;
