@@ -16,9 +16,9 @@ class CreateMenusTable extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 50);
-            $table->bigInteger('campus_id')->unsigned();
+            $table->bigInteger('campus_id')->unsigned()->nullable();
             $table->foreign('campus_id')->references('id')->on('campuses');
-            $table->string('dates');
+            $table->string('dates')->nullable();
             $table->enum('status', ['Active', 'Deleted']);
             $table->timestamps();
         });

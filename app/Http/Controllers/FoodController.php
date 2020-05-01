@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Food;
 use App\Campus;
 use App\Categories;
+use App\Food;
 use App\LogFood;
 use App\Rules\ValidCategory;
 use Illuminate\Http\Request;
@@ -138,10 +138,11 @@ class FoodController extends Controller
     public function edit(Campus $campus, Food $food)
     {
         if($food->campus_id != $campus->id) abort(403);
+        if($food->status == "Deleted") abort(403);
+         
         $categories = Categories::select('id','name', 'parent_id')->orderBy('parent_id', 'asc')->get();
         $ingredients = explode(', ', $food->ingredients); 
-        return view('food.edit')->with('food', $food)->with('campus', $campus)
-            ->with('categories', $categories)->with('ingredients', $ingredients); 
+        return view('food.edit')->with('food', $food)->with('campus', $campus)->with('categories', $categories)->with('ingredients', $ingredients); 
     }
 
     /**
@@ -236,27 +237,14 @@ class FoodController extends Controller
      */
     public function destroy(Campus $campus, Food $food)
     {
-        //LOOK FOR FOOD IN MENU ITEMS AND DELETE
-        $action = null;
-        $message = null;
-
-        if($food->status == 'Active'){
-            $food->status = 'Deleted'; 
-            $action = "Deleted Food"; 
-            $message = "deleted"; 
-        } else {
-            $food->status = 'Active'; 
-            $action = "Restored Food"; 
-            $message = "restored"; 
-        }
-
+        $food->status = 'Deleted'; 
         $food->save(); 
 
         LogFood::create([
             'user_id' => auth()->user()->id,
             'food_id' => $food->id,
-            'action' => $action
+            'action' => 'Deleted Food'
         ]);
-        return Redirect()->route('food.index', $campus)->with('success', 'You have successfullly ' . $message . ' the food!');
+        return Redirect()->route('food.index', $campus)->with('success', 'You have successfullly deleted the food!');
     }
 }

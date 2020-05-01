@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Campus;
+use App\Food;
 use App\Menu;
 use Illuminate\Http\Request;
 
@@ -12,9 +14,10 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Campus $campus)
     {
-        //
+        $records = Menu::where('campus_id', $campus->id)->where('Status', 'Active')->get();
+        return view('menu.index')->with('index', $records);
     }
 
     /**
@@ -22,9 +25,10 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Campus $campus)
     {
-        //
+        $foods = Food::where('campus_id', $campus->id)->where('status', 'Active')->get();
+        return view('menu.create')->with('foods', $foods);
     }
 
     /**
@@ -33,9 +37,9 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Campus $campus)
     {
-        //
+        dd($request);
     }
 
     /**
