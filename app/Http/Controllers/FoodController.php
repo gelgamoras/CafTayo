@@ -20,8 +20,9 @@ class FoodController extends Controller
      */
     public function index(Campus $campus)
     {
-        $records = Food::where('campus_id', $campus->id)->get();
-        return view('food.index')->with('index', $records);
+        $records = Food::where('campus_id', $campus->id)->where('status', 'Active')->orderBy('status')->get();
+        $categories = Categories::where('status', 'Active')->get(); 
+        return view('food.index')->with('index', $records)->with('categories', $categories);
     }
 
     /**
