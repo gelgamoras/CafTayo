@@ -102,7 +102,7 @@
                                         <div class="form-group col-md-2">
                                             <fieldset class="ml-2 mt-4 d-inline-block">
                                             <div class="custom-control custom-checkbox d-block my-2">
-                                                <input type="checkbox" class="custom-control-input" id="halal" value="Halal" name="ishalal" {{ old('halal') == 'Halal' ? 'checked' : '' }}>
+                                                <input type="checkbox" class="custom-control-input" id="halal" value="Halal" name="ishalal" {{ old('ishalal') == 'Halal' ? 'checked' : '' }}>
                                                 <label class="custom-control-label" for="halal">{{ __('Halal Food') }}</label>
                                             </div>
                                             </fieldset>
