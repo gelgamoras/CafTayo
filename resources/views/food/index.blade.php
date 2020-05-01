@@ -80,22 +80,20 @@
                                 <td width="10%">{{ $food->id }}</td>
                                 <td><div class="food-table-image" style="background-image: url('{{ asset('storage/foodphotos/' . $food->coverphoto) }}');"></div></td>
                                 <td>{{ $food->name }}</td>
-                                <!--this iS A DISASTER IM SORRY I KNOW IM DUMB I-->
-                                @foreach($categories as $s_cat)
-                                    @if($s_cat->id == $food->category_id)
-                                       @if($s_cat->parent_id == null) 
-                                            <td>{{ $s_cat->name }}</td> 
-                                            <td>N/A</td>
-                                       @else
-                                            @foreach($categories as $p_cat)
-                                                @if($p_cat->id == $s_cat->parent_id)
-                                                    <td>{{$p_cat->name}}</td>
-                                                    <td>{{$s_cat->name}}</td> 
-                                                @endif
-                                            @endforeach
-                                       @endif 
+                                <td>
+                                    @if($food->categoriesFood->parent_id == null)
+                                        {{ $food->categoriesFood->name }}
+                                    @else
+                                        {{ $food->categoriesFood->categoriesCategories->name }}
                                     @endif
-                                @endforeach
+                                </td>
+                                <td>
+                                    @if($food->categoriesFood->parent_id == null)
+                                        N/A
+                                    @else 
+                                        {{ $food->categoriesFood->name }}
+                                    @endif
+                                </td>
                                 <td>₱{{ $food->price }}</td> 
                                 <td>
                                     <a href="{{ route('food.edit', ['campus' => request()->route('campus'), 'food' => $food->id]) }}" class="btn btn-sm btn-secondary">
