@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Campus;
+use App\Menu;
 use App\LogCampus;
 use App\Rules\AlphaSpace;
 use Illuminate\Http\Request;
@@ -99,6 +100,13 @@ class CampusController extends Controller
                 'Address' => $request->address,
                 'Status' => 'Active'
             ]);          
+
+            Menu::create([
+                'name' => 'Everyday Menu', 
+                'campus_id' => $campus->id,
+                'dates' => null,
+                'status' => 'Active'
+            ]);
 
             LogCampus::create([
                 'user_id' => auth()->user()->id,
