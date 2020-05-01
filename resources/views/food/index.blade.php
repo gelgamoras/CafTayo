@@ -78,14 +78,14 @@
                         @foreach($index as $food)
                             <tr>
                                 <td width="10%">{{ $food->id }}</td>
-                                <td><div class="food-table-image" style="background-image: url('https://www.seriouseats.com/2019/11/20191030-filipino-pancit-palabok-vicky-wasik-32-1500x1125.jpg');"></div></td>
+                                <td><div class="food-table-image" style="background-image: url('{{ asset('storage/foodphotos/' . $food->coverphoto) }}');"></div></td>
                                 <td>{{ $food->name }}</td>
                                 <!--this iS A DISASTER IM SORRY I KNOW IM DUMB I-->
                                 @foreach($categories as $s_cat)
                                     @if($s_cat->id == $food->category_id)
                                        @if($s_cat->parent_id == null) 
                                             <td>{{ $s_cat->name }}</td> 
-                                            <td></td>
+                                            <td>N/A</td>
                                        @else
                                             @foreach($categories as $p_cat)
                                                 @if($p_cat->id == $s_cat->parent_id)
