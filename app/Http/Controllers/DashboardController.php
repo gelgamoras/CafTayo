@@ -174,16 +174,11 @@ class DashboardController extends Controller
         $user = Auth::User();  
         $campuses = collect();
         
-        if($user->role == 'Admin'){
-            $campuses = Campus::all();
-        }
-        else {
-            $mycampuses = User::find($user->id)->userUserCampus;  
+        $mycampuses = User::find($user->id)->userUserCampus;  
             foreach($mycampuses as $campus){
                 $x = $campus->campus_id; 
                 $campuses->push(Campus::find($x)); 
-            }   
-        } 
+            }  
 
         return view('auth.mycampuses.index')->with('index', $campuses); 
 
