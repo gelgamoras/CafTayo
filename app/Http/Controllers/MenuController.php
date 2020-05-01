@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Campus;
 use App\Food;
 use App\Menu;
+use App\Period;
+use App\Categories;
 use Illuminate\Http\Request;
 
 class MenuController extends Controller
@@ -27,8 +29,10 @@ class MenuController extends Controller
      */
     public function create(Campus $campus)
     {
+        $periods = Period::all(); 
+        $categories = Categories::where('campus_id', $campus->id)->where('status', 'Active')->get(); 
         $foods = Food::where('campus_id', $campus->id)->where('status', 'Active')->get();
-        return view('menu.create')->with('foods', $foods);
+        return view('menu.create')->with('index', $foods)->with('categories', $categories)->with('periods', $periods);
     }
 
     /**
