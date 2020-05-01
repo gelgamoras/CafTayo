@@ -10,6 +10,7 @@ use App\Rules\ValidCategory;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model; 
 use Validator;
+use Storage; 
 
 class FoodController extends Controller
 {
@@ -20,8 +21,9 @@ class FoodController extends Controller
      */
     public function index(Campus $campus)
     {
-        $records = Food::where('campus_id', $campus->id)->get();
-        return view('food.index')->with('index', $records);
+        $records = Food::where('campus_id', $campus->id)->where('status', 'Active')->orderBy('status')->get();
+        $categories = Categories::where('status', 'Active')->get(); 
+        return view('food.index')->with('index', $records)->with('categories', $categories);
     }
 
     /**
@@ -31,7 +33,7 @@ class FoodController extends Controller
      */
     public function create(Campus $campus)
     {
-        $categories = Categories::select('id','name')->get();
+        $categories = Categories::select('id','name', 'parent_id')->orderBy('parent_id', 'asc')->get();
 
         if(count($categories) < 1) return redirect()->route('categories.index', $campus)->with('error', 'This campus does not have any categories. Add a category first!');
         return view('food.create')->with('categories', $categories)->with('campus', $campus); 
@@ -137,9 +139,10 @@ class FoodController extends Controller
     {
         if($food->campus_id != $campus->id) abort(403);
         if($food->status == "Deleted") abort(403);
-        
-        $categories = Categories::select('id','name')->get();
-        return view('food.edit')->with('food', $food)->with('campus', $campus)->with('categories', $categories); 
+         
+        $categories = Categories::select('id','name', 'parent_id')->orderBy('parent_id', 'asc')->get();
+        $ingredients = explode(', ', $food->ingredients); 
+        return view('food.edit')->with('food', $food)->with('campus', $campus)->with('categories', $categories)->with('ingredients', $ingredients); 
     }
 
     /**
@@ -184,19 +187,6 @@ class FoodController extends Controller
 
         if(!$validator->fails())
         {
-            if($request->hasfile('coverphoto'))
-            {
-                if ($food->coverphoto != "" || $food->coverphoto != null){
-                    Storage::delete('public/coverphotos/' . $food->coverphoto);
-                }
-
-                $file = $request->file('coverphoto')->getClientOriginalName();
-                $name = pathinfo($file, PATHINFO_FILENAME);
-                $ext = $request->file('coverphoto')->getClientOriginalExtension();
-                $filename = $file . '_' . time() . '.' . $ext;
-                $path = $request->file('coverphoto')->storeAs('public/foodphotos', $filename);
-            } else $filename = null;
-
             if($request->ishalal == 'Halal'){
                 $is_halal = "Halal"; 
             } else {
@@ -211,7 +201,22 @@ class FoodController extends Controller
             $food->calories = $request->calories; 
             $food->price = $request->price;
             $food->isHalal = $is_halal;
-            $food->coverphoto = $filename;
+
+            if($request->hasfile('coverphoto'))
+            {
+                if ($food->coverphoto != "" || $food->coverphoto != null){
+                    Storage::delete('public/coverphotos/' . $food->coverphoto);
+                }
+
+                $file = $request->file('coverphoto')->getClientOriginalName();
+                $name = pathinfo($file, PATHINFO_FILENAME);
+                $ext = $request->file('coverphoto')->getClientOriginalExtension();
+                $filename = $file . '_' . time() . '.' . $ext;
+                $path = $request->file('coverphoto')->storeAs('public/foodphotos', $filename);
+
+                $food->coverphoto = $filename; 
+            }
+
             $food->save(); 
 
             LogFood::create([

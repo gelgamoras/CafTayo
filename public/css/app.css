@@ -134,6 +134,12 @@
   position: absolute;
 }
 
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::after {
+  opacity: 1;
+  transform: rotate(45deg) scale(1);
+  background-image: none;
+}
+
 /* =============================
     --DATATABLES 
    ============================= */
@@ -183,6 +189,22 @@ td .btn-light:hover {
 
 .subcat-header {
   background-color: #F5F6F8;
+}
+
+.deleted-record {
+  background-color: #eee !important;
+}
+
+.deleted-record .table-image {
+  background-blend-mode: saturation;
+  opacity: 0.7;
+}
+
+.food-table-image {
+  height: 100px;
+  width: 100px;
+  background-size: cover;
+  background-position: center;
 }
 
 /* =============================

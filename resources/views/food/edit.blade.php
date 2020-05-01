@@ -1,138 +1,187 @@
-<h2>Edit Food</h2>
 
-<form method="POST" action="{{ route('food.update', ['campus' => request()->route('campus'), 'food' => $food->id]) }}" enctype="multipart/form-data">
-    @csrf 
-    @method('PUT')
+@extends('layouts.dashboard.main')
 
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="name">{{ __('Food Name') }}</label>
-            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name of Food" name="name" value="{{ $food->name }}" required autocomplete="name" autofocus>
+@section('subheader')
+    <a href="{{ route('food.index', $campus) }}" class="btn btn-secondary btn-sm mb-2" style="text-transform: none; letter-spacing: initial;">
+        Back
+    </a>
+@endsection
 
-            @error('name')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
+
+@section('content')
+<div class="row">
+        <div class="col-lg-4">
+            <div class="card card-small mb-4 pt-3">
+                <div class="card-header border-bottom text-center">
+                    <div class="mb-3 mx-auto">
+                        <div style="background-image: url('{{ asset('storage/foodphotos/'.$food->coverphoto) }}'); background-size: cover; background-position: center; height: 200px;" class="w-100">
+                        </div> 
+                    </div> 
+                    <h4 class="mb-0">{{ $food->name }}</h4> 
+                    <span class="text-muted d-block mb-2">
+                        @foreach($categories as $c)
+                            @if($c->id == $food->category_id)
+                                {{ $c->name }}
+                            @endif
+                        @endforeach
+                    </span> 
+                    <span style="font-weight: 300;">{{ $food->shortdescription }}</span>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item px-4">
+                        <strong class="text-muted d-block mb-2">Description</strong> 
+                        <span>{{ $food->description }} </span> 
+                    </li> 
+                    <li class="list-group-item p-4">
+                        <strong class="text-muted d-block mb-2">Ingredients</strong> 
+                        <ul style="column-count: 2;">
+                            @foreach($ingredients as $i)
+                                <li>{{ $i }}</li>
+                            @endforeach
+                        </ul>
+                    </li> 
+                </ul>
+            </div> 
         </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="category">{{ __('Category') }}</label>
-
-            <select id="category" name="category" class="form-control @error('category') is-invalid @enderror" required>
-                <option value="" selected>Select a Category</option>
-                @foreach ($categories as $category)
-                    @if($category->id == $food->category_id)
-                        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
-                    @endif
-                    <option value="{{$category->id}}"> {{$category->name}} </option>
-                @endforeach
-            </select>
-        
-            @error('category')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="shortDescription">{{ __('Short Description') }}</label>
-            <input id="shortDescription" type="text" class="form-control @error('shortDescription') is-invalid @enderror" placeholder="Short Description" name="shortDescription" value="{{ $food->shortdescription }}" required autocomplete="shortDescription">
-
-            @error('shortDescription')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="description">{{ __('Description') }}</label>
-            <input id="description" type="text" class="form-control @error('description') is-invalid @enderror" placeholder="Description" name="description" value="{{ $food->description }}" required autocomplete="description">
-
-            @error('description')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="ingredients">{{ __('Ingredients') }}</label>
-            <input id="ingredients" type="text" class="form-control @error('ingredients') is-invalid @enderror" placeholder="Ingredients" name="ingredients" value="{{ $food->ingredients }}" required autocomplete="ingredients">
-
-            @error('ingredients')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="calories">{{ __('Calories') }}</label>
-            <input id="calories" type="text" class="form-control @error('calories') is-invalid @enderror" placeholder="Calories" name="calories" value="{{ $food->calories }}" required autocomplete="calories">
-
-            @error('calories')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="price">{{ __('Price') }}</label>
-            <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" placeholder="Price" name="price" value="{{ $food->price }}" required autocomplete="price">
-
-            @error('price')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="halal">{{ __('Halal?') }}</label>
-            <input type="checkbox" id="halal" name="ishalal" value="Halal" class="form-control @error('halal') is-invalid @enderror" {{ $food->isHalal == 'Halal' ? 'checked' : '' }}>
-
-            @error('ishalal')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-    </div>
-
-
-    <div class="form-row">
-        <div class="form-group col-md-6">
-            <label for="coverphoto" class="form-label">{{ __('Cover Photo') }}</label><br>
-            <input id="coverphoto" class="form-control" type="file" class="@error('coverphoto') is-invalid @enderror" name="coverphoto">
-            @error('coverphoto')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-            @enderror
-        </div>
-    </div>
-
-    <div class="form-row">
-        <div class="col form-group">
-            <button type="submit" class="btn btn-sm btn-primary mt-3">Update Food</button> 
-        </div>
-    </div>
-</form>
+        <div class="col-lg-8">
+            <div class="card card-small mb-4">
+                <div class="card-header border-bottom">
+                    <h5 class="m-0">Update Food</h5> 
+                </div> 
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item p-3">
+                        <div class="row">
+                            <div class="col">
+                                <form method="POST" action="{{ route('food.update', ['campus' => request()->route('campus'), 'food' => $food->id]) }}" enctype="multipart/form-data">
+                                    @csrf 
+                                    @method('PUT')
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="name">{{ __('Food Name') }}</label>
+                                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name of Food" name="name" value="{{ $food->name }}" required autocomplete="name" autofocus>
+                                            @error('name')
+                                                <div class="input-note error-message">{{ $message }}</div>
+                                            @enderror
+                                        </div> 
+                                    </div> 
+                                    <div class="form-row">
+                                    </div> 
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4 mb-0">
+                                            <label for="category">{{ __('Category') }}</label> 
+                                            <select id="category" name="category" class="form-control {{($errors->has('category') ? 'input-error' : '')}}" id="category">
+                                                @foreach($categories as $category)
+                                                    @if($category->id == $food->category_id)
+                                                        @if($category->parent_id == null)
+                                                            <option value="{{ $category->id }}" selected>{{$category->name}}</option>
+                                                        @else 
+                                                            @foreach($categories as $p_category)
+                                                                @if($p_category->id == $category->parent_id)
+                                                                    <option value="{{ $category->id }}" selected>{{ $p_category->name }}\{{$category->name}}</option> 
+                                                                @endif
+                                                            @endforeach 
+                                                        @endif
+                                                    @endif
+                                                @endforeach
+                                                @foreach($categories as $category)
+                                                    @if($category->parent_id == null)
+                                                        <option value="{{ $category->id }}">{{$category->name}}</option>
+                                                    @else 
+                                                        @foreach($categories as $p_category)
+                                                            @if($p_category->id == $category->parent_id)
+                                                                <option value="{{ $category->id }}">{{ $p_category->name }}\{{$category->name}}</option> 
+                                                            @endif
+                                                        @endforeach 
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            @error('category')
+                                                <div class="input-note error-message">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-md-8 mb-0">
+                                            <label for="shortDescription">{{ __('Short Description') }}</label>
+                                            <input id="shortDescription" type="text" class="form-control @error('shortDescription') is-invalid @enderror" placeholder="Say a few words about this dish" name="shortDescription" value="{{ $food->shortdescription }}" required autocomplete="shortDescription">
+                                            <div class="input-note">Max. 150 characters</div>
+                                            @error('shortDescription')
+                                                <div class="input-note error-message">{{ $message }}</div>
+                                            @enderror
+                                        </div> 
+                                    </div> 
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="ingredients">{{ __('Ingredients') }}</label>
+                                            <textarea class="form-control {{($errors->has('ingredients') ? 'input-error' : '')}}" name="ingredients" id="ingredients" rows="3" placeholder="What are in this dish?">{{ $food->ingredients }}</textarea>
+                                            <div class="input-note">
+                                                Separate by comma (ex. Potato, Chicken, Spinach...)
+                                            </div> 
+                                            @error('ingredients')
+                                                <div class="input-note error-message">{{ $message }}</div>
+                                            @enderror
+                                        </div> 
+                                    </div> 
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <label for="calories">{{ __('Calories') }}</label> 
+                                            <div class="input-group">
+                                                <input type="number" name="calories" class="form-control {{($errors->has('calories') ? 'input-error' : '')}}" id="calories"
+                                                placeholder="Calories" value="{{ $food->calories }}" min="0"/> 
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">cal</span>
+                                                </div> 
+                                            </div> 
+                                            @error('calories')
+                                                <div class="input-note error-message">{{ $message }}</div>
+                                            @enderror
+                                        </div> 
+                                        <div class="form-group col-md-3">
+                                            <label for="price">{{ __('Price') }}</label> 
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">₱</span> 
+                                                </div> 
+                                                <input type="number" name="price" class="form-control {{($errors->has('price') ? 'input-error' : '')}}" id="price"
+                                                    placeholder="How much is it?" step=0.01 value="{{ $food->price }}" min="0"/> 
+                                            </div> 
+                                            @error('price')
+                                                <div class="input-note error-message">{{ $message }}</div>
+                                            @enderror
+                                        </div> 
+                                        <div class="form-group col-md-2">
+                                            <fieldset class="ml-2 mt-4 d-inline-block">
+                                            <div class="custom-control custom-checkbox d-block my-2">
+                                                <input type="checkbox" class="custom-control-input" id="halal" value="Halal" name="ishalal" {{ $food->isHalal == 'Halal' ? 'checked' : '' }}>
+                                                <label class="custom-control-label" for="halal">{{ __('Halal Food') }}</label>
+                                            </div>
+                                            </fieldset>
+                                        </div> 
+                                        <div class="form-group col-md-4">
+                                            <label for="coverphoto">{{ __('Cover Photo') }}</label><br>
+                                            <input id="coverphoto" class="form-control" type="file" class="@error('coverphoto') is-invalid @enderror" name="coverphoto">
+                                            @error('coverphoto')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div> 
+                                    </div> 
+                                    <div class="form-row">
+                                        <div class="form-group col-md-12">
+                                            <label for="description">Description</label>
+                                            <textarea class="form-control {{($errors->has('description') ? 'input-error' : '')}}" name="description" id="description" rows="5" placeholder="Tell us more about this dish">{{ $food->description }}</textarea> 
+                                            <div class="input-note">Max. 250 characters</div>
+                                            @error('description')
+                                                <div class="input-note error-message">{{ $message }}</div>
+                                            @enderror
+                                        </div> 
+                                    </div> 
+                                    <button type="submit" class="btn btn-primary">Save</button> 
+                                </form> 
+                            </div> 
+                        </div> 
+                    </li> 
+                </ul> 
+            </div>
+        </div>  
+    </div> 
+@endsection
