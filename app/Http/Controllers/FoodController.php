@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Food;
 use App\Campus;
 use App\Categories;
+use App\Food;
 use App\LogFood;
 use App\Rules\ValidCategory;
 use Illuminate\Http\Request;
