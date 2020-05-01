@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Campus;
 use App\Categories;
 use App\Food;
+use App\LogMenu;
 use App\Menu;
 use App\MenuItem;
 use App\Period;
@@ -74,17 +75,34 @@ class MenuController extends Controller
 
         if(!$validator->fails())
         {
-           /* Menu::create([
+            $menu = Menu::create([
                 'name' => $request->name,
                 'campus_id' => $campus->id,
                 'dates' => $request->dates,
                 'status' => 'Active'
-            ]);*/
-            dd($request);
+            ]);
+          
+            foreach($request->period as $i=>$period) 
+            {
+                foreach($period as $period_arr)
+                {
+                    MenuItem::create([
+                        'menu_id' => $menu->id, 
+                        'food_id' => $period_arr, 
+                        'period_id' => $i, 
+                        'status' => 'Available'
+                    ]);
+                }
+            }   
 
-            return redirect()->route('food.index', $campus)->with('success', 'You have successfullly added updated the food item!');
+            LogMenu::create([
+                'user_id' => auth()->user()->id,
+                'menu_id' => $menu->id,
+                'action' => 'Created Menu'
+            ]); 
+
+            return redirect()->route('menu.index', $campus)->with('success', 'You have successfullly added the menu!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
-       
     }
 
     /**
@@ -95,7 +113,7 @@ class MenuController extends Controller
      */
     public function show(Menu $menu)
     {
-        //
+       
     }
 
     /**
@@ -104,9 +122,11 @@ class MenuController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function edit(Menu $menu)
+    public function edit(Campus $campus, Menu $menu)
     {
-        //
+        if($menu->campus_id != $campus->id) abort(403);
+        $menuitems = MenuItems::where('menu_id', $menu->id);
+        return view('menu.edit')->with('menu', $menu)->with('menuitems', $menuitems);
     }
 
     /**
@@ -116,9 +136,55 @@ class MenuController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request, Campus $campus, Menu $menu)
     {
-        //
+        $validator = Validator::make($request->all(), 
+        [
+            'name' => ['required', 'string', 'max:50'],
+            'dates' => ['required', new ValidDates()],
+            'period' => ['required', 'array']
+        ],
+        [
+            'name.required' => 'Menu name is required',
+            'name.string' => 'Menu name must be a string',
+            'name.max' => 'Menu name cannot exceed :max characters',
+            'dates.required' => 'Menu dates are required',
+            'period.required' => 'Menu needs to have food items',
+            'period.array' => 'Menu needs to be in an array'
+        ]);
+
+        if(!$validator->fails())
+        {
+            $menu->name = $request->name;
+            $menu->dates = $request->dates;
+            $menu->save();
+
+            $menuitems = MenuItems::where('menu_id', $menu->id);
+
+            foreach($request->period as $i=>$period) 
+            {
+                foreach($period as $period_arr)
+                {
+                    //Check if $period_arr exists - continue
+                    //If exists in menuitems but not in arr - delete
+                    //Exists in arr but not in menu items - create
+                    MenuItem::create([
+                        'menu_id' => $menu->id, 
+                        'food_id' => $period_arr, 
+                        'period_id' => $i, 
+                        'status' => 'Active'
+                    ]);
+                }
+            }   
+
+            LogMenu::create([
+                'user_id' => auth()->user()->id,
+                'menu_id' => $menu->id,
+                'action' => 'Updated Menu'
+            ]); 
+
+            return redirect()->route('menu.index', $campus)->with('success', 'You have successfullly updated the menu!');
+        }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
     /**
@@ -127,7 +193,7 @@ class MenuController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Menu $menu)
+    public function destroy(Campus $campus, Menu $menu)
     {
         //
     }

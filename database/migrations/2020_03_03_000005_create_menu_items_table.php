@@ -21,7 +21,7 @@ class CreateMenuItemsTable extends Migration
             $table->foreign('food_id')->references('id')->on('foods');
             $table->bigInteger('period_id')->unsigned();
             $table->foreign('period_id')->references('id')->on('periods');
-            $table->enum('status', ['Active', 'Deleted']);
+            $table->enum('status', ['Available', 'Unavailable']);
             $table->timestamps();
         });
     }

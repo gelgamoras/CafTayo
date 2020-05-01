@@ -142,15 +142,16 @@
                                     <td>
                                         <div class='choose-period'>
                                             @foreach($periods as $key=>$period)
-                                                @if(old('period.' . $key) != null)
-                                                    @if(array_search($food->name, old('period.' . $key)))    
-                                                        {{ $food->name }}
-                                                    @endif
-                                                @endif
                                                 <div class='col-md-2'>
                                                     <div class='custom-control custom-checkbox'>
-                                                        <input type="checkbox" name="period[{{ $period->id }}][]" class="custom-control-input" id="{{ $food->id }}-{{ $period->id }}" value="{{ $food->name }}" checked>
-                                                        <label class="custom-control-label" for="{{ $food->id }}-{{ $period->id }}">{{ $period->period }}</label>
+                                                        <input type="checkbox" name="period[{{ $period->id }}][{{ $food->id }}]" class="custom-control-input" id="{{ $food->id }}-{{ $period->id }}" value="{{ $food->id }}" 
+                                                            @if(old('period.' . ($key +1)) != null)
+                                                                @if(array_search($food->id, old('period.' . ($key +1))))    
+                                                                    checked
+                                                                @endif
+                                                            @endif
+                                                        >
+                                                        <label class="custom-control-label" for="{{ $food->id }}-{{ $period->id }}">{{ $period->id }} {{ $period->period }}</label>
                                                     </div>
                                                 </div> 
                                             @endforeach 
