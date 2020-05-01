@@ -117,7 +117,7 @@
                                         <div class="form-group col-md-12">
                                             <label for="catering">{{ __('Catering Company') }}</label>
                                             <input id="catering" type="text" class="form-control @error('catering') is-invalid @enderror" 
-                                                placeholder="Catering Company" name="catering" value="{{ old('catering') }}" autocomplete="catering">
+                                                placeholder="Catering Company" name="catering" value="{{ $user->catering }}" autocomplete="catering">
 
                                             @error('catering')
                                                 <span class="invalid-feedback" role="alert">
