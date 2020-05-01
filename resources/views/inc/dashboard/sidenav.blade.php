@@ -13,8 +13,8 @@
     </nav>
   </div>
   <div class="nav-wrapper">
-    <ul class="nav flex-column">
       @if(Auth::user()->role == 'Admin')
+      <ul class="nav flex-column">
         <li class="nav-item">
           <a class="nav-link" href="#">
           <i class="material-icons">home</i>
@@ -98,14 +98,17 @@
             <span>My Campuses</span>
           </a>
         </li>
+      </ul>
       @else 
+      <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link" 
-              href="#">
-          <i class="material-icons">people</i>
-            <span>To be continued</span>
+          <a class="nav-link {{ Route::is('dashboard.mycampuses') ? 'active' : '' }}" 
+            href="{{ route('dashboard.mycampuses') }}">
+          <i class="material-icons">home</i>
+            <span>My Campuses</span>
           </a>
         </li>
+       </ul> 
       @endif
     </ul>
   </div>
