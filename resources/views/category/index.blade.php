@@ -1,11 +1,11 @@
 @extends('layouts.dashboard.main')
 
 @section('page_header', 'Categories')
-@section('subheader', '')
+@section('subheader', 'Categories and Subcategories')
 
 @section('page_top_buttons')
-   <base href="{{Request::url()}}/" /> 
-   <button type="button" class="btn btn-sm btn-primary mr-1"  onclick="window.location.href='create'">
+   <base href="{{Request::url()}}/"/>  
+   <button type="button" class="btn btn-sm btn-primary mt-3 mr-1"  onclick="window.location.href='create'">
         + Add Category
     </button>  
  
@@ -35,7 +35,7 @@
 
 @section('content')
     <div class="row">
-        <div class="col-lg-8 col-md-12 col-sm-12 mt-2">
+        <div class="col-lg-12 col-md-12 col-sm-12 mt-2">
             <table id="categoryTable" class="mdl-data-table" cellspacing="0" style="width: 100%">
                 <thead>
                     <tr>

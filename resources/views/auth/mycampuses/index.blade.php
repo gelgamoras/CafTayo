@@ -11,7 +11,7 @@
                 <h3 class="mb-0">My Campuses</h3> 
             </div>
             <div class="card-body">
-                <span class="font-weight-featherlight mb-4 d-inline-block">These are the campuses you have access to. You can manage the food categories for each campus here.</span> 
+                <span class="font-weight-regular mb-4 d-inline-block">Welcome!🌞 Below is a list of campuses you cater to. Click Manage to manage available food and categories for that campus.</span> 
                 <ul class="list-group list-group-small mx-3 list-group-flush">
                     @if($index->count() > 0)
                         @foreach($index as $campus)
