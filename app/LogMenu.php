@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogMenu extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [ 'user_id', 'menu_id', 'action' ];
     
     //Users -> LogMenu
     public function userLogMenu() {

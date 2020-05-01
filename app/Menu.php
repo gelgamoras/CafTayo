@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
 {
-    protected $fillable = [];
+    protected $fillable = [ 'name', 'campus_id', 'dates', 'status' ];
 
     //Campus -> Menus
     public function campusMenus() {
