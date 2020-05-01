@@ -98,11 +98,8 @@
                                 @endforeach
                                 <td>₱{{ $food->price }}</td> 
                                 <td>
-                                    <a href="#" class="btn btn-sm btn-secondary">
-                                        <i class='fas fa-search'></i>
-                                    </a>
                                     <a href="{{ route('food.edit', ['campus' => request()->route('campus'), 'food' => $food->id]) }}" class="btn btn-sm btn-secondary">
-                                        <i class='fas fa-edit'></i>
+                                        <i class='fas fa-search'></i>
                                     </a>
                                     <a href="#" onclick="event.preventDefault(); if(confirm('Are you sure?')) { document.getElementById('food-delete-{{ $food->id }}').submit(); }" class="btn btn-sm btn-primary">
                                         <i class="fas fa-trash"></i> 
