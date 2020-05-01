@@ -14,8 +14,8 @@ class Food extends Model
     }
 
     //Categories -> Food
-    public function p_categoriesFood() {
-        return $this->belongsTo('App\Food', 'category_id', 'id');
+    public function categoriesFood() {
+        return $this->belongsTo('App\Categories', 'category_id', 'id');
     }
 
     //MenuItem -> Food

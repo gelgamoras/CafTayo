@@ -3,7 +3,7 @@
 @section('page_header', 'Plan a Menu')
 
 @section('page_top_buttons')
-    <button type="submit" class="btn btn-primary">
+    <button type="submit" class="btn btn-primary" onclick="document.getElementById('menu-create').submit();">
         Save Menu
     </button>
 @endsection
@@ -28,7 +28,7 @@
             }); 
    
             @foreach($categories as $c)
-            $('#{{ $c->id }}-filter').click(function(){
+                $('#{{ $c->id }}-filter').click(function(){
                     jQuery('#selectFoodTable').dataTable().fnFilter('{{ $c->name }}'); 
                 });   
             @endforeach
@@ -55,23 +55,35 @@
 
 
 @section('content')
-    <form action="#" method="post">
+    @if($errors->any())
+        {{ implode('', $errors->all('<div>:message</div>')) }}
+    @endif
+
+    <form id="menu-create" action="{{ route('menu.store', request()->route('campus')) }}" method="post">
+        @csrf 
+
         <div class="row">
             <div class="col-lg-6 col-md-12 col-sm-12">
                 <div class="form-group">
-                    <input type="text" class="form-control" id="menu-title" placeholder="Menu Title" /> 
+                    <input type="text" class="form-control" id="menu-title" placeholder="Menu Title" name="name" value="{{ old('name') }}"/> 
+                    @error('name')
+                        <div class="input-note error-message">{{ $message }}</div>
+                    @enderror
                 </div> 
             </div> 
             <div class="col-lg-4 col-md-8 col-sm-12">
                 <div class="form-group">
                     <div class="input-group with-addon-icon-left">
-                        <input type="text" class="form-control" id="menu-date" placeholder="Date" /> 
+                        <input type="text" class="form-control" id="menu-date" placeholder="Date" name="dates" value="{{ old('dates') }}"/> 
                         <span class="input-group-append">
                             <span class="input-group-text">
                                 <i style="font-size: 20px" class="fa fa-calendar"></i> 
                             </span>
                         </span>
                     </div> 
+                    @error('dates')
+                        <div class="input-note error-message">{{ $message }}</div>
+                    @enderror
                 </div> 
             </div> 
         </div> 
@@ -112,30 +124,32 @@
                                     <td width="10%">{{ $food->id }}</td>
                                     <td><div class="food-table-image" style="background-image: url('{{ asset('storage/foodphotos/' . $food->coverphoto) }}');"></div></td>
                                     <td>{{ $food->name }}</td>
-                                    <!--this iS A DISASTER IM SORRY I KNOW IM DUMB I-->
-                                    @foreach($categories as $s_cat)
-                                        @if($s_cat->id == $food->category_id)
-                                        @if($s_cat->parent_id == null) 
-                                                <td>{{ $s_cat->name }}</td> 
-                                                <td>N/A</td>
+                                    <td>
+                                        @if($food->categoriesFood->parent_id == null)
+                                            {{ $food->categoriesFood->name }}
                                         @else
-                                                @foreach($categories as $p_cat)
-                                                    @if($p_cat->id == $s_cat->parent_id)
-                                                        <td>{{$p_cat->name}}</td>
-                                                        <td>{{$s_cat->name}}</td> 
-                                                    @endif
-                                                @endforeach
-                                        @endif 
+                                            {{ $food->categoriesFood->categoriesCategories->name }}
                                         @endif
-                                    @endforeach
+                                    </td>
+                                    <td>
+                                        @if($food->categoriesFood->parent_id == null)
+                                            N/A
+                                        @else 
+                                            {{ $food->categoriesFood->name }}
+                                        @endif
+                                    </td>
                                     <td>₱{{ $food->price }}</td> 
                                     <td>
                                         <div class='choose-period'>
-                                            @foreach($periods as $period)
+                                            @foreach($periods as $key=>$period)
+                                                @if(old('period.' . $key) != null)
+                                                    @if(array_search($food->name, old('period.' . $key)))    
+                                                        {{ $food->name }}
+                                                    @endif
+                                                @endif
                                                 <div class='col-md-2'>
                                                     <div class='custom-control custom-checkbox'>
-                                                        <input type="checkbox" name="{{ $period->period }}[]" class="custom-control-input"
-                                                            id="{{ $food->id }}-{{ $period->id }}" value="{{ $food->id }}">
+                                                        <input type="checkbox" name="period[{{ $period->id }}][]" class="custom-control-input" id="{{ $food->id }}-{{ $period->id }}" value="{{ $food->name }}" checked>
                                                         <label class="custom-control-label" for="{{ $food->id }}-{{ $period->id }}">{{ $period->period }}</label>
                                                     </div>
                                                 </div> 

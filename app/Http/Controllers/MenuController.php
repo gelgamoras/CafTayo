@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Campus;
+use App\Categories;
 use App\Food;
 use App\Menu;
+use App\MenuItem;
 use App\Period;
-use App\Categories;
+use App\Rules\ValidDates;
 use Illuminate\Http\Request;
+use Validator;
 
 class MenuController extends Controller
 {
@@ -43,7 +46,34 @@ class MenuController extends Controller
      */
     public function store(Request $request, Campus $campus)
     {
-        dd($request);
+        $validator = Validator::make($request->all(), 
+        [
+            'name' => ['required', 'string', 'max:50'],
+            'dates' => ['required', new ValidDates()],
+            'period' => ['required', 'array']
+        ],
+        [
+            'name.required' => 'Menu name is required',
+            'name.string' => 'Menu name must be a string',
+            'name.max' => 'Menu name cannot exceed :max characters',
+            'dates.required' => 'Menu dates are required',
+            'period.required' => 'Menu needs to have food items',
+            'period.array' => 'Menu needs to be in an array'
+        ]);
+
+        if(!$validator->fails())
+        {
+           /* Menu::create([
+                'name' => $request->name,
+                'campus_id' => $campus->id,
+                'dates' => $request->dates,
+                'status' => 'Active'
+            ]);*/
+            dd($request);
+
+            return redirect()->route('food.index', $campus)->with('success', 'You have successfullly added updated the food item!');
+        }  else return redirect()->back()->withErrors($validator)->withInput();
+       
     }
 
     /**
