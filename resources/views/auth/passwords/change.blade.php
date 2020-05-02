@@ -16,7 +16,7 @@
                 <div class="form-row">
                     <div class="form-group w-75 px-1">
                         <label for="oldpassword">{{ __('Password') }}</label>
-                        <input id="oldpassword" type="password" class="form-control @error('oldpassword') is-invalid @enderror" placeholder="Current Passowrd" name="oldpassword" required autofocus>
+                        <input id="oldpassword" type="password" class="form-control @error('oldpassword') is-invalid @enderror" placeholder="Current Password" name="oldpassword" required autofocus>
                         @error('oldpassword')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

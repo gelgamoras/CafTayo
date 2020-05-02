@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Food; 
-use App\Categories; 
+use App\Campus; 
+use App\Categories;
+use App\Food;  
 use App\LogUser;
 use App\Menu; 
-use App\Campus; 
 use App\User; 
 use App\UserCampus; 
 use App\Rules\AlphaSpace;
@@ -16,9 +16,9 @@ use App\Rules\ValidPHNumber;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use Validator;
 
 class DashboardController extends Controller
 {
@@ -124,7 +124,12 @@ class DashboardController extends Controller
             
             $User->save();
             
-            return redirect()->route('dashboard.profile.edit')->with('success', 'You have successfullly updated your profile!');
+            LogUser::create([
+                'user_id' => auth()->user()->id,
+                'action' => 'Updated Profile',
+                'target_id' => $user->id
+            ]);
+            return redirect()->route('dashboard.index')->with('success', 'You have successfullly updated your profile!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
@@ -178,13 +183,8 @@ class DashboardController extends Controller
         $campuses = collect();
         
         $mycampuses = User::find($user->id)->userUserCampus;  
-            foreach($mycampuses as $campus){
-                $x = $campus->campus_id; 
-                $campuses->push(Campus::find($x)); 
-            }  
-
+        foreach($mycampuses as $campus) $campuses->push(Campus::find($campus->campus_id)); 
         return view('auth.mycampuses.index')->with('index', $campuses); 
-
     }
 
     public function adminHome(){

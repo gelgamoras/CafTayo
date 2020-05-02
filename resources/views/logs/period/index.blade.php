@@ -50,7 +50,7 @@
                             <td>{{ $logperiod->created_at }}</td>
                             <td>
                                 <a href="#" class="btn btn-sm btn-primary">{{ __('View Campus') }}</a>
-                                <a href="{{ route('users.show', $loguser->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
+                                <a href="{{ route('users.show', $logperiod->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
                             </td>
                         </tr>
                     @endforeach 

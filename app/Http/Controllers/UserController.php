@@ -6,6 +6,7 @@ use App\Campus;
 use App\User;
 use App\UserCampus;
 use App\LogUser;
+use App\Mailer\AppMailer;
 use App\Rules\AlphaSpace;
 use App\Rules\ValidCampus;
 use App\Rules\ValidPHNumber;
@@ -125,6 +126,8 @@ class UserController extends Controller
                     'target_id' => $user->id
                 ]);
             }
+            
+            $user->sendEmailVerificationNotification();
             return redirect()->route('users.index')->with('success', 'You have successfullly added a new user! Password: ' . $randomPW);
         } else return redirect()->back()->withErrors($validator)->withInput();
     }

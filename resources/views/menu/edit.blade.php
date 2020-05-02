@@ -5,11 +5,8 @@
 
 
 @section('page_top_buttons')
-<button type="button" class="btn btn-sm btn-outline-success mr-1" data-toggle="modal" data-target="#add-to-menu">
-        + Add Food
-    </button> 
-    <button type="button" class="btn btn-sm btn-primary mr-1" onclick="window.location.href='#'">
-        Update
+    <button type="button" class="btn btn-sm btn-primary mr-1" onclick="document.getElementById('menu-update').submit();">
+        Update Menu
     </button> 
 @endsection
 
@@ -65,23 +62,32 @@
 @endsection
 
 @section('content')
-<form action="#" method="post">
+<form id="menu-update" action="{{ route('menu.update', ['campus' => request()->route('campus'), 'menu' => $menu]) }}" method="post">
+    @csrf 
+    @method('PUT')
+    
     <div class="row"> 
         <div class="col-md-4">
             <div class="form-group">
-                <input type="text" class="form-control" id="menu-title" placeholder="Menu Title" value="{{$menu->name}}" /> 
+                <input name="name" type="text" class="form-control" id="menu-title" placeholder="Menu Title" value="{{$menu->name}}" /> 
+                @error('name')
+                        <div class="input-note error-message">{{ $message }}</div>
+                @enderror
             </div> 
         </div> 
         <div class="col-md-4">
             <div class="form-group">
                 <div class="input-group with-addon-icon-left">
-                    <input type="text" class="form-control" id="menu-date" placeholder="Date" /> 
+                    <input type="text" class="form-control" id="menu-date" name="dates" placeholder="Date" /> 
                     <span class="input-group-append">
                         <span class="input-group-text">
                             <i style="font-size: 20px" class="fa fa-calendar"></i> 
                         </span>
                     </span>
                 </div> 
+                @error('dates')
+                    <div class="input-note error-message">{{ $message }}</div>
+                @enderror
             </div> 
         </div> 
         <div class="col-md-2">
@@ -150,7 +156,7 @@
                                                             checked
                                                         @endif
                                                     >
-                                                    <label class="custom-control-label" for="{{ $food->id }}-{{ $period->id }}">{{ $period->id }} {{ $period->period }}</label>
+                                                    <label class="custom-control-label" for="{{ $food->id }}-{{ $period->id }}">{{ $period->period }}</label>
                                                 </div>
                                             </div> 
                                         @endforeach 
