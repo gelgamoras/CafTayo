@@ -121,7 +121,7 @@
                                         <div class="form-group col-md-12">
                                             <label for="description">Description</label>
                                             <textarea class="form-control {{($errors->has('description') ? 'input-error' : '')}}" name="description" id="description" rows="5" placeholder="Tell us more about this dish">@if(old('description')) {{old('description')}} @endif</textarea> 
-                                            <div class="input-note">Max. 250 characters</div>
+                                            <div class="input-note">Max. 256 characters</div>
                                             @error('description')
                                                 <div class="input-note error-message">{{ $message }}</div>
                                             @enderror

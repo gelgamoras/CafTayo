@@ -1,6 +1,6 @@
 @extends('layouts.dashboard.main')
 
-@section('page_header', 'Food')
+@section('page_header', 'Manage Food')
 @section('subheader', '')
 
 @section('page_top_buttons')

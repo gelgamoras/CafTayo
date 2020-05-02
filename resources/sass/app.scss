@@ -184,6 +184,11 @@ $black: #212529;
         white-space: break-spaces !important;
     }
 
+    .error-message {
+        font-weight: 400; 
+        color: rgb(185, 20, 20);
+    }
+
     .campus-button {
         width: 200px; 
         font-size: 1.7rem; 

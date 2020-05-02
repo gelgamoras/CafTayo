@@ -7,7 +7,8 @@
             @csrf
             <div class="form-row">
                 <div class="form-group col text-center">
-                    <h2>Register</h2> 
+                    <img src="{{ asset('images/icon-logo-leaf.png') }}" width="40px" />
+                    <h2 class="comic-font-bold">Register</h2> 
                     Welcome to CafTayo! 
                 </div>
             </div>

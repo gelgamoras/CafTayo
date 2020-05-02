@@ -255,6 +255,11 @@ td .btn-light:hover {
   white-space: break-spaces !important;
 }
 
+.error-message {
+  font-weight: 400;
+  color: #b91414;
+}
+
 .campus-button {
   width: 200px;
   font-size: 1.7rem;
