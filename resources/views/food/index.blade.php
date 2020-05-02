@@ -44,12 +44,12 @@
 @section('content')
     Filter by category: 
     <div class="row">
-        <div class="col-lg-6 col-md-12 col-sm-12 mt-2">
+        <div class="col-lg-8 col-md-12 col-sm-12 mt-2">
             <div class="">
                 @foreach($categories as $c)
-                    <button type="button" class="btn btn-secondary btn-sm" id="{{ $c->name }}-filter">{{ $c->name }}</button>
+                    <button type="button" class="btn btn-secondary btn-sm mb-1" id="{{ $c->name }}-filter">{{ $c->name }}</button>
                 @endforeach  
-                <button type="button" class="btn btn-white btn-sm" id="clear-filter">Clear</button>         
+                <button type="button" class="btn btn-white btn-sm mb-1" id="clear-filter">Clear</button>         
             </div> 
         </div>
     </div> 
@@ -78,7 +78,7 @@
                         @foreach($index as $food)
                             <tr>
                                 <td width="10%">{{ $food->id }}</td>
-                                <td><div class="food-table-image" style="background-image: url('{{ asset('storage/foodphotos/' . $food->coverphoto) }}');"></div></td>
+                                <td><div class="food-table-image" style="background-image: url('@if(!$food->coverphoto){{ asset('images/food-default.png') }}@else{{ asset('storage/foodphotos/' . $food->coverphoto) }}@endif');"></div></td>
                                 <td>{{ $food->name }}</td>
                                 <td>
                                     @if($food->categoriesFood->parent_id == null)
