@@ -189,34 +189,21 @@ class MenuController extends Controller
             $menu->dates = $request->dates;
             $menu->save();
 
+            $x = false;
             foreach($request->period as $i=>$period) 
             {
                 $menuitems = MenuItem::where('menu_id', $menu->id)->where('period_id', $i)->get();
                 $menuitems_id = array();
                 foreach($menuitems as $menuitem) array_push($menuitems_id, $menuitem->food_id);
-        
-                dd($menuitems_id);
-                
-                foreach($menuitems as $menutiem)
-                {
-                    if(array_search($menuitem->food_id, $period)) continue;
-                        else $menutiem->delete();
-                }
 
-                foreach($period as $period_arr)
-                {
-                    if(array_search($period_arr, $menuitems_id)) continue;
-                        else MenuItem::create(['menu_id' => $menu->id, 'food_id' => $period_arr, 'period_id' => $i, 'status' => 'Available'
-                    ]);
-                }
+                $removed = array_diff($menuitems_id, $period);
+                foreach($removed as $x) MenuItem::where('menu_id', $menu->id)->where('period_id', $i)->where('food_id', $x)->delete();
+                
+                $added = array_diff($period, $menuitems_id);
+                foreach($added as $x) MenuItem::create(['menu_id' => $menu->id, 'food_id' => $x, 'period_id' => $i, 'status' => 'Available']);
             }   
 
-            LogMenu::create([
-                'user_id' => auth()->user()->id,
-                'menu_id' => $menu->id,
-                'action' => 'Edited Menu'
-            ]); 
-
+            LogMenu::create(['user_id' => auth()->user()->id, 'menu_id' => $menu->id, 'action' => 'Edited Menu' ]); 
             return redirect()->route('menu.index', $campus)->with('success', 'You have successfullly updated the menu!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
