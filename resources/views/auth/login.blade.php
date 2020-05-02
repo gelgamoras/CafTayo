@@ -7,7 +7,8 @@
             @csrf
             <div class="form-row">
                 <div class="form-group col text-center">
-                    <h2>Login</h2> 
+                <img src="{{ asset('images/icon-logo-leaf.png') }}" width="40px" />
+                    <h2 class="comic-font-bold">Login</h2> 
                 </div>
             </div>
             <div class="form-row">
