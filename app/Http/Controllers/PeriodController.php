@@ -105,6 +105,17 @@ class PeriodController extends Controller
      */
     public function updatePeriods(Request $request)
     {
+        $temp_timestart = $request->timestart; 
+        $temp_timeend = $request->timeend; 
+
+        foreach($request->period as $i=>$p){
+            $temp_timestart[$i] = date("H:i", strtotime($temp_timestart[$i]));
+            $temp_timeend[$i] = date("H:i", strtotime($temp_timeend[$i]));
+        }
+
+        $request->merge(['timestart' => $temp_timestart]); 
+        $request->merge(['timeend' => $temp_timeend]); 
+        
         $validator = Validator::make($request->all(), 
         [
             'period.*' => ['required', 'max:50'],
@@ -123,31 +134,22 @@ class PeriodController extends Controller
         ]);
 
         if(!$validator->fails())
-        {
-            $temp_timestart = $request->timestart; 
-            $temp_timeend = $request->timeend; 
+        {              
 
-            foreach($request->period as $i=>$p){
-                $temp_timestart[$i] = date("H:i", strtotime($temp_timestart[$i]));
-                $temp_timeend[$i] = date("H:i", strtotime($temp_timeend[$i]));
-            }
-
-            $request->merge(['timestart' => $temp_timestart]); 
-            $request->merge(['timeend' => $temp_timeend]); 
-                 
             foreach($request->period as $key=>$value) {
                 $tmp = Period::find($key);
-                if($tmp->period == $value || $tmp->start == $request->timestart[$key] || $tmp->end == $request->timeend[$key]) continue;
+                //if($tmp->period == $value || $tmp->start == $request->timestart[$key] || $tmp->end == $request->timeend[$key]) continue;
                 
                 $tmp->period = $value;
                 $tmp->start = $request->timestart[$key];
                 $tmp->end = $request->timeend[$key];
+
                 $tmp->save();
                 
                 LogPeriod::create([
                     'user_id' => auth()->user()->id,
                     'period_id' => $tmp->id,
-                    'action' => 'Updated Period'
+                    'action' => 'Edited Period'
                 ]);
             }
 
