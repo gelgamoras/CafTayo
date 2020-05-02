@@ -40,7 +40,8 @@ Route::middleware('auth', 'verified')->group(function() {
         
         // Admin
         Route::prefix('admin')->group(function() {
-
+            //Home (Dashboard)
+            Route::get('/', 'DashboardController@adminHome')->name('home.admin'); 
             // Campus
             Route::prefix('campus')->group(function () {
                 Route::get('/', 'CampusController@index')->name('campus.index');
