@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Campus;
+use App\Food;
+use App\Menu;
+use App\MenuItem;
 use App\Period;
 use Illuminate\Http\Request;
 
@@ -18,14 +21,26 @@ class GuestController extends Controller
     public function show(Campus $campus)
     {
         $cur_date = '%' . date('m/d/Y') . '%';
-        $camp_everyday_menu = Menu::where('campus_id', $campus->id)->where('status', 'Active')->whereNull('dates')->get();
-        $camp_random_menus = Menu::where('campus_id', $campus->id)->where('status', 'Active')->where('dates', 'LIKE', $cur_date)->get();
-        $camp_menus = array_merge($camp_everyday_menu, $camp_random_menus);
-
+        $menu = Menu::where('campus_id', $campus->id)->where('status', 'Active')->where(function($query) use ($cur_date) { $query->where('dates', 'LIKE', "%{$cur_date}%")->orwhereNull('dates'); })->get();
+        $menu_ids = array();
+        foreach($menu as $m) array_push($menu_ids, $m->id);
         $periods = Period::get();
-        $fooditems = array();
+        $foods = array();
+       
+        foreach($periods as $key=>$period)
+        {
+            $food_items = array();
+            $menu_items = MenuItem::where('period_id', $period->id)->whereIn('menu_id', $menu_ids)->get();
+            
+            foreach($menu_items as $menu_item) 
+            {
+                $food = Food::where('id', $menu_item->food_id)->where('campus_id', $campus->id)->get();
+                array_push($food_items, $food);
+            }
+            array_push($foods, $food_items);  
+        }
 
-        dd($camp_menus);
-        return view('guest.menu');
+        foreach($foods as $food) array_unique($food);
+        return view('guest.menu')->with('foods', $foods);
     }
 }
