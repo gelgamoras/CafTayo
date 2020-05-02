@@ -21,7 +21,7 @@
                                     {{ $campus->address }}
                                 </span>
                                 <span class="ml-auto text-right my-auto">
-                                    <a href="{{ route('food.index', $campus) }}" class="btn btn-primary btn-squared">Manage</a> 
+                                    <a href="{{ route('dashboard.campus', $campus) }}" class="btn btn-primary btn-squared">Manage</a> 
                                 </span>
                             </li> 
                         @endforeach

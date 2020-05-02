@@ -1,10 +1,9 @@
 @extends('layouts.dashboard.main')
 
-@section('page_header', 'System Overview')
-@section('subheader', 'Dashboard')
-
-@section('scripts')
+@section('page_header')
+    {{ $campus->name }} Campus
 @endsection
+@section('subheader', 'Campus Overview')
 
 @section('content')
 <div class="row">
@@ -23,14 +22,14 @@
             </div>
         </div>
     @endforeach
-</div>
+</div> 
 <div class="row mt-4">
     <div class="col-lg-6">
         <h2 class="font-weight-bold">Get Started</h2> 
         <p class="pl-3" style="font-size: 1.2rem">
-        🏛 <a href="{{ route('campus.create') }}"><u>Create a Campus</u></a> <br /> 
-        🙋‍♀️ <a href="{{ route('users.create') }}"><u>Create Users</u></a> <br /> 
-        ⏰ <a href="{{ route('period.index') }}"><u>Manage Periods</u></a>  </p> 
+        ✏️ <a href="{{ route('categories.create', $campus) }}"><u>Create categories</u></a> <br /> 
+        🥓 <a href="{{ route('food.create', $campus) }}"><u>Add food items</u></a> <br /> 
+        📅 <a href="{{ route('menu.create', $campus) }}"><u>Plan a menu</u></a>  </p> 
     </div>
 </div> 
 @endsection

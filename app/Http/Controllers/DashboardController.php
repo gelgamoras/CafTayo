@@ -189,12 +189,24 @@ class DashboardController extends Controller
 
     public function adminHome(){
         $stats = array(
-           array("name" => "Menu", "count" => Menu::all()->count()), 
+           array("name" => "Menus", "count" => Menu::all()->count()), 
            array("name" => "Food", "count" => Food::all()->count()), 
            array("name" => "Categories", "count" => Categories::all()->count()), 
            array("name" => "Campuses", "count" => Campus::all()->count()), 
            array("name" => "Users", "count" => User::all()->count())
         ); 
         return view('dashboard.admin')->with('stats', $stats); 
+    }
+
+    public function campusPage(Campus $campus){
+
+        $stats = array(
+            array("name" => "Menus", "count" => Menu::where('campus_id', $campus->id)->count()), 
+            array("name" => "Food", "count" => Food::where('campus_id', $campus->id)->count()), 
+            array("name" => "Categories", "count" => Categories::where('campus_id', $campus->id)->count())
+         ); 
+
+         return view('dashboard.campusoverview')->with('campus', $campus)->with('stats', $stats); 
+
     }
 }

@@ -118,6 +118,10 @@ Route::middleware('auth', 'verified')->group(function() {
 
     // For Consessionaires Only
     Route::middleware('canManage')->group(function() {
+        
+        //Campus Page 
+        Route::get('/manage/{campus}', 'DashboardController@campusPage')->name('dashboard.campus'); 
+        
         Route::prefix('manage/{campus}')->group(function() {
 
             //Category
