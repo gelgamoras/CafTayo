@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', 'GuestController@landingPage')->name('home');
-
 // All Users
 Route::prefix('user')->group(function() {
     
@@ -156,3 +154,7 @@ Route::middleware('auth', 'verified')->group(function() {
         });
     });
 });
+
+//Guest 
+Route::get('/', 'GuestController@landingPage')->name('home');
+Route::get('/{campus}', 'GuestController@show')->name('menu');
