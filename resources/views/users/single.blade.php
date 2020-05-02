@@ -31,8 +31,8 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item px-4 py-4">
-                    <strong>Username:</strong> {{ $user-> username }}
-                    <h2 class="my-1  font-weight-bold d-inline-block">{{ $user->firstname }} {{ $user->middlename }} {{ $user->lastname }}
+                    <strong>Username:</strong> {{ $user-> username }} <br /> 
+                    <h2 class="my-1  font-weight-bold d-inline-block">{{ $user->firstname }} {{ $user->middlename }} {{ $user->lastname }}</h2> 
                     @if($user->status == 'Active')
                         <span class="d-inline-block badge badge-pill badge-success" style="font-size: 12px; font-weight: 500; letter-spacing: initial; transform: translatey(-7px)">ACTIVE</span>
                     @else
