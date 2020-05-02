@@ -15,6 +15,6 @@ class LogFood extends Model
 
     //Food -> LogFood
     public function foodLogFood() {
-        return $this->belongsTo('App\Food', 'user_id', 'id');
+        return $this->belongsTo('App\Food', 'food_id', 'id');
     }
 }
