@@ -1,12 +1,13 @@
 <!doctype html>
-<html class="no-js h-100" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="no-js h-100" lang="{{ str_replace('_', '-', app()->getLocale()) }}" style="scroll-behavior: smooth;">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{{ config('app.name', 'Laravel') }}</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+    <link rel="icon" href="{{ asset('images/icon-logo-leaf.png') }}" sizes="any" type="image/svg+xml"> 
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -37,9 +38,9 @@
         <main class="main-content col-lg-10 col-md-9 col-sm-12 p-0 offset-lg-2 mx-auto bg-white">
           <!-- / .main-navbar -->
           @include('inc.messages')
-          <div class="main-content-container container-fluid px-4">
+          <div class="main-content-container container-fluid px-3">
             <!-- Page Header -->
-            @include('inc.dashboard.pageheader')
+      
             <!-- End Page Header -->
             @yield('content')
           </div>
