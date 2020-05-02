@@ -104,13 +104,19 @@
         <h6 class="main-sidebar__nav-title">{{ $campus->name }}</h6> 
         <ul class="nav flex-column">
           <li class="nav-item">
+            <a class="nav-link {{ Route::is('menu.create') ? 'active' : '' }}" 
+              href="{{ route('menu.create', $campus) }}">
+            <i class="material-icons">calendar_today</i>
+              <span>Plan a Menu</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link {{ Route::is('menu.index') ? 'active' : '' }}
-                               {{ Route::is('menu.create') ? 'active' : '' }}
                                {{ Route::is('menu.show') ? 'active' : '' }}
                                {{ Route::is('menu.edit') ? 'active' : '' }}" 
               href="{{ route('menu.index', $campus) }}">
             <i class="material-icons">book</i>
-              <span>Menu</span>
+              <span>Manage Menus</span>
             </a>
           </li>
           <li class="nav-item">
@@ -119,7 +125,7 @@
                                {{ Route::is('food.edit') ? 'active' : '' }} " 
               href="{{ route('food.index', $campus) }}">
             <i class="material-icons">restaurant</i>
-              <span>Food</span>
+              <span>Manage Food</span>
             </a>
           </li>
           <li class="nav-item">
@@ -128,7 +134,7 @@
                                {{ Route::is('categories.edit') ? 'active' : '' }}" 
               href="{{ route('categories.index', $campus) }}">
             <i class="material-icons">widgets</i>
-              <span>Categories</span>
+              <span>Manage Categories</span>
             </a>
           </li>
         </ul> 
