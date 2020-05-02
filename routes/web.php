@@ -11,19 +11,16 @@
 |
 */
 
-
-//Route::get('/', function () { return view('welcome'); });
-
 Route::get('/', 'GuestController@landingPage')->name('home');
 
 // All Users
 Route::prefix('user')->group(function() {
     
     // Auth Routes
-    Auth::routes();
+    Auth::routes(['verify' => true]);
 });
 
-Route::middleware('auth')->group(function() { 
+Route::middleware('auth', 'verified')->group(function() { 
 
     // All Users
     Route::prefix('user')->group(function() {

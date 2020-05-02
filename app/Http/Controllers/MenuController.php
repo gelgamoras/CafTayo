@@ -178,20 +178,20 @@ class MenuController extends Controller
             $menu->dates = $request->dates;
             $menu->save();
 
-            $menuitems = MenuItem::where('menu_id', $menu->id);
-
+            $menuitems = MenuItems::where('menu_id', $menu->id);
+            $menuitems_id = array_column($menuitems, 'food_id');
             foreach($request->period as $i=>$period) 
             {
+                foreach($menuitems as $menutiem)
+                {
+                    if(array_search($menuitem->food_id, $period)) continue;
+                        else $menutiem->delete();
+                }
+
                 foreach($period as $period_arr)
                 {
-                    //Check if $period_arr exists - continue
-                    //If exists in menuitems but not in arr - delete
-                    //Exists in arr but not in menu items - create
-                    MenuItem::create([
-                        'menu_id' => $menu->id, 
-                        'food_id' => $period_arr, 
-                        'period_id' => $i, 
-                        'status' => 'Active'
+                    if(array_search($preriod_arr, $menuitems_id)) continue;
+                        else MenuItem::create(['menu_id' => $menu->id, 'food_id' => $period_arr, 'period_id' => $i, 'status' => 'Active'
                     ]);
                 }
             }   
@@ -214,6 +214,15 @@ class MenuController extends Controller
      */
     public function destroy(Campus $campus, Menu $menu)
     {
-        //
+        $menu->status = 'Deleted'; 
+        $menu->save(); 
+
+        LogFood::create([
+            'user_id' => auth()->user()->id,
+            'menu_id' => $menu->id,
+            'action' => 'Deleted Menu'
+        ]);
+        return Redirect()->route('menu.index', $campus)->with('success', 'You have successfullly deleted the menu!');
+
     }
 }
