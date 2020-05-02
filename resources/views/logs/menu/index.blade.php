@@ -41,7 +41,7 @@
             </thead>
             <tbody>
                 @if($index->count() > 0)
-                    @foreach($index as $logcategory)
+                    @foreach($index as $logmenu)
                         <tr>
                             <td width="10%">{{ $logmenu->id }}</td>
                             <td>{{ $logmenu->user_id }} | {{ $logmenu->userLogMenu->username }}</td>
