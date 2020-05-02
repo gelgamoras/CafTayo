@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Food; 
+use App\Categories; 
 use App\LogUser;
+use App\Menu; 
 use App\Campus; 
 use App\User; 
 use App\UserCampus; 
@@ -121,7 +124,7 @@ class DashboardController extends Controller
             
             $User->save();
             
-            return redirect()->route('dashboard.index')->with('success', 'You have successfullly updated your profile!');
+            return redirect()->route('dashboard.profile.edit')->with('success', 'You have successfullly updated your profile!');
         }  else return redirect()->back()->withErrors($validator)->withInput();
     }
 
@@ -182,5 +185,16 @@ class DashboardController extends Controller
 
         return view('auth.mycampuses.index')->with('index', $campuses); 
 
+    }
+
+    public function adminHome(){
+        $stats = array(
+           array("name" => "Menu", "count" => Menu::all()->count()), 
+           array("name" => "Food", "count" => Food::all()->count()), 
+           array("name" => "Categories", "count" => Categories::all()->count()), 
+           array("name" => "Campuses", "count" => Campus::all()->count()), 
+           array("name" => "Users", "count" => User::all()->count())
+        ); 
+        return view('dashboard.admin')->with('stats', $stats); 
     }
 }
