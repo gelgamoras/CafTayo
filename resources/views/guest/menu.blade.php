@@ -60,7 +60,7 @@
                 @foreach($period as $food)
                     <div class="row border-top mx-auto py-4 menu-item">
                         <div class="col-5">
-                            <div class="food-list-image" style="background-image: url('{{ asset('storage/foodphotos/' . $food[0]->coverphoto) }}')">
+                            <div class="food-list-image" style="background-image: url('@if(!$food[0]->coverphoto){{ asset('images/food-default.png') }}@else{{ asset('storage/foodphotos/' . $food[0]->coverphoto) }}@endif');">
                             </div>  
                         </div> 
                         <div class="col-7">
