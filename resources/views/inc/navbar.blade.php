@@ -34,7 +34,7 @@
                 <form action="#" method="POST" class="mb-5">
                     <input type="email" name="email" class="form-control" /> 
                     <button type="submit" class="btn mt-3 mb-2 btn-black w-100">Subscribe</button>
-                    <a href="{{ route('login') }}" style="font-weight: 300;">Login</a>
+                    <a href="{{ route('login') }}" style="font-weight: 300;" class="mt-1">Login</a>
                 </form>
             </div>
         </div>
