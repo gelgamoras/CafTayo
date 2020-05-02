@@ -15,8 +15,6 @@
           <i class="material-icons">&#xE7FD;</i> Profile</a>
         <a class="dropdown-item" href="{{ route('dashboard.password.edit') }}">
           <i class="material-icons">vertical_split</i>Change Password</a>
-        <a class="dropdown-item" href="#">
-          <i class="material-icons">note_add</i>Settings</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="{{ route('logout') }}"
             onclick="event.preventDefault();
