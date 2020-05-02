@@ -3,6 +3,9 @@
 @section('page_header', 'System Overview')
 @section('subheader', 'Dashboard')
 
+@section('scripts')
+@endsection
+
 @section('content')
 <div class="row">
     @foreach($stats as $i=>$stat)
@@ -21,4 +24,10 @@
         </div>
     @endforeach
 </div>
+<div class="row mt-4">
+    <div class="col-lg-6">
+        <h2 class="font-weight-bold">Get Started</h2> 
+        <a href="{{ route('campus.create') }}"><u>Create a campus</u></a>, <a href="{{ route('users.create') }}"><u>create a user</u></a> or <a href="{{ route('period.index') }}"><u>manage periods</u></a>. 
+    </div>
+</div> 
 @endsection

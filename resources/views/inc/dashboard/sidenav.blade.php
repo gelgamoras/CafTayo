@@ -15,8 +15,8 @@
   <div class="nav-wrapper">
       @if(Auth::user()->role == 'Admin')
       <ul class="nav flex-column">
-        <li class="nav-item">
-          <a class="nav-link" href="#">
+        <li class="nav-item {{ Route::is('home.admin') ? 'active' : '' }} ">
+          <a class="nav-link" href="{{ route('home.admin') }}">
           <i class="material-icons">home</i>
             <span>Home</span>
           </a>
