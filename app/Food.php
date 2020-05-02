@@ -10,7 +10,7 @@ class Food extends Model
 
     //Categories -> Campus
     public function campusFood() {
-        return $this->belongsTo('App\Campuses', 'campus_id', 'id');
+        return $this->belongsTo('App\Campus', 'campus_id', 'id');
     }
 
     //Categories -> Food
@@ -20,7 +20,7 @@ class Food extends Model
 
     //MenuItem -> Food
     public function menuitemFood() {
-        return $this->belongsTo('App\MenuItem', 'food_id', 'id');
+        return $this->hasMany('App\MenuItem', 'food_id', 'id');
     }
 
     //Food -> LogFood

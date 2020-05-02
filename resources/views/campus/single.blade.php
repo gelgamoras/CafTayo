@@ -46,23 +46,6 @@
                         <span class="font-weight-bold text-muted">Created at:</span> {{ $campus->created_at }} <br /> 
                         <span class="font-weight-bold text-muted">Updated at:</span> {{ $campus->updated_at }}
                     </li>
-                    <li class="list-group-item px-4">
-                        <span class="float-right">
-                            <a href="{{ route('campus.edit', $campus->id) }}" class="btn btn-sm btn-secondary m-1"><i class="fa fa-edit"></i></a>
-                            <a href="#" onclick="event.preventDefault(); if(confirm('Are you sure?')) { document.getElementById('campus-delete-{{ $campus->id }}').submit(); }" class="btn btn-sm btn-primary m-1">
-                                @if($campus->status == 'Active')
-                                    <i class="fa fa-trash"></i>  
-                                @else 
-                                    Restore
-                                @endif
-                            </a>
-
-                            <form id="campus-delete-{{ $campus->id }}" method="POST" action="{{ route('campus.destroy', $campus->id ) }}">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                        </span>
-                    </li>
                 </ul>
             </div>
         </div>

@@ -23,13 +23,15 @@ class FoodController extends Controller
     {
         $categories = collect(); 
         $records = Food::where('campus_id', $campus->id)->where('status', 'Active')->get();
-        $all_categories = Categories::where('status', 'Active')->get(); 
+        $all_categories = Categories::where('status', 'Active')->where('campus_id', $campus->id)->get(); 
 
         foreach($all_categories as $c){
             if($c->categoriesFood->count() > 0){
                 $categories->push($c); 
                 if($c->parent_id != null){
-                    $categories->push($c->categoriesCategories); 
+                    if(!$categories->contains('id', $c->parent_id)){
+                        $categories->push($c->categoriesCategories); 
+                    }   
                 }
             }
         }
@@ -44,7 +46,7 @@ class FoodController extends Controller
      */
     public function create(Campus $campus)
     {
-        $categories = Categories::select('id','name', 'parent_id')->orderBy('parent_id', 'asc')->get();
+        $categories = Categories::select('id','name', 'parent_id')->where('campus_id', $campus->id)->orderBy('parent_id', 'asc')->get();
 
         if(count($categories) < 1) return redirect()->route('categories.index', $campus)->with('error', 'This campus does not have any categories. Add a category first!');
         return view('food.create')->with('categories', $categories)->with('campus', $campus); 

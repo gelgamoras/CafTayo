@@ -8,6 +8,7 @@ use App\LogFood;
 use App\LogMenu;
 use App\LogPeriod;
 use App\LogUser;
+use App\Food;
 use Illuminate\Http\Request;
 
 class LogController extends Controller
@@ -77,8 +78,8 @@ class LogController extends Controller
      */
     public function showFood($id)
     {
-        $LogFood = LogFood::find($id);
-        return view('logs.food.single')->with('logfood', $LogFood);
+        $food = Food::find($id); 
+        return view('logs.food.single')->with('food', $food);
     }
 
     /**

@@ -73,7 +73,7 @@ Route::middleware('auth')->group(function() {
 
                 Route::prefix('food')->group(function() {
                     Route::get('/', 'LogController@indexFood')->name('logs.food.index');
-                    //Route::get('/{id}', 'LogController@showFood')->name('logs.food.show');
+                    Route::get('/{id}', 'LogController@showFood')->name('logs.food.show');
                 });
 
                 Route::prefix('menu')->group(function() {

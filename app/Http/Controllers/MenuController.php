@@ -23,7 +23,7 @@ class MenuController extends Controller
     public function index(Campus $campus)
     {
         $records = Menu::where('campus_id', $campus->id)->where('Status', 'Active')->get();
-        return view('menu.index')->with('index', $records);
+        return view('menu.index')->with('index', $records)->with('campus', $campus);
     }
 
     /**
@@ -42,7 +42,9 @@ class MenuController extends Controller
             if($c->categoriesFood->count() > 0){
                 $categories->push($c); 
                 if($c->parent_id != null){
-                    $categories->push($c->categoriesCategories); 
+                    if(!$categories->contains('id', $c->parent_id)){
+                        $categories->push($c->categoriesCategories); 
+                    }   
                 }
             }
         }
@@ -125,8 +127,25 @@ class MenuController extends Controller
     public function edit(Campus $campus, Menu $menu)
     {
         if($menu->campus_id != $campus->id) abort(403);
-        $menuitems = MenuItems::where('menu_id', $menu->id);
-        return view('menu.edit')->with('menu', $menu)->with('menuitems', $menuitems);
+        $food = Food::where('campus_id', $campus->id)->get(); 
+        $menuitems = MenuItem::where('menu_id', $menu->id);
+        $periods = Period::all(); 
+        $categories = collect(); 
+
+        $all_categories = Categories::where('status', 'Active')->where('campus_id', $campus->id)->get(); 
+
+        foreach($all_categories as $c){
+            if($c->categoriesFood->count() > 0){
+                $categories->push($c); 
+                if($c->parent_id != null){
+                    if(!$categories->contains('id', $c->parent_id)){
+                        $categories->push($c->categoriesCategories); 
+                    }   
+                }
+            }
+        }
+        return view('menu.edit')->with('index', $food)->with('menu', $menu)->with('menuitems', $menuitems)->with('campus', $campus)
+            ->with('periods', $periods)->with('categories', $categories);
     }
 
     /**

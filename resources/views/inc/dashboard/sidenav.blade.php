@@ -89,15 +89,6 @@
             <span>Subscribers</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link {{ Route::is('dashboard.mycampuses') ? 'active' : '' }}
-                            {{ Route::is('categories.index') ? 'active' : '' }} 
-                            {{ Route::is('categories.create') ? 'active' : '' }}" 
-              href="{{ route('dashboard.mycampuses') }}">
-          <i class="material-icons">apartment</i>
-            <span>My Campuses</span>
-          </a>
-        </li>
       </ul>
       @else 
       <ul class="nav flex-column">

@@ -56,7 +56,7 @@
                             <tr>
                                 <td width="10%">{{ $category->id }}</td>
                                 <td>{{ $category->name }}</td>
-                                <td>@if($category->parent_id != null) {{ $category->s_categoriesCategories->name }} @endif</td>
+                                <td>@if($category->parent_id != null) {{ $category->categoriesCategories->name }} @endif</td>
                                 <td>{{ $category->status }}</td>
                                 <td>
                                     <a href="{{ route('categories.edit', ['campus' => request()->route('campus'), 'category' => $category->id]) }}" class="btn btn-sm btn-secondary">

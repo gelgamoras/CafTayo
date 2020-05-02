@@ -10,12 +10,12 @@ class MenuItem extends Model
     
     //MenuItem -> Food
     public function menuitemFood() {
-        return $this->hasMany('App\Food', 'food_id', 'id');
+        return $this->belongsTo('App\Food', 'food_id', 'id');
     }
 
     //MenuItem -> Period
     public function menuitemPeriod() {
-        return $this->hasMany('App\Period', 'period_id', 'id');
+        return $this->belongsTo('App\Period', 'period_id', 'id');
     }
 
     //MenuItem -> Menu

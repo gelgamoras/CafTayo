@@ -50,7 +50,7 @@
                             <td>{{ $logfood->action }}</td>
                             <td>{{ $logfood->created_at }}</td> 
                             <td>
-                                <a href="#" class="btn btn-sm btn-primary">{{ __('View Food') }}</a>
+                                <a href="{{ route('logs.food.show', $logfood->id) }}" class="btn btn-sm btn-primary">{{ __('View Food') }}</a>
                                 <a href="{{ route('users.show', $logfood->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
                             </td>
                         </tr>
