@@ -49,7 +49,6 @@
                             <td>{{ $logmenu->action }}</td>
                             <td>{{ $logmenu->created_at }}</td>
                             <td>
-                                <a href="#" class="btn btn-sm btn-primary">{{ __('View Category') }}</a>
                                 <a href="{{ route('users.show', $logmenu->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
                             </td>
                         </tr>
