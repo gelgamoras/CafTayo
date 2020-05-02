@@ -24,7 +24,7 @@
                 <div class="campus-buttons">
                     @if($index != null)
                         @foreach($index as $campus)
-                            <a href="#" class="btn btn-black btn-pill d-block mx-auto my-3 comic-font campus-button">{{ $campus->name }}</a> 
+                            <a href="{{ route('menu', $campus) }}" class="btn btn-black btn-pill d-block mx-auto my-3 comic-font campus-button">{{ $campus->name }}</a> 
                         @endforeach
                     @endif
                 </div>

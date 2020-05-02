@@ -195,7 +195,6 @@ class MenuController extends Controller
                 $menuitems_id = array();
                 foreach($menuitems as $menuitem) array_push($menuitems_id, $menuitem->food_id);
         
-                dd($menuitems_id);
                 
                 foreach($menuitems as $menutiem)
                 {

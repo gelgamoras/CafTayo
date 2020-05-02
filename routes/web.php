@@ -163,3 +163,4 @@ Route::middleware('auth', 'verified')->group(function() {
 //Guest 
 Route::get('/', 'GuestController@landingPage')->name('home');
 Route::get('/{campus}', 'GuestController@show')->name('menu');
+Route::get('/{campus}/{food}', 'GuestController@foodPage')->name('food'); 
