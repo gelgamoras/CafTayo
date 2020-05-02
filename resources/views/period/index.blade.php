@@ -11,7 +11,7 @@
     <script type="text/javascript">
             $(function () {
                 $('.datetimepicker').datetimepicker({
-                    format: 'LT',
+                    format: 'HH:mm:ss',
                     icons: {
                         up: 'fas fa-sort-up',
                         down: 'fas fa-sort-down'

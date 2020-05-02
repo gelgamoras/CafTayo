@@ -115,8 +115,8 @@ class CategoriesController extends Controller
 
             if($category->parent_id != $parent)
             {
-               if(Categories::where('parent_id', $category->id)->where('status', 'active')->find())
-                return redirect()->back()->with('error', 'This category has subcategories. Remove them first.')->withInput();
+                if(Categories::where('parent_id', $category->id)->where('status', 'active')->first())
+                    return redirect()->back()->with('error', 'This category has subcategories. Remove them first.')->withInput();
             }
 
             $category->name = $request->name;

@@ -38,6 +38,9 @@ class MenuController extends Controller
         $categories = collect(); 
         $all_categories = Categories::where('campus_id', $campus->id)->where('status', 'Active')->get(); 
 
+        if(count($all_categories) < 1) return redirect()->route('categories.index', $campus)->with('error', 'This campus does not have any categories. Add a category first!');
+        if(count($foods) < 1) return redirect()->route('food.index', $campus)->with('error', 'This campus does not have any food. Add food first!');
+
         foreach($all_categories as $c){
             if($c->categoriesFood->count() > 0){
                 $categories->push($c); 
@@ -127,12 +130,17 @@ class MenuController extends Controller
     public function edit(Campus $campus, Menu $menu)
     {
         if($menu->campus_id != $campus->id) abort(403);
+        if($menu->status == "Deleted") return abort(403);
+
         $food = Food::where('campus_id', $campus->id)->get(); 
         $menuitems = MenuItem::where('menu_id', $menu->id);
         $periods = Period::all(); 
         $categories = collect(); 
 
-        $all_categories = Categories::where('status', 'Active')->where('campus_id', $campus->id)->get(); 
+        $all_categories = Categories::where('status', 'Active')->where('campus_id', $campus->id)->get();
+        
+        if(count($all_categories) < 1) return redirect()->route('categories.index', $campus)->with('error', 'This campus does not have any categories. Add a category first!');
+        if(count($food) < 1) return redirect()->route('food.index', $campus)->with('error', 'This campus does not have any food. Add food first!');
 
         foreach($all_categories as $c){
             if($c->categoriesFood->count() > 0){
@@ -160,7 +168,6 @@ class MenuController extends Controller
         $validator = Validator::make($request->all(), 
         [
             'name' => ['required', 'string', 'max:50'],
-            'dates' => ['required', new ValidDates()],
             'period' => ['required', 'array']
         ],
         [
@@ -172,16 +179,22 @@ class MenuController extends Controller
             'period.array' => 'Menu needs to be in an array'
         ]);
 
+        $validator->sometimes('dates', ['required', new ValidDates()], function($input) {
+            return $input->name != "Everyday Menu";
+        });
+
         if(!$validator->fails())
         {
-            $menu->name = $request->name;
+            if($menu->name != "Everyday Menu") $menu->name = $request->name;
             $menu->dates = $request->dates;
             $menu->save();
 
-            $menuitems = MenuItems::where('menu_id', $menu->id);
-            $menuitems_id = array_column($menuitems, 'food_id');
             foreach($request->period as $i=>$period) 
             {
+                $menuitems = MenuItem::where('menu_id', $menu->id)->where('period_id', $i)->get();
+                $menuitems_id = array();
+                foreach($menuitems as $menuitem) array_push($menuitems_id, $menuitem->food_id);
+        
                 foreach($menuitems as $menutiem)
                 {
                     if(array_search($menuitem->food_id, $period)) continue;
@@ -190,8 +203,8 @@ class MenuController extends Controller
 
                 foreach($period as $period_arr)
                 {
-                    if(array_search($preriod_arr, $menuitems_id)) continue;
-                        else MenuItem::create(['menu_id' => $menu->id, 'food_id' => $period_arr, 'period_id' => $i, 'status' => 'Active'
+                    if(array_search($period_arr, $menuitems_id)) continue;
+                        else MenuItem::create(['menu_id' => $menu->id, 'food_id' => $period_arr, 'period_id' => $i, 'status' => 'Available'
                     ]);
                 }
             }   
@@ -199,7 +212,7 @@ class MenuController extends Controller
             LogMenu::create([
                 'user_id' => auth()->user()->id,
                 'menu_id' => $menu->id,
-                'action' => 'Updated Menu'
+                'action' => 'Edited Menu'
             ]); 
 
             return redirect()->route('menu.index', $campus)->with('success', 'You have successfullly updated the menu!');
@@ -217,7 +230,7 @@ class MenuController extends Controller
         $menu->status = 'Deleted'; 
         $menu->save(); 
 
-        LogFood::create([
+        LogMenu::create([
             'user_id' => auth()->user()->id,
             'menu_id' => $menu->id,
             'action' => 'Deleted Menu'

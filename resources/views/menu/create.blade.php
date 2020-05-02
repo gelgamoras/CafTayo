@@ -55,10 +55,6 @@
 
 
 @section('content')
-    @if($errors->any())
-        {{ implode('', $errors->all('<div>:message</div>')) }}
-    @endif
-
     <form id="menu-create" action="{{ route('menu.store', request()->route('campus')) }}" method="post">
         @csrf 
 
@@ -151,7 +147,7 @@
                                                                 @endif
                                                             @endif
                                                         >
-                                                        <label class="custom-control-label" for="{{ $food->id }}-{{ $period->id }}">{{ $period->id }} {{ $period->period }}</label>
+                                                        <label class="custom-control-label" for="{{ $food->id }}-{{ $period->id }}">{{ $period->period }}</label>
                                                     </div>
                                                 </div> 
                                             @endforeach 
