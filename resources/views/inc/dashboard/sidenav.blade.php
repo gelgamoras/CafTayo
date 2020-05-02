@@ -100,9 +100,16 @@
           </a>
         </li>
       </ul> 
-      @if(Request::is('manage/*/*'))
+      @if(Request::is('manage/*'))
         <h6 class="main-sidebar__nav-title">{{ $campus->name }}</h6> 
         <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link {{ Route::is('dashboard.campus') ? 'active' : '' }}" 
+              href="{{ route('dashboard.campus', $campus) }}">
+            <i class="material-icons">visibility</i>
+              <span>Overview</span>
+            </a>
+          </li>
           <li class="nav-item">
             <a class="nav-link {{ Route::is('menu.create') ? 'active' : '' }}" 
               href="{{ route('menu.create', $campus) }}">
