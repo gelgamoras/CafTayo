@@ -9,6 +9,7 @@ use App\LogMenu;
 use App\LogPeriod;
 use App\LogUser;
 use App\Food;
+use App\Categories; 
 use Illuminate\Http\Request;
 
 class LogController extends Controller
@@ -55,8 +56,8 @@ class LogController extends Controller
      */
     public function showCategory($id)
     {
-        $LogCategory = LogCategories::find($id);
-        return view('logs.category.single')->with('logcategory', $LogCategory);
+        $category = Categories::find($id); 
+        return view('logs.category.single')->with('category', $category);
     }
 
     /**

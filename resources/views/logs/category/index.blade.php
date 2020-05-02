@@ -48,7 +48,7 @@
                             <td>{{ $logcategory->action }}</td>
                             <td>{{ $logcategory->created_at }}</td> 
                             <td>
-                                <a href="#" class="btn btn-sm btn-primary">{{ __('View Category') }}</a>
+                                <a href="{{ route('logs.category.show', $logcategory->category_id) }}" class="btn btn-sm btn-primary">{{ __('View Category') }}</a>
                                 <a href="{{ route('users.show', $logcategory->user_id) }}" class="btn btn-sm btn-primary">{{ __('View User') }}</a>
                             </td>
                         </tr>
